@@ -47,7 +47,12 @@ Plans:
   3. Every `question.optionSetId` references an existing option set; orphaned references are caught at registration time with the bad reference name
   4. Every registered target has a corresponding adapter in the adapter registry; missing adapters are detected and reported
   5. All existing 8 tests continue to pass, and new registry validation tests exercise the above detection paths
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Registry Foundation: Maps + register/resolve + open string types + option self-registration (TEST-01)
+- [ ] 02-02-PLAN.md — Target/WorkType/Adapter registration + adapters.ts rewrite + adapter completeness validation (TEST-02, TEST-03, TEST-05)
+- [ ] 02-03-PLAN.md — UI decoupling + init.ts barrel + integration verification (ARCH-03)
 
 ### Phase 3: Metadata Execution
 **Goal**: All metadata fields defined in option configs (`appliesTo`, `suppress`, `prefer`, `safetyDefaults`) have runtime execution paths. The UI, renderer, and state management respond to this metadata.
@@ -59,7 +64,12 @@ Plans:
   3. The generic video renderer produces output that includes text_handling dimension content (currently missing from generic output)
   4. Switching targets in the UI preserves all selections compatible with the new target and warns about dropped selections
   5. Every selected option can be traced to exactly one of: a brief item, a prompt text fragment, or a warning in the output — no silent drops
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Registry Foundation: Maps + register/resolve + open string types + option self-registration (TEST-01)
+- [ ] 02-02-PLAN.md — Target/WorkType/Adapter registration + adapters.ts rewrite + adapter completeness validation (TEST-02, TEST-03, TEST-05)
+- [ ] 02-03-PLAN.md — UI decoupling + init.ts barrel + integration verification (ARCH-03)
 **UI hint**: yes
 
 ### Phase 4: Catalog Expansion
@@ -72,7 +82,12 @@ Plans:
   3. All option IDs use `optionSetId:optionId` namespace format — no two options across any catalog share the same ID
   4. Markdown export produces a readable, structured document containing all selected dimensions, their chosen options with explanations, and both rendered prompts (zh + en)
   5. Each of the 11 original dimensions has at least one new option beyond the current ~80 baseline population
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Registry Foundation: Maps + register/resolve + open string types + option self-registration (TEST-01)
+- [ ] 02-02-PLAN.md — Target/WorkType/Adapter registration + adapters.ts rewrite + adapter completeness validation (TEST-02, TEST-03, TEST-05)
+- [ ] 02-03-PLAN.md — UI decoupling + init.ts barrel + integration verification (ARCH-03)
 
 ### Phase 5: Consumer Translation
 **Goal**: Chinese consumer aesthetics vocabulary ("高级感", "ins风", "大片感", etc.) maps concretely to professional cinematography options. Category tabs and platform format hints make navigation intuitive.
@@ -83,7 +98,12 @@ Plans:
   2. Large option sets (8+ options in one question) display category tabs for scannable navigation (e.g., Subject split into 人物 / 产品 / 空间 / 食物)
   3. When a platform-specific use case is selected (e.g., 抖音), relevant format hints appear (e.g., "抖音推荐 9:16 竖屏，时长 15-60 秒")
   4. All 14 consumer aesthetics terms each map to at least one concrete professional option with a brief rationale visible to the user
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Registry Foundation: Maps + register/resolve + open string types + option self-registration (TEST-01)
+- [ ] 02-02-PLAN.md — Target/WorkType/Adapter registration + adapters.ts rewrite + adapter completeness validation (TEST-02, TEST-03, TEST-05)
+- [ ] 02-03-PLAN.md — UI decoupling + init.ts barrel + integration verification (ARCH-03)
 **UI hint**: yes
 
 ### Phase 6: Quality Intelligence
@@ -95,7 +115,12 @@ Plans:
   2. Selecting a use case option (e.g., "产品展示") automatically highlights suggested options across relevant dimensions with a visual indicator
   3. Research findings from Seedance 2.0 official prompt guide and Veo 3 prompt guide are documented, and at least 5 quality heuristics are traceable to specific rules from these sources
   4. At least 5 deterministic quality heuristics exist with distinct trigger conditions — each produces a specific, actionable warning message
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Registry Foundation: Maps + register/resolve + open string types + option self-registration (TEST-01)
+- [ ] 02-02-PLAN.md — Target/WorkType/Adapter registration + adapters.ts rewrite + adapter completeness validation (TEST-02, TEST-03, TEST-05)
+- [ ] 02-03-PLAN.md — UI decoupling + init.ts barrel + integration verification (ARCH-03)
 **UI hint**: yes
 
 ### Phase 7: Integration Testing
@@ -108,7 +133,12 @@ Plans:
   3. When the Clipboard API is unavailable or fails, a visible fallback state appears (text selection or manual copy area) — user is never left with a silent failure
   4. The advanced options section collapses/expands correctly, preserves expansion state across selections, and is keyboard-accessible
   5. Browser smoke test: open `/`, switch target from Seedance to generic, expand advanced options, select options in 3+ dimensions, copy JSON — no console errors and output contains expected fragments
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Registry Foundation: Maps + register/resolve + open string types + option self-registration (TEST-01)
+- [ ] 02-02-PLAN.md — Target/WorkType/Adapter registration + adapters.ts rewrite + adapter completeness validation (TEST-02, TEST-03, TEST-05)
+- [ ] 02-03-PLAN.md — UI decoupling + init.ts barrel + integration verification (ARCH-03)
 **UI hint**: yes
 
 ### Phase 8: Hardening & Forward Planning
@@ -121,7 +151,12 @@ Plans:
   3. Manual validation: a Seedance 2.0 prompt generated by the wizard, when submitted to Seedance, produces acceptable video output (subjective but documented)
   4. Schema versioning strategy is documented: how future catalog format changes will be handled without breaking existing option data
   5. No remaining ARCH-08 edge cases — every selected option in every tested scenario traces to output or warning
-**Plans**: TBD
+**Plans**: 3 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Registry Foundation: Maps + register/resolve + open string types + option self-registration (TEST-01)
+- [ ] 02-02-PLAN.md — Target/WorkType/Adapter registration + adapters.ts rewrite + adapter completeness validation (TEST-02, TEST-03, TEST-05)
+- [ ] 02-03-PLAN.md — UI decoupling + init.ts barrel + integration verification (ARCH-03)
 
 ---
 
@@ -130,7 +165,7 @@ Plans:
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Safety Foundation | 0/2 | Not started | - |
-| 2. Registry Architecture | 0/1 | Not started | - |
+| 2. Registry Architecture | 0/3 | Not started | - |
 | 3. Metadata Execution | 0/1 | Not started | - |
 | 4. Catalog Expansion | 0/1 | Not started | - |
 | 5. Consumer Translation | 0/1 | Not started | - |
