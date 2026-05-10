@@ -51,7 +51,6 @@ npm run dev        # http://localhost:3000
 npm test           # 51 tests
 npm run lint       # ESLint
 npm run typecheck  # tsc --noEmit
-npm run build      # static export → out/
 ```
 
 ## Constraints / 约束
