@@ -5,7 +5,6 @@ coverage/
 .env
 .env*.local
 *.log
-*.png
 tsconfig.tsbuildinfo
 .planning/
 .omx/
