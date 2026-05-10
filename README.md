@@ -1,39 +1,39 @@
-# 可控提示词向导 / Controllable Prompt Guide
+<!--
+Language switcher / 语言切换
+-->
 
-> 面向非专业用户的视频提示词生成工具。不需写任何专业术语，只做选择题就能把模糊需求转成可复制到 Seedance 2.0 / Veo 3 / 通用视频模型里的专业提示词。
->
-> A video prompt wizard for non-expert users. No jargon required — turn vague ideas into copy-ready professional prompts through guided choices. Supports Seedance 2.0, Veo 3, and generic video models.
+[中文](./README.zh.md) | English
 
 ---
 
-## 为什么用这个 / Why
+# Controllable Prompt Guide
 
-大多数 AI 视频工具要求你写英文专业术语（cinematography, depth of field, dolly zoom...）。普通人只知道「高级感」「赛博朋克」「4K」——这个工具把专业维度拆成看得懂的选择题，选完就出 prompt。
+> A video prompt wizard for non-expert users. No jargon required — turn vague ideas into copy-ready professional prompts through guided choices. Supports Seedance 2.0, Veo 3, and generic video models.
 
-Most AI video tools expect English technical vocabulary. Ordinary users only know vague terms like "cinematic feel" or "4K" — this tool breaks down professional dimensions into understandable choices and outputs production-ready prompts.
+## Why
 
-- **零填空 / Zero typing** — 所有输入都是选择题 / All input is selection-based
-- **零费用 / Zero cost** — 本地纯静态页面，不调任何生成 API / Local static site, no paid APIs
-- **零登录 / Zero login** — 不需要账户、数据库、支付 / No accounts, databases, or payments
-- **即时复制 / Instant copy** — 中文 / 英文 / JSON / Markdown 一键复制
+Most AI video tools expect English technical vocabulary (cinematography, depth of field, dolly zoom...). Ordinary users only know vague terms like "cinematic feel" or "4K" — this tool breaks down professional dimensions into understandable choices and outputs production-ready prompts.
 
-## 支持的输出目标 / Supported Targets
+- **Zero typing** — All input is selection-based
+- **Zero cost** — Local static site, no paid API calls
+- **Zero login** — No accounts, databases, or payments
+- **Instant copy** — Chinese prompt, English prompt, JSON brief, and Markdown export
+
+## Supported Targets
 
 | Target | Style | Notes |
 |--------|-------|-------|
-| **Seedance 2.0** | 导演式自然语言 / Director-style | 安全合规警告 / Safety constraint warnings |
-| **Veo 3 (Google)** | Cinematographic | 原生音频生成 / Native audio generation |
-| **Generic Video** | 结构化字段 / Structured fields | 不绑定特定平台 / Platform-agnostic |
+| **Seedance 2.0** | Director-style natural language | Safety constraint warnings |
+| **Veo 3 (Google)** | Cinematographic | Native audio generation |
+| **Generic Video** | Structured field list | Platform-agnostic |
 
-## 视频维度 / Video Dimensions (12 dimensions, 134+ options)
+## Video Dimensions (12 dimensions, 134+ options)
 
-用途 / Use case · 主体 / Subject · 场景 / Scene · 镜头构图 / Shot type · 镜头运动 / Camera movement · 画面动作 / Motion · 光线 / Lighting · 风格 / Style · 约束 / Constraints · 声音 / Audio · 比例时长 / Format · 画面文字 / On-screen text
-
-每个选项包含：普通人能看懂的标签和解释 + 专业术语 + 中英文提示词片段 + 适用目标 + 风险提示。
+Use case · Subject · Scene · Shot type · Camera movement · Motion · Lighting · Style · Constraints · Audio · Format · On-screen text
 
 Every option includes: plain-language labels + professional terms + bilingual prompt fragments + target applicability + risk hints.
 
-## 本地运行 / Quick Start
+## Quick Start
 
 ```bash
 git clone https://github.com/Klausc06/controllable-prompt-guide.git
@@ -42,7 +42,7 @@ npm install
 npm run dev        # http://localhost:3000
 ```
 
-## 验证 / Verification
+## Verification
 
 ```bash
 npm test           # 51 tests
@@ -51,29 +51,28 @@ npm run typecheck  # tsc --noEmit
 npm run build      # static export → out/
 ```
 
-## 架构 / Architecture
+## Architecture
 
-配置驱动 — 新增一个目标工具只需加 2 个文件 + 2 行导入，不改核心代码。
 Config-driven — adding a new target requires only 2 new files + 2 import lines, zero changes to core code.
 
 ```
 src/lib/prompt/
-├── types.ts          # 类型定义 / Type definitions
-├── registry.ts       # 中央注册表 / Central registry (5 Maps, register/resolve/getAll)
-├── init.ts           # 依赖顺序桶文件 / Import-order barrel
+├── types.ts          # Type definitions
+├── registry.ts       # Central registry (5 Maps, register/resolve/getAll)
+├── init.ts           # Import-order barrel file
 ├── adapters.ts       # resolveAdapter().render() — no if/else
-├── brief.ts          # Brief 构建 + 共享工具 / Brief builder + shared utilities
-├── heuristics.ts     # 提示词质量启发 / Prompt quality heuristics
-├── options/          # 12 个选项目录 / 12 option catalogs
-├── targets/          # 3 个目标工具 / 3 target tool configs
-├── renderers/        # 3 个 TargetAdapter 实现 / 3 adapter implementations
-├── work-types/       # 作品类型 / Work type definitions
-└── validation.ts     # CI 交叉引用校验 / Cross-reference validation
+├── brief.ts          # Brief builder + shared utilities
+├── heuristics.ts     # Prompt quality heuristics (4 rules)
+├── options/          # 12 option catalogs
+├── targets/          # 3 target tool configs
+├── renderers/        # 3 TargetAdapter implementations
+├── work-types/       # Work type definitions
+└── validation.ts     # CI cross-reference validation
 ```
 
-## 后续方向 / Roadmap
+## Roadmap
 
-- 扩充选项目录到 200+ / Expand option catalog to 200+
+- Expand option catalog to 200+
 - Runway Gen-4 adapter
 - Canva design brief work type
 - Tailwind v4 migration
