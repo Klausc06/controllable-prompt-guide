@@ -1,79 +1,36 @@
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-10
+**Last updated:** 2026-05-10 — Post-audit fixes applied
+**Phase:** All 8 phases complete
+**Tests:** 44/44 passing
+**CI:** test/lint/typecheck/build all green
 
----
+## Architecture
 
-## Project Reference
+- Registry: 5 Maps with register/resolve/getAll
+- Adapters: resolveAdapter().render() — no if/else
+- UI: resolveWorkType() + getAllTargets() from registry
+- Camera: shot_type + camera_movement (split per Seedance requirement)
+- SafetyDefaults: auto-select + amber warning
+- Quality: 4 heuristic rules
+- Export: zh/en/JSON/Markdown via copy buttons
 
-**Core Value:** 用户完全不懂专业术语，只靠做选择题，就能得到可复制到 Seedance 2.0 / 通用视频模型里的专业提示词。
+## Recent Fixes (post-audit)
 
-**Current Focus:** Roadmap defined. Ready for Phase 1 planning.
+- Deleted dead code: camera.options.ts, video-renderer.ts
+- Extracted warningFromBrief to brief.ts (shared utility)
+- Added getCameraText() to brief.ts (shared camera dimension logic)
+- Fixed tailwind shadow-soft, eslint duplicates, registry type re-exports
+- Added aria progressbar/nav roles
+- Unified PromptGuide imports to registry
+- Heuristics: SEEDANCE_ID constant + QUALITY_KILLING_KEYWORDS array
+- ROADMAP.md rewritten with correct phase plans and progress
+- Added unit tests: getBriefText, renderMarkdown, getCameraText, validation error paths, heuristics
+- Updated PROJECT.md test count
 
-**Milestone:** v1 — Initial release with Seedance 2.0 + generic video support, config-driven architecture.
+## Next
 
----
-
-## Current Position
-
-| Attribute | Value |
-|-----------|-------|
-| Phase | 1. Safety Foundation |
-| Plan | Not started |
-| Status | Ready for planning |
-| Phase progress | 0/1 plans complete |
-| Overall progress | `[________]` 0/8 phases complete |
-
----
-
-## Performance Metrics
-
-| Metric | Current | Target |
-|--------|---------|--------|
-| Test count | 8 (all pass) | 15+ (all pass) |
-| Lint | Clean | Clean |
-| Typecheck | Clean | Clean |
-| Build | Success | Static export success |
-| Option count | ~80 | ~143 |
-| UX mode | Selection wizard | Selection wizard + quality warnings + consumer translation |
-
----
-
-## Accumulated Context
-
-### Key Decisions
-- Phase structure: 8 phases (fine granularity per config.json)
-- Phase 2 split from research recommendation: Architecture Completion separated from Catalog Expansion
-- Phase 3 split from research recommendation: Quality Layer + Differentiators split into Consumer Translation (5) and Quality Intelligence (6)
-- ARCH-07 assigned to Phase 1 (safety urgency), with reinforcement in Phase 3
-- Static export (`output: "export"`) bundled with Phase 1 safety work
-- No new dependencies for v1 — current package.json is complete
-
-### Research Flags
-- **Legal urgency:** safetyDefaults not injected — fix in Phase 1 before any other work
-- **Architecture risk:** 4 hardcoded coupling points (TargetToolId union type, if/else adapter, direct workType import, magic question IDs) — Phase 2 addresses 3 of 4, Phase 3 addresses the 4th
-- **Catalog risk:** Option ID collisions possible without namespace prefixing — Phase 4 addresses
-- **Sora 2 discontinued March 2026** — deprioritize; focus on Veo 3 and Seedance
-
-### Open Questions
-- Camera shot vs movement separation: exact UI/data model for the split (Phase 4 design detail)
-- Content moderation scope: how much filtering in wizard vs platform safety filters
-- Consumer aesthetics prompt fragment quality: 14 terms need actual Seedance 2.0 submission testing (Phase 8 manual validation)
-- Wan 2.x and Kling prompt structures: no research results yet (Phase 8 forward research)
-
-### Blockers
-- None
-
----
-
-## Session Continuity
-
-**Last action:** Roadmap created. 8 phases, 37 requirements mapped.
-
-**Next action:** `/gsd-plan-phase 1` to plan Safety Foundation phase.
-
----
-
-*State initialized: 2026-05-10*
-*Will update at each phase transition*
+- Veo 3 adapter research (highest priority)
+- Option catalog expansion (~90 → ~143)
+- Tailwind v4 migration

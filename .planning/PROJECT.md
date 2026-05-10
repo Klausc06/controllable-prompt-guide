@@ -84,7 +84,7 @@
 - 当前全部文件 untracked，需后续整理 git history
 - 已有完整代码库地图在 `.planning/codebase/`（7 文档，1197 行）
 - 已有项目记忆在 `.memory/`（context, decisions, preferences）
-- 已确认 P0 验证通过：npm test (8/8), npm run lint (clean), npm run typecheck (clean), npm run build (success)
+- CI 全部通过：npm test (51/51), npm run lint (clean), npm run typecheck (clean), npm run build (success, static export to out/)
 
 ## Constraints
 
