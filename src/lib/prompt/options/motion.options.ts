@@ -15,7 +15,7 @@ export const motionOptions: OptionSet = {
         zh: "产品以干净利落的方式亮相，成为画面焦点",
         en: "the product is revealed cleanly and becomes the visual focus"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "person_walks_in",
@@ -27,7 +27,7 @@ export const motionOptions: OptionSet = {
         zh: "人物自然走入画面，动作连贯，视线逐渐引向主体",
         en: "a person naturally walks into the frame with continuous motion, guiding attention toward the subject"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "hands_demonstrate",
@@ -39,7 +39,7 @@ export const motionOptions: OptionSet = {
         zh: "手部自然演示使用过程，动作清楚，重点突出操作细节",
         en: "hands naturally demonstrate the usage process with clear action and visible operational details"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "environment_comes_alive",
@@ -51,7 +51,7 @@ export const motionOptions: OptionSet = {
         zh: "环境中出现自然运动，如灯光变化、风吹动细节和背景人群流动",
         en: "the environment includes natural motion such as shifting light, wind-touched details, and background crowd movement"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "three_beat_story",
@@ -63,7 +63,7 @@ export const motionOptions: OptionSet = {
         zh: "用三段式微叙事呈现：先建立场景，再出现动作变化，最后给出清晰结果",
         en: "present a three-beat micro narrative: establish the scene, show the action change, then end with a clear result"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "before_after",
@@ -75,7 +75,7 @@ export const motionOptions: OptionSet = {
         zh: "用前后对比呈现变化：先展示原始状态，再展示改善后的清晰结果",
         en: "use a before-and-after structure: show the original state first, then reveal the clear improved result"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "customer_experience",
@@ -87,7 +87,7 @@ export const motionOptions: OptionSet = {
         zh: "展示顾客体验流程：进入场景、进行体验、露出自然满意反应",
         en: "show a customer experience flow: entering the scene, trying the service, and showing a natural satisfied reaction"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "step_by_step",
@@ -99,7 +99,71 @@ export const motionOptions: OptionSet = {
         zh: "用清晰步骤演示过程，每一步动作明确，观众能理解操作顺序",
         en: "demonstrate the process step by step, with each action clear enough for viewers to understand the sequence"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "model_fashion_walk",
+      version: "0.1.0",
+      label: { zh: "人物走秀/模特展示", en: "Model walk / fashion showcase" },
+      plain: { zh: "模特或人物像走秀一样展示穿着，适合服装和时尚场景", en: "A model or person showcases attire like a runway walk, ideal for fashion scenes" },
+      professionalTerms: ["runway walk", "model gait", "fashion presentation", "catwalk motion"],
+      promptFragment: {
+        zh: "人物以走秀姿态前行，服装/配饰随动作自然摆动，展现整体造型",
+        en: "the person moves forward with a runway gait, clothing and accessories flow naturally with the motion, presenting the full look"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "product_360_spin",
+      version: "0.1.0",
+      label: { zh: "产品旋转展示", en: "360-degree product spin" },
+      plain: { zh: "产品缓慢旋转一周，观众可以看到各个角度的细节", en: "The product rotates slowly for a full view from every angle" },
+      professionalTerms: ["360-degree rotation", "product spin", "full rotation showcase", "turntable shot"],
+      promptFragment: {
+        zh: "产品在画面中心缓慢匀速旋转，展示各个角度的细节和质感",
+        en: "the product rotates slowly and evenly at the center of the frame, revealing detail and texture from every angle"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "liquid_pour_fill",
+      version: "0.1.0",
+      label: { zh: "液体倾倒/注入", en: "Liquid pour / fill" },
+      plain: { zh: "液体倒入容器，适合饮品、调酒、水景画面", en: "Liquid pours into a container, great for beverages, cocktails, and water scenes" },
+      professionalTerms: ["liquid pour", "fluid dynamics", "pouring shot", "splash motion"],
+      promptFragment: {
+        zh: "液体流畅注入容器，产生自然的飞溅和流动效果，液体质感清晰",
+        en: "liquid pours smoothly into the container, creating natural splash and flow effects with visible liquid texture"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "unboxing_reveal",
+      version: "0.1.0",
+      label: { zh: "展开/打开", en: "Unboxing reveal" },
+      plain: { zh: "打开包装或盖子，展现内部物品，适合开箱和收纳展示", en: "Opening a package or lid to reveal contents, ideal for unboxing and storage showcases" },
+      professionalTerms: ["unboxing action", "lid removal", "container open", "reveal motion"],
+      promptFragment: {
+        zh: "包装或容器被缓缓打开，内部物品逐渐显露，产生期待和惊喜感",
+        en: "the package or container is slowly opened, with the contents gradually revealed, building anticipation and surprise"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "subtle_living_photo",
+      version: "0.1.0",
+      label: { zh: "微动静态", en: "Subtle living photo" },
+      plain: { zh: "画面基本静止，只有极轻微的运动（如飘动的头发、微光闪烁），适合产品静物视频", en: "The scene is nearly still with only minimal motion (like drifting hair or subtle light shimmer), ideal for product still-life videos" },
+      professionalTerms: ["living photo", "subtle motion", "barely-there movement", "static with micro-motion"],
+      promptFragment: {
+        zh: "画面整体保持静态，仅保留极细微的自然运动如发丝飘动、光影变化或气泡缓缓升起",
+        en: "the scene remains mostly static with only the slightest natural motion such as a strand of hair drifting, light shifting, or bubbles slowly rising"
+      },
+      riskHint: {
+        zh: "部分视频模型难以精确控制运动幅度，实际输出可能运动量偏大",
+        en: "Some video models struggle to precisely control motion amplitude; the output may be more active than intended"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"]
     }
   ]
 };

@@ -18,7 +18,7 @@ export const styleOptions: OptionSet = {
         zh: "电影级写实风格，画面真实、光影克制、商业广告质感",
         en: "cinematic realism with controlled lighting and a premium commercial look"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "ugc_handheld",
@@ -33,7 +33,7 @@ export const styleOptions: OptionSet = {
         zh: "真实 UGC 手机随拍质感，自然光线，手持轻微晃动，亲近真实",
         en: "authentic UGC-style handheld smartphone footage with natural light and subtle camera shake"
       },
-      appliesTo: ["seedance", "generic_video"],
+      appliesTo: ["seedance", "generic_video", "veo3"],
       riskHint: {
         zh: "更真实，但不如商业广告精致。",
         en: "More authentic, but less polished than a commercial."
@@ -52,7 +52,7 @@ export const styleOptions: OptionSet = {
         zh: "高级极简视觉，留白充足，低饱和配色，信息克制",
         en: "premium minimal visual style with generous negative space, restrained colors, and clean details"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "cyberpunk_neon",
@@ -67,7 +67,7 @@ export const styleOptions: OptionSet = {
         zh: "赛博朋克霓虹风格，未来城市氛围，高对比光影，蓝紫霓虹反射",
         en: "cyberpunk neon style with futuristic urban atmosphere, high-contrast lighting, and blue-purple reflections"
       },
-      appliesTo: ["seedance", "generic_video"],
+      appliesTo: ["seedance", "generic_video", "veo3"],
       riskHint: {
         zh: "容易变得信息很满，适合科技、潮流、夜景主题。",
         en: "Can become visually busy; best for tech, trend, and night scenes."
@@ -86,7 +86,7 @@ export const styleOptions: OptionSet = {
         zh: "温暖生活方式风格，柔和自然光，亲切真实的日常氛围",
         en: "warm lifestyle style with soft natural light and an approachable everyday atmosphere"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "luxury_editorial",
@@ -101,7 +101,7 @@ export const styleOptions: OptionSet = {
         zh: "奢华杂志大片风格，构图精致，材质高级，画面克制但有品牌气场",
         en: "luxury editorial style with refined composition, premium material detail, and restrained brand presence"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "clean_tech",
@@ -116,7 +116,7 @@ export const styleOptions: OptionSet = {
         zh: "干净科技视觉，线条清晰，材质现代，整体理性、专业、可信",
         en: "clean tech aesthetic with crisp lines, modern materials, and a precise professional mood"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
       id: "documentary_real",
@@ -131,7 +131,105 @@ export const styleOptions: OptionSet = {
         zh: "纪实真实风格，观察式镜头，自然动作，不摆拍，强调可信现场感",
         en: "documentary realism with observational camera work, natural action, and credible in-the-moment presence"
       },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "fresh_natural_forest",
+      version: "0.1.0",
+      label: { zh: "清新自然/森系", en: "Fresh natural / forest aesthetic" },
+      plain: {
+        zh: "清新、自然、充满氧气感 — 小清新、森系",
+        en: "Fresh, natural, and airy with an organic mood"
+      },
+      professionalTerms: ["fresh natural", "forest aesthetic", "airy palette"],
+      promptFragment: {
+        zh: "清新自然森系风格，柔和绿调、日光散射、画面干净有呼吸感",
+        en: "fresh natural forest aesthetic with green undertones, diffused daylight, and a clean airy look"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "dark_moody_textured",
+      version: "0.1.0",
+      label: { zh: "暗黑/质感调", en: "Dark moody / textured" },
+      plain: {
+        zh: "低亮度、高对比、强调材质肌理 — 暗调质感、氛围感",
+        en: "Low-key, high-contrast, emphasizing texture and grit"
+      },
+      professionalTerms: ["dark moody", "chiaroscuro", "texture-forward"],
+      promptFragment: {
+        zh: "暗调质感风格，低亮度高对比，光影强烈，材质纹理突出，氛围浓郁",
+        en: "dark moody style with low-key lighting, strong contrast, prominent texture, and a rich atmospheric mood"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: {
+        zh: "暗调可能导致细节丢失，注意主体轮廓清晰度。",
+        en: "Dark tones may lose details; ensure the subject silhouette stays clear."
+      }
+    },
+    {
+      id: "retro_vhs_ccd",
+      version: "0.1.0",
+      label: { zh: "复古 VHS/CCD 数码感", en: "Retro VHS / CCD digital" },
+      plain: {
+        zh: "模拟老式摄像机和早期数码相机质感 — 复古胶片感、千禧年风",
+        en: "Emulates vintage camcorders and early digital camera aesthetics"
+      },
+      professionalTerms: ["VHS aesthetic", "CCD sensor look", "vintage video"],
+      promptFragment: {
+        zh: "复古VHS或CCD数码质感，颗粒明显，色彩偏移，轻度失真，千禧年怀旧风格",
+        en: "retro VHS or CCD digital look with visible grain, color shift, light distortion, and early-2000s nostalgia"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "cg_3d_rendered",
+      version: "0.1.0",
+      label: { zh: "3D CG/渲染感", en: "3D CG / rendered look" },
+      plain: {
+        zh: "像三维动画或游戏渲染画面 — CG风、3D渲染",
+        en: "Looks like 3D animation or game-rendered footage"
+      },
+      professionalTerms: ["CG rendering", "3D animation", "stylized render"],
+      promptFragment: {
+        zh: "三维CG渲染风格，光影经过计算，材质有数字感，画面精致但非真实拍摄",
+        en: "3D CG rendered style with calculated lighting, digital material feel, and polished non-realistic visuals"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "black_white_monochrome",
+      version: "0.1.0",
+      label: { zh: "黑白/单色", en: "Black and white / monochrome" },
+      plain: {
+        zh: "去掉色彩，专注光影、构图和情绪 — 黑白调、单色风",
+        en: "Removes color to focus on light, shadow, composition, and mood"
+      },
+      professionalTerms: ["monochrome", "black and white", "luminance contrast"],
+      promptFragment: {
+        zh: "黑白单色风格，无彩色信息，专注明暗对比、灰度层次和画面结构",
+        en: "black and white monochrome style with no color information, focused on luminance contrast, tonal range, and composition"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: {
+        zh: "并非所有视频模型都稳定支持黑白输出，建议在工具端确认兼容性。",
+        en: "Not all video models reliably support monochrome output; verify compatibility on the tool side."
+      }
+    },
+    {
+      id: "pop_art_collage",
+      version: "0.1.0",
+      label: { zh: "波普/拼贴风", en: "Pop art / collage" },
+      plain: {
+        zh: "色彩饱和、大胆、图形化 — 波普艺术、拼贴风格",
+        en: "Bold, saturated, and graphic — pop art and collage"
+      },
+      professionalTerms: ["pop art", "collage aesthetic", "bold graphic"],
+      promptFragment: {
+        zh: "波普或拼贴风格，色彩高饱和，图形大胆，视觉冲击强，有艺术感",
+        en: "pop art or collage style with high saturation, bold graphics, strong visual impact, and an artistic feel"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"]
     }
   ]
 };

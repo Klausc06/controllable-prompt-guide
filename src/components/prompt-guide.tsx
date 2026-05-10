@@ -123,8 +123,18 @@ function QuestionBlock({
           <p className="mt-1 text-sm leading-6 text-slate-600">{question.helper.zh}</p>
         </div>
         {question.required ? (
-          <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">必选</span>
-        ) : null}
+          <span className="rounded-md bg-slate-100 px-2 py-1 text-xs font-medium text-slate-600">
+            {question.mode === "multi" && question.minSelections
+              ? `已选 ${selected.length}/${question.minSelections}+`
+              : question.mode === "multi"
+                ? `已选 ${selected.length}`
+                : selected.length > 0
+                  ? "已选"
+                  : "必选"}
+          </span>
+        ) : (
+          <span className="rounded-md bg-slate-50 px-2 py-1 text-xs font-medium text-slate-400">可选</span>
+        )}
       </div>
 
       {question.mode === "free_text" ? (
