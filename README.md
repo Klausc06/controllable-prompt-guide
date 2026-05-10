@@ -9,6 +9,8 @@ Language switcher / 语言切换
 # Controllable Prompt Guide
 
 > A video prompt wizard for non-expert users. No jargon required — turn vague ideas into copy-ready professional prompts through guided choices. Supports Seedance 2.0, Veo 3, and generic video models.
+>
+> **v0.1.0 Preview** — framework complete, options expanding. Not yet a polished 1.0 product. Feedback welcome.
 
 ## Why
 
