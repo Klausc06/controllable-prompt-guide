@@ -5,8 +5,8 @@ import { evaluatePromptQuality } from "./heuristics";
 import { optionSets } from "./options";
 import { getAllTargets, resolveWorkType } from "./registry";
 import { targetTools } from "./targets";
-import type { PromptSelections, WorkTypeConfig } from "./types";
-import { validateAdapterCompleteness, validateOptionIdsUnique, validateOptionTargetRefs, validateTargetConfig, validateWorkTypeConfig } from "./validation";
+import type { PromptSelections, TargetToolConfig, WorkTypeConfig } from "./types";
+import { validateAdapterCompleteness, validateOptionIdsUnique, validateOptionTargetRefs, validateSafetyDefaultsIntegrity, validateTargetConfig, validateWorkTypeConfig } from "./validation";
 
 const workType = resolveWorkType("video_prompt");
 
@@ -147,6 +147,27 @@ describe("prompt configuration validation", () => {
 
   it("validates option appliesTo target refs exist (TEST-04)", () => {
     expect(validateOptionTargetRefs()).toEqual([]);
+  });
+
+  it("confirms all safetyDefaults option IDs resolve to registered options (CI)", () => {
+    const errors = validateSafetyDefaultsIntegrity(targetTools, optionSets);
+    expect(errors).toEqual([]);
+  });
+
+  it("detects unknown option IDs in safetyDefaults", () => {
+    const bad: TargetToolConfig = {
+      id: "test_bad_target",
+      version: "0.1.0",
+      label: { zh: "Bad", en: "Bad" },
+      description: { zh: "", en: "" },
+      adaptationNote: { zh: "test", en: "test" },
+      prefer: ["subject"],
+      suppress: [],
+      safetyDefaults: ["nonexistent_option", "another_fake"]
+    };
+    const errors = validateSafetyDefaultsIntegrity([bad], optionSets);
+    expect(errors.length).toBeGreaterThanOrEqual(1);
+    expect(errors[0]).toContain("nonexistent_option");
   });
 
   it("selected option promptFragment appears in rendered output (TEST-06)", () => {
