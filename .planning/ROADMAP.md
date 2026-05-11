@@ -13,7 +13,15 @@
 **Goal**: safetyDefaults injected into every prompt; missing safety constraints added; static export
 **Depends on**: None
 **Requirements**: ARCH-07, OPT-04, TEST-08
-**Status**: Complete. Plans: `01-01-PLAN.md`, `01-02-PLAN.md`
+**Status**: Complete (01-01, 01-02). In progress (01-03, 01-04, 01-05 pending).
+**Plans:** 5 plans
+
+Plans:
+- [x] `01-01-PLAN.md` — Add avoid_temporal_flicker + avoid_quality_keywords constraints, enable static export
+- [x] `01-02-PLAN.md` — safetyDefaults warnings in renderer, auto-select on target switch, TEST-08 assertions
+- [ ] `01-03-PLAN.md` — CI validation for safetyDefaults option ID integrity
+- [ ] `01-04-PLAN.md` — Safety default deselection tracking across target switches
+- [ ] `01-05-PLAN.md` — Cross-target safety testing for Generic Video and Veo 3
 
 ### Phase 2: Registry Architecture ✓
 **Goal**: Open string target IDs; adapter registry; PromptGuide decoupled; registration-time validation
@@ -63,7 +71,7 @@
 
 | Phase | Plans | Status |
 |-------|-------|--------|
-| 1. Safety Foundation | 2/2 | ✓ Complete |
+| 1. Safety Foundation | 5 plans (2 done, 3 pending) | In progress |
 | 2. Registry Architecture | 3/3 | ✓ Complete |
 | 3. Metadata Execution | 1/1 | ✓ Complete |
 | 4. Catalog Expansion | 1/1 | ✓ Complete |
