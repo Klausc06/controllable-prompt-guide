@@ -76,6 +76,23 @@ describe("PromptGuide", () => {
     expect(screen.queryByRole("heading", { name: "比例和时长" })).toBeNull();
   });
 
+  it("preserves safety default deselection across target switches (ARCH-07)", () => {
+    render(<PromptGuide />);
+
+    // Deselect the safety default — click the first "文字少且可读" match (the button in the constraints question block)
+    const textButtons = screen.getAllByText("文字少且可读");
+    fireEvent.click(textButtons[0]);
+
+    // Switch to Generic Video and back to Seedance
+    fireEvent.click(screen.getByText("通用视频模型"));
+    fireEvent.click(screen.getByText("Seedance 2.0"));
+
+    // After switching back, the deselected safety default should NOT be re-added
+    // The Brief output section in the right sidebar should not contain the deselected option text
+    const briefSection = screen.getByText("Brief").closest("section")!;
+    expect(briefSection.textContent).not.toContain("文字少且可读");
+  });
+
   it("renders without console errors (TEST-15)", () => {
     const spy = vi.spyOn(console, "error").mockImplementation(() => {});
     render(<PromptGuide />);
