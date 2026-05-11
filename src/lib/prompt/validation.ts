@@ -86,3 +86,28 @@ export function validateTargetConfig(target: TargetToolConfig) {
 
   return errors;
 }
+
+export function validateSafetyDefaultsIntegrity(
+  targets_?: TargetToolConfig[],
+  optionSets_?: OptionSet[]
+): string[] {
+  const targets = targets_ ?? getAllTargets();
+  const sets = optionSets_ ?? [];
+  const allOptionIds = new Set(
+    sets.flatMap((set) => set.options.map((o) => o.id))
+  );
+
+  const errors: string[] = [];
+
+  for (const target of targets) {
+    for (const optionId of target.safetyDefaults) {
+      if (!allOptionIds.has(optionId)) {
+        errors.push(
+          `${target.id}: safetyDefaults references unknown option ID "${optionId}"`
+        );
+      }
+    }
+  }
+
+  return errors;
+}
