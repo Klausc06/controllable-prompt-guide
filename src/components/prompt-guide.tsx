@@ -2,11 +2,11 @@
 
 import "@/lib/prompt/init";
 import { Check, ChevronDown, Clapperboard, Clipboard, Copy, ShieldCheck, SlidersHorizontal } from "lucide-react";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { renderPrompt } from "@/lib/prompt/adapters";
 import { renderMarkdown } from "@/lib/prompt/brief";
-import { getAllTargets, getOptionSet, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
+import { getAllTargets, getOptionSet, getOptionsForTarget, resolveTarget, resolveWorkType } from "@/lib/prompt/registry";
 import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId } from "@/lib/prompt/types";
 import { cn } from "@/lib/utils";
 
@@ -200,6 +200,7 @@ export function PromptGuide() {
   const [targetToolId, setTargetToolId] = useState<TargetToolId>("seedance");
   const [selections, setSelections] = useState<PromptSelections>(defaults);
   const [advancedOpen, setAdvancedOpen] = useState(false);
+  const deselectedSafetyRef = useRef<Set<string>>(new Set());
 
   const coreQuestions = getWorkType().questions.filter((question) => question.level === "core");
   const advancedQuestions = getWorkType().questions.filter((question) => question.level === "advanced");
@@ -220,7 +221,22 @@ export function PromptGuide() {
   const markdownBrief = useMemo(() => renderMarkdown(rendered), [rendered]);
 
   function updateSelection(questionId: string, value: SelectionValue) {
-    setSelections((current) => ({ ...current, [questionId]: value }));
+    setSelections((current) => {
+      if (questionId === "constraints") {
+        const target = resolveTarget(targetToolId);
+        const prevArray = selectionArray(current.constraints);
+        const newArray = selectionArray(value);
+        for (const safetyId of target.safetyDefaults) {
+          if (prevArray.includes(safetyId) && !newArray.includes(safetyId)) {
+            deselectedSafetyRef.current.add(safetyId);
+          }
+          if (!prevArray.includes(safetyId) && newArray.includes(safetyId)) {
+            deselectedSafetyRef.current.delete(safetyId);
+          }
+        }
+      }
+      return { ...current, [questionId]: value };
+    });
   }
 
   return (
@@ -299,7 +315,10 @@ export function PromptGuide() {
                         setTargetToolId(tool.id);
                         setSelections((current) => {
                           const currentConstraints = selectionArray(current.constraints);
-                          const merged = [...new Set([...currentConstraints, ...tool.safetyDefaults])];
+                          const safetyToAdd = tool.safetyDefaults.filter(
+                            (id) => !deselectedSafetyRef.current.has(id)
+                          );
+                          const merged = [...new Set([...currentConstraints, ...safetyToAdd])];
                           return { ...current, constraints: merged };
                         });
                       }}
