@@ -116,6 +116,72 @@ describe("prompt configuration validation", () => {
     expect(zhWarnings).toContain("readable_text");
   });
 
+  it("includes safety constraint text in Generic Video output (TEST-08)", () => {
+    const result = renderPrompt({
+      workType: workType,
+      targetToolId: "generic_video",
+      rawIntent: "",
+      selections: completeSelections
+    });
+
+    expect(result.zhPrompt).toContain("不使用明星脸");
+    expect(result.zhPrompt).toContain("主体身份");
+    expect(result.enPrompt).toContain("avoid celebrity likenesses");
+  });
+
+  it("warns when safety defaults are deselected from Generic Video output (TEST-08)", () => {
+    const unsafe: PromptSelections = {
+      ...completeSelections,
+      constraints: ["simple_scene"]
+    };
+
+    const result = renderPrompt({
+      workType: workType,
+      targetToolId: "generic_video",
+      rawIntent: "",
+      selections: unsafe
+    });
+
+    expect(result.warnings.length).toBeGreaterThanOrEqual(1);
+    const zhWarnings = result.warnings.map((w) => w.zh).join("");
+    expect(zhWarnings).toContain("安全约束");
+    expect(zhWarnings).toContain("no_ip_or_celebrity");
+    expect(zhWarnings).toContain("stable_identity");
+  });
+
+  it("includes safety constraint text in Veo 3 output (TEST-08)", () => {
+    const result = renderPrompt({
+      workType: workType,
+      targetToolId: "veo3",
+      rawIntent: "",
+      selections: completeSelections
+    });
+
+    expect(result.zhPrompt).toContain("不使用明星脸");
+    expect(result.zhPrompt).toContain("主体身份");
+    expect(result.enPrompt).toContain("avoid celebrity likenesses");
+  });
+
+  it("warns when safety defaults are deselected from Veo 3 output (TEST-08)", () => {
+    const unsafe: PromptSelections = {
+      ...completeSelections,
+      constraints: ["simple_scene"]
+    };
+
+    const result = renderPrompt({
+      workType: workType,
+      targetToolId: "veo3",
+      rawIntent: "",
+      selections: unsafe
+    });
+
+    expect(result.warnings.length).toBeGreaterThanOrEqual(1);
+    const zhWarnings = result.warnings.map((w) => w.zh).join("");
+    expect(zhWarnings).toContain("安全约束");
+    expect(zhWarnings).toContain("no_ip_or_celebrity");
+    expect(zhWarnings).toContain("stable_identity");
+  });
+
   it("ensures every registered target has a corresponding adapter (TEST-05)", () => {
     expect(validateAdapterCompleteness()).toEqual([]);
   });
