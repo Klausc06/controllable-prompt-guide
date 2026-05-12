@@ -75,6 +75,7 @@ export interface PromptBrief {
   targetToolId: TargetToolId;
   rawIntent: string;
   items: BriefItem[];
+  suppressWarnings?: LocalizedText[];
 }
 
 export interface RenderedPrompt {

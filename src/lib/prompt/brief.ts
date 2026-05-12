@@ -80,13 +80,52 @@ export function buildPromptBrief(params: {
     })
     .filter((item): item is BriefItem => Boolean(item));
 
+  const { visible: visibleItems, warnings: suppressWarnings } = applySuppresses(items);
+
   return {
     version: params.version ?? "0.1.0",
     workTypeId: params.workType.id,
     targetToolId: params.targetToolId,
     rawIntent: params.rawIntent,
-    items
+    items: visibleItems,
+    suppressWarnings: suppressWarnings.length > 0 ? suppressWarnings : undefined
   };
+}
+
+/** Data-driven suppress detection (D-02). When option A suppresses option B and both are selected, B is removed and a warning generated. */
+export function applySuppresses(
+  items: BriefItem[]
+): { visible: BriefItem[]; warnings: LocalizedText[] } {
+  const warnings: LocalizedText[] = [];
+  const allSelectedIds = new Set(
+    items.flatMap((item) => item.selectedOptions.map((o) => o.id))
+  );
+  const suppressorIds = new Set<string>();
+
+  // Find suppressors
+  for (const item of items) {
+    for (const opt of item.selectedOptions) {
+      if (opt.suppresses?.length) {
+        for (const suppressedId of opt.suppresses) {
+          if (allSelectedIds.has(suppressedId)) {
+            suppressorIds.add(suppressedId);
+            warnings.push({
+              zh: `已选"${opt.label.zh}"，因此"${suppressedId}"不生效`,
+              en: `"${opt.label.en}" overrides "${suppressedId}"`
+            });
+          }
+        }
+      }
+    }
+  }
+
+  // Filter suppressed options
+  const visible = items.map((item) => ({
+    ...item,
+    selectedOptions: item.selectedOptions.filter((o) => !suppressorIds.has(o.id))
+  })).filter((item) => item.selectedOptions.length > 0);
+
+  return { visible, warnings };
 }
 
 export function getBriefText(brief: PromptBrief, questionId: string, locale: "zh" | "en") {

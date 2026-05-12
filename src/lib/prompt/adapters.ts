@@ -56,5 +56,9 @@ export function renderPrompt(params: {
     rendered = { ...rendered, warnings: [...rendered.warnings, ...heuristicWarnings] };
   }
 
+  if (brief.suppressWarnings && brief.suppressWarnings.length > 0) {
+    rendered = { ...rendered, warnings: [...rendered.warnings, ...brief.suppressWarnings] };
+  }
+
   return rendered;
 }
