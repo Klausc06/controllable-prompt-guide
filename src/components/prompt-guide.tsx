@@ -2,11 +2,12 @@
 
 import "@/lib/prompt/init";
 import { Check, ChevronDown, Clapperboard, Clipboard, Copy, ShieldCheck, SlidersHorizontal } from "lucide-react";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useReducer, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { renderPrompt } from "@/lib/prompt/adapters";
 import { renderMarkdown } from "@/lib/prompt/brief";
-import { getAllTargets, getOptionSet, getOptionsForTarget, resolveTarget, resolveWorkType } from "@/lib/prompt/registry";
+import { getAllTargets, getOptionSet, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
+import { createInitialState, promptGuideReducer } from "@/lib/prompt/reducer";
 import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId } from "@/lib/prompt/types";
 import { cn } from "@/lib/utils";
 
@@ -197,10 +198,12 @@ function QuestionBlock({
 }
 
 export function PromptGuide() {
-  const [targetToolId, setTargetToolId] = useState<TargetToolId>("seedance");
-  const [selections, setSelections] = useState<PromptSelections>(defaults);
-  const [advancedOpen, setAdvancedOpen] = useState(false);
-  const deselectedSafetyRef = useRef<Set<string>>(new Set());
+  const [state, dispatch] = useReducer(
+    promptGuideReducer,
+    "seedance" as TargetToolId,
+    (id: TargetToolId) => createInitialState(id, defaults)
+  );
+  const { targetToolId, selections, advancedOpen, deselectedSafety } = state;
 
   const coreQuestions = getWorkType().questions.filter((question) => question.level === "core");
   const advancedQuestions = getWorkType().questions.filter((question) => question.level === "advanced");
@@ -221,22 +224,32 @@ export function PromptGuide() {
   const markdownBrief = useMemo(() => renderMarkdown(rendered), [rendered]);
 
   function updateSelection(questionId: string, value: SelectionValue) {
-    setSelections((current) => {
-      if (questionId === "constraints") {
-        const target = resolveTarget(targetToolId);
-        const prevArray = selectionArray(current.constraints);
-        const newArray = selectionArray(value);
-        for (const safetyId of target.safetyDefaults) {
-          if (prevArray.includes(safetyId) && !newArray.includes(safetyId)) {
-            deselectedSafetyRef.current.add(safetyId);
-          }
-          if (!prevArray.includes(safetyId) && newArray.includes(safetyId)) {
-            deselectedSafetyRef.current.delete(safetyId);
-          }
-        }
-      }
-      return { ...current, [questionId]: value };
-    });
+    const question = getWorkType().questions.find((q) => q.id === questionId);
+    if (question?.mode === "free_text") {
+      dispatch({ type: "OPTION_SELECTED", questionId, optionId: value as string });
+      return;
+    }
+    // For choice questions — diff old vs new and dispatch individual actions
+    const newArray = selectionArray(value);
+    const prevArray = selectionArray(selections[questionId]);
+    const added = newArray.filter((id) => !prevArray.includes(id));
+    const removed = prevArray.filter((id) => !newArray.includes(id));
+    // For single mode, just dispatch OPTION_SELECTED for the new value (replaces old)
+    if (question?.mode === "single") {
+      if (added.length === 0 && removed.length === 0) return;
+      if (added.length > 0)
+        dispatch({ type: "OPTION_SELECTED", questionId, optionId: added[0] });
+      else if (removed.length > 0)
+        dispatch({ type: "OPTION_DESELECTED", questionId, optionId: removed[0] });
+      return;
+    }
+    // For multi mode, dispatch add/remove individually
+    for (const id of added) {
+      dispatch({ type: "OPTION_SELECTED", questionId, optionId: id });
+    }
+    for (const id of removed) {
+      dispatch({ type: "OPTION_DESELECTED", questionId, optionId: id });
+    }
   }
 
   return (
@@ -312,15 +325,7 @@ export function PromptGuide() {
                       key={tool.id}
                       type="button"
                       onClick={() => {
-                        setTargetToolId(tool.id);
-                        setSelections((current) => {
-                          const currentConstraints = selectionArray(current.constraints);
-                          const safetyToAdd = tool.safetyDefaults.filter(
-                            (id) => !deselectedSafetyRef.current.has(id)
-                          );
-                          const merged = [...new Set([...currentConstraints, ...safetyToAdd])];
-                          return { ...current, constraints: merged };
-                        });
+                        dispatch({ type: "TARGET_CHANGED", from: targetToolId, to: tool.id });
                       }}
                       className={cn(
                         "rounded-md border bg-white p-4 text-left transition hover:border-slate-400",
@@ -348,7 +353,7 @@ export function PromptGuide() {
               <section className="py-5">
                 <button
                   type="button"
-                  onClick={() => setAdvancedOpen((open) => !open)}
+                  onClick={() => dispatch({ type: "TOGGLE_ADVANCED" })}
                   className="flex w-full items-center justify-between rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-left"
                 >
                   <span className="flex items-center gap-2 text-sm font-semibold text-slate-950">
