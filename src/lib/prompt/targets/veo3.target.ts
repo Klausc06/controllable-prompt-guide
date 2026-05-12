@@ -14,5 +14,18 @@ export const veo3Target: TargetToolConfig = {
   },
   prefer: ["subject", "motion", "scene", "camera", "lighting", "style", "audio", "format"],
   suppress: [],
-  safetyDefaults: ["no_ip_or_celebrity", "stable_identity"]
+  safetyDefaults: ["no_ip_or_celebrity", "stable_identity"],
+  templateMap: {
+    use_case:       { zh: "意图：{选项}", en: "Intent: {选项}" },
+    format:         { zh: "时长：{选项}", en: "Duration: {选项}" },
+    subject:        { zh: "主体：{选项}", en: "Subject: {选项}" },
+    motion:         { zh: "动作：{选项}", en: "Action: {选项}" },
+    scene:          { zh: "场景：{选项}", en: "Scene: {选项}" },
+    shot_type:      { zh: "镜头：{选项}", en: "Camera: {选项}" },
+    camera_movement:{ zh: "运镜：{选项}", en: "Camera movement: {选项}" },
+    lighting:       { zh: "光线：{选项}", en: "Lighting: {选项}" },
+    style:          { zh: "风格：{选项}", en: "Style: {选项}" },
+    audio:          { zh: "声音：{选项}", en: "Audio: {选项}" },
+    constraints:    { zh: "约束：{选项}", en: "Constraints: {选项}" }
+  }
 };

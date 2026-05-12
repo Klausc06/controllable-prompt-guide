@@ -1,88 +1,45 @@
 import { registerAdapter } from "../registry";
 import { genericVideoTarget } from "../targets/generic-video.target";
-import { getBriefText, getCameraText, warningFromBrief } from "../brief";
+import { assemblePrompt, getBriefText, getCameraText, warningFromBrief } from "../brief";
 import type { PromptBrief, RenderedPrompt, TargetAdapter } from "../types";
 
 function render(brief: PromptBrief): RenderedPrompt {
+  const tpl = genericVideoTarget.templateMap!;
+  const parts = assemblePrompt(brief, tpl, "zh");
+  const partsEn = assemblePrompt(brief, tpl, "en");
+
   const zhIntent = brief.rawIntent || getBriefText(brief, "use_case", "zh");
-  const enIntent = brief.rawIntent || getBriefText(brief, "use_case", "en");
-  const fields = {
-    subject: {
-      zh: getBriefText(brief, "subject", "zh") || "明确主体",
-      en: getBriefText(brief, "subject", "en") || "clear main subject"
-    },
-    action: {
-      zh: getBriefText(brief, "motion", "zh") || "清晰动作",
-      en: getBriefText(brief, "motion", "en") || "clear action"
-    },
-    scene: {
-      zh: getBriefText(brief, "scene", "zh") || "聚焦场景",
-      en: getBriefText(brief, "scene", "en") || "focused scene"
-    },
-    camera: {
-      zh: getCameraText(brief, "zh") || "稳定镜头",
-      en: getCameraText(brief, "en") || "stable camera"
-    },
-    lighting: {
-      zh: getBriefText(brief, "lighting", "zh") || "清晰光线",
-      en: getBriefText(brief, "lighting", "en") || "clear lighting"
-    },
-    style: {
-      zh: getBriefText(brief, "style", "zh") || "真实干净风格",
-      en: getBriefText(brief, "style", "en") || "clean realistic style"
-    },
-    audio: {
-      zh: getBriefText(brief, "audio", "zh") || "声音自然或后期添加",
-      en:
-        getBriefText(brief, "audio", "en") ||
-        "natural audio or post-production audio"
-    },
-    format: {
-      zh: getBriefText(brief, "format", "zh") || "短视频规格",
-      en: getBriefText(brief, "format", "en") || "short video format"
-    },
-    text_handling: {
-      zh: getBriefText(brief, "text_handling", "zh") || "文字尽量少用",
-      en:
-        getBriefText(brief, "text_handling", "en") ||
-        "use minimal on-screen text"
-    },
-    constraints: {
-      zh:
-        getBriefText(brief, "constraints", "zh") ||
-        "主体一致，避免变形、侵权和乱码",
-      en:
-        getBriefText(brief, "constraints", "en") ||
-        "stable subject, avoid distortion, rights issues, and garbled text"
-    }
-  };
+  const zhCamera = getCameraText(brief, "zh") || "稳定镜头";
 
   const zhPrompt = [
-    `目标：${zhIntent || "生成可控视频"}`,
-    `格式：${fields.format.zh}`,
-    `主体：${fields.subject.zh}`,
-    `动作：${fields.action.zh}`,
-    `场景：${fields.scene.zh}`,
-    `镜头：${fields.camera.zh}`,
-    `光线：${fields.lighting.zh}`,
-    `风格：${fields.style.zh}`,
-    `声音：${fields.audio.zh}`,
-    `画面文字：${fields.text_handling.zh}`,
-    `约束：${fields.constraints.zh}`
+    parts.use_case || `目标：${zhIntent || "生成可控视频"}`,
+    parts.format || "格式：短视频规格",
+    parts.subject || "主体：明确主体",
+    parts.motion || "动作：清晰动作",
+    parts.scene || "场景：聚焦场景",
+    parts.shot_type || parts.camera_movement || `镜头：${zhCamera}`,
+    parts.lighting || "光线：清晰光线",
+    parts.style || "风格：真实干净风格",
+    parts.audio || "声音：声音自然或后期添加",
+    parts.text_handling || "画面文字：文字尽量少用",
+    parts.constraints || "约束：主体一致，避免变形、侵权和乱码"
   ].join("\n");
 
+  const enIntent = brief.rawIntent || getBriefText(brief, "use_case", "en");
+  const enCamera = getCameraText(brief, "en") || "stable camera";
+
   const enPrompt = [
-    `Goal: ${enIntent || "generate a controlled video"}`,
-    `Format: ${fields.format.en}`,
-    `Subject: ${fields.subject.en}`,
-    `Action: ${fields.action.en}`,
-    `Scene: ${fields.scene.en}`,
-    `Camera: ${fields.camera.en}`,
-    `Lighting: ${fields.lighting.en}`,
-    `Style: ${fields.style.en}`,
-    `Audio: ${fields.audio.en}`,
-    `On-screen text: ${fields.text_handling.en}`,
-    `Constraints: ${fields.constraints.en}`
+    partsEn.use_case || `Goal: ${enIntent || "generate a controlled video"}`,
+    partsEn.format || "Format: short video format",
+    partsEn.subject || "Subject: clear main subject",
+    partsEn.motion || "Action: clear action",
+    partsEn.scene || "Scene: focused scene",
+    partsEn.shot_type || partsEn.camera_movement || `Camera: ${enCamera}`,
+    partsEn.lighting || "Lighting: clear lighting",
+    partsEn.style || "Style: clean realistic style",
+    partsEn.audio || "Audio: natural audio or post-production audio",
+    partsEn.text_handling || "On-screen text: use minimal on-screen text",
+    partsEn.constraints || "Constraints: stable subject, avoid distortion, rights issues, and garbled text"
   ].join("\n");
 
   return {

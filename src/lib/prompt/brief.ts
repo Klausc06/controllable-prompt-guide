@@ -134,3 +134,22 @@ export function renderMarkdown(rendered: RenderedPrompt): string {
 
   return lines.join("\n");
 }
+
+/** Generic template-driven prompt assembly (D-03). Iterates brief items, looks up templateMap slots, replaces {选项} with option text. */
+export function assemblePrompt(
+  brief: PromptBrief,
+  templateMap: Record<string, LocalizedText>,
+  locale: "zh" | "en"
+): Record<string, string | undefined> {
+  const result: Record<string, string | undefined> = {};
+  for (const item of brief.items) {
+    const tpl = templateMap[item.questionId];
+    if (!tpl) continue;
+    const text =
+      item.freeText ??
+      item.selectedOptions.map((o) => o.promptFragment[locale]).join("，");
+    if (!text) continue;
+    result[item.questionId] = tpl[locale].replace("{选项}", text);
+  }
+  return result;
+}
