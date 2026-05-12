@@ -6,9 +6,10 @@ import React, { useMemo, useReducer, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { renderPrompt } from "@/lib/prompt/adapters";
 import { renderMarkdown } from "@/lib/prompt/brief";
-import { getAllTargets, getOptionSet, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
+import { getAllTargets, getOptionSet, getOptionsByConsumerTerm, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
 import { createInitialState, promptGuideReducer } from "@/lib/prompt/reducer";
 import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId } from "@/lib/prompt/types";
+import { platformConfigs } from "@/lib/prompt/platforms/platform-data";
 import { cn } from "@/lib/utils";
 
 // Resolved lazily to avoid SSR module-evaluation ordering issues
@@ -86,6 +87,266 @@ function CopyButton({ label, value }: { label: string; value: string }) {
   );
 }
 
+// ── Shared Option Card ─────────────────────────────────────────────────
+function OptionCard({
+  option,
+  active,
+  onToggle
+}: {
+  option: {
+    id: string;
+    label: { zh: string; en: string };
+    plain: { zh: string; en: string };
+    professionalTerms: string[];
+    riskHint?: { zh: string; en: string };
+  };
+  active: boolean;
+  onToggle: (id: string) => void;
+}) {
+  return (
+    <button
+      key={option.id}
+      type="button"
+      onClick={() => onToggle(option.id)}
+      className={cn(
+        "min-h-36 rounded-md border bg-white p-4 text-left transition hover:border-slate-400 hover:shadow-soft",
+        active ? "border-slate-950 ring-4 ring-slate-100" : "border-slate-200"
+      )}
+    >
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <div className="text-sm font-semibold text-slate-950">{option.label.zh}</div>
+          <p className="mt-2 text-sm leading-6 text-slate-600">{option.plain.zh}</p>
+        </div>
+        <span
+          className={cn(
+            "flex h-5 w-5 shrink-0 items-center justify-center rounded border",
+            active ? "border-slate-950 bg-slate-950 text-white" : "border-slate-300 bg-white"
+          )}
+          aria-hidden="true"
+        >
+          {active ? <Check className="h-3.5 w-3.5" /> : null}
+        </span>
+      </div>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {option.professionalTerms.slice(0, 3).map((term) => (
+          <span key={term} className="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-600">
+            {term}
+          </span>
+        ))}
+      </div>
+      {option.riskHint ? <p className="mt-3 text-xs leading-5 text-amber-700">{option.riskHint.zh}</p> : null}
+    </button>
+  );
+}
+
+// ── Consumer Aesthetics Quick-Entry Tags ───────────────────────────────
+function ConsumerTagGroup({
+  applicableOptions,
+  selectedOptions,
+  onToggle
+}: {
+  applicableOptions: { id: string; consumerTerms?: string[] }[];
+  selectedOptions: string[];
+  onToggle: (optionId: string) => void;
+}) {
+  const consumerTermMap = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const option of applicableOptions) {
+      if (option.consumerTerms) {
+        for (const term of option.consumerTerms) {
+          map.set(term, option.id);
+        }
+      }
+    }
+    return map;
+  }, [applicableOptions]);
+
+  const terms = [...consumerTermMap.keys()];
+
+  return (
+    <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="消费者风格快捷入口">
+      {terms.map((term) => {
+        const optionId = consumerTermMap.get(term);
+        const active = optionId ? selectedOptions.includes(optionId) : false;
+        return (
+          <button
+            key={term}
+            type="button"
+            onClick={() => optionId && onToggle(optionId)}
+            aria-pressed={active}
+            className={cn(
+              "inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-normal transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900",
+              active
+                ? "bg-teal-700 text-white shadow-lg ring-1 ring-teal-700/20"
+                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+            )}
+          >
+            {term}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+// ── Category Tabs ─────────────────────────────────────────────────────
+function CategoryTabs({
+  categories,
+  applicableOptions,
+  selectedOptions,
+  onToggle
+}: {
+  categories: { id: string; label: { zh: string; en: string }; optionIds: string[] }[];
+  applicableOptions: {
+    id: string;
+    label: { zh: string; en: string };
+    plain: { zh: string; en: string };
+    professionalTerms: string[];
+    promptFragment: { zh: string; en: string };
+    riskHint?: { zh: string; en: string };
+  }[];
+  selectedOptions: string[];
+  onToggle: (optionId: string) => void;
+}) {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  // null = "全部" (All) mode
+
+  const visibleOptions = activeCategory
+    ? applicableOptions.filter((opt) =>
+        categories.find((c) => c.id === activeCategory)?.optionIds.includes(opt.id)
+      )
+    : applicableOptions;
+
+  return (
+    <>
+      <div className="mt-3 flex flex-wrap gap-2" role="tablist" aria-label="选项分类">
+        <button
+          type="button"
+          role="tab"
+          aria-selected={activeCategory === null}
+          onClick={() => setActiveCategory(null)}
+          className={cn(
+            "rounded-md px-3 py-1.5 text-xs font-normal transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900",
+            activeCategory === null
+              ? "bg-slate-950 text-white shadow-md"
+              : "bg-white/60 backdrop-blur-md text-slate-600 hover:bg-white/80"
+          )}
+        >
+          全部
+        </button>
+        {categories.map((cat) => (
+          <button
+            key={cat.id}
+            type="button"
+            role="tab"
+            aria-selected={activeCategory === cat.id}
+            onClick={() => setActiveCategory(cat.id)}
+            className={cn(
+              "rounded-md px-3 py-1.5 text-xs font-normal transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900",
+              activeCategory === cat.id
+                ? "bg-slate-950 text-white shadow-md"
+                : "bg-white/60 backdrop-blur-md text-slate-600 hover:bg-white/80"
+            )}
+          >
+            {cat.label.zh}
+          </button>
+        ))}
+      </div>
+      {/* Render option grid based on active category */}
+      {activeCategory === null ? (
+        // "全部" mode: group by category with headers
+        categories.map((cat) => {
+          const catOptions = applicableOptions.filter((opt) => cat.optionIds.includes(opt.id));
+          if (catOptions.length === 0) return null;
+          return (
+            <div key={cat.id}>
+              <h3 className="mt-4 mb-2 text-xs font-semibold uppercase tracking-wide text-slate-400">
+                {cat.label.zh}
+              </h3>
+              <div className="grid gap-3 sm:grid-cols-2">
+                {catOptions.map((option) => {
+                  const active = selectedOptions.includes(option.id);
+                  return <OptionCard key={option.id} option={option} active={active} onToggle={onToggle} />;
+                })}
+              </div>
+            </div>
+          );
+        })
+      ) : (
+        // Single category: flat grid
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          {visibleOptions.map((option) => {
+            const active = selectedOptions.includes(option.id);
+            return <OptionCard key={option.id} option={option} active={active} onToggle={onToggle} />;
+          })}
+        </div>
+      )}
+    </>
+  );
+}
+
+// ── Platform Format Quick-Entry Tags ───────────────────────────────────
+function PlatformTagGroup({
+  applicableOptions,
+  selectedOptions,
+  onToggle,
+  targetToolId: _targetToolId
+}: {
+  applicableOptions: { id: string; appliesTo: string[] }[];
+  selectedOptions: string[];
+  onToggle: (optionId: string) => void;
+  targetToolId: string;
+}) {
+  return (
+    <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="平台格式快捷入口">
+      {platformConfigs.map((platform) => {
+        // Filter recommended formats to only those applicable to current target
+        const applicableFormats = platform.recommendedFormats.filter((formatId) =>
+          applicableOptions.some((opt) => opt.id === formatId)
+        );
+        // Active if ANY of the platform's applicable formats are selected
+        const active = applicableFormats.some((formatId) => selectedOptions.includes(formatId));
+
+        function handleToggle() {
+          if (active) {
+            // Deselect: deselect all of this platform's formats
+            for (const formatId of applicableFormats) {
+              if (selectedOptions.includes(formatId)) {
+                onToggle(formatId);
+              }
+            }
+          } else {
+            // Select: select all applicable formats that aren't already selected
+            for (const formatId of applicableFormats) {
+              if (!selectedOptions.includes(formatId)) {
+                onToggle(formatId);
+              }
+            }
+          }
+        }
+
+        return (
+          <button
+            key={platform.id}
+            type="button"
+            onClick={handleToggle}
+            aria-pressed={active}
+            className={cn(
+              "inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-normal transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900",
+              active
+                ? "bg-indigo-700 text-white shadow-lg ring-1 ring-indigo-700/20"
+                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+            )}
+          >
+            {platform.label.zh}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 function QuestionBlock({
   question,
   selections,
@@ -138,6 +399,35 @@ function QuestionBlock({
         )}
       </div>
 
+      {/* Consumer aesthetics quick-entry tags (DIFF-01) */}
+      {question.optionSetId === "style" && applicableOptions.length > 0 ? (
+        <ConsumerTagGroup
+          applicableOptions={applicableOptions}
+          selectedOptions={selected}
+          onToggle={toggleOption}
+        />
+      ) : null}
+
+      {/* Category tabs (DIFF-04) */}
+      {optionSet?.categories && applicableOptions.length > 0 ? (
+        <CategoryTabs
+          categories={optionSet.categories}
+          applicableOptions={applicableOptions}
+          selectedOptions={selected}
+          onToggle={toggleOption}
+        />
+      ) : null}
+
+      {/* Platform format quick-entry tags (DIFF-05) */}
+      {question.optionSetId === "format" && applicableOptions.length > 0 ? (
+        <PlatformTagGroup
+          applicableOptions={applicableOptions}
+          selectedOptions={selected}
+          onToggle={toggleOption}
+          targetToolId={targetToolId}
+        />
+      ) : null}
+
       {question.mode === "free_text" ? (
         <textarea
           value={typeof current === "string" ? current : ""}
@@ -147,48 +437,14 @@ function QuestionBlock({
         />
       ) : null}
 
-      {optionSet && applicableOptions.length > 0 ? (
+      {optionSet && applicableOptions.length > 0 && !optionSet.categories ? (
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {applicableOptions.map((option) => {
             const active = selected.includes(option.id);
-            return (
-              <button
-                key={option.id}
-                type="button"
-                onClick={() => toggleOption(option.id)}
-                className={cn(
-                  "min-h-36 rounded-md border bg-white p-4 text-left transition hover:border-slate-400 hover:shadow-soft",
-                  active ? "border-slate-950 ring-4 ring-slate-100" : "border-slate-200"
-                )}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <div className="text-sm font-semibold text-slate-950">{option.label.zh}</div>
-                    <p className="mt-2 text-sm leading-6 text-slate-600">{option.plain.zh}</p>
-                  </div>
-                  <span
-                    className={cn(
-                      "flex h-5 w-5 shrink-0 items-center justify-center rounded border",
-                      active ? "border-slate-950 bg-slate-950 text-white" : "border-slate-300 bg-white"
-                    )}
-                    aria-hidden="true"
-                  >
-                    {active ? <Check className="h-3.5 w-3.5" /> : null}
-                  </span>
-                </div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {option.professionalTerms.slice(0, 3).map((term) => (
-                    <span key={term} className="rounded-md bg-slate-100 px-2 py-1 text-xs text-slate-600">
-                      {term}
-                    </span>
-                  ))}
-                </div>
-                {option.riskHint ? <p className="mt-3 text-xs leading-5 text-amber-700">{option.riskHint.zh}</p> : null}
-              </button>
-            );
+            return <OptionCard key={option.id} option={option} active={active} onToggle={toggleOption} />;
           })}
         </div>
-      ) : optionSet ? (
+      ) : optionSet && applicableOptions.length === 0 ? (
         <p className="mt-4 text-sm leading-6 text-amber-700 rounded-md border border-amber-200 bg-amber-50 p-3">
           当前目标工具不支持此维度的选项。请切换到其他目标工具以展开选择。
         </p>
