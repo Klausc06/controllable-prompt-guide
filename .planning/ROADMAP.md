@@ -37,11 +37,18 @@ Plans:
 - [ ] `02-04-PLAN.md` — D-07 registry domain split (state.ts + 4 domain files + barrel index.ts)
 - [ ] `02-05-PLAN.md` — D-05 formalization + test gap closure (TEST-01 error path, TEST-03 registration path)
 
-### Phase 3: Metadata Execution ✓
+### Phase 3: Metadata Execution
 **Goal**: appliesTo filtering; suppress/warn; renderer template maps; useReducer state; target switching preserves selections
 **Depends on**: Phase 2
 **Requirements**: ARCH-04, ARCH-05, ARCH-06, ARCH-08, TEST-04, TEST-06, TEST-07, TEST-09, TEST-13
-**Status**: Complete. Executed inline. Context: `03-CONTEXT.md`
+**Status**: Planned. Ready for execution.
+**Plans:** 4 plans
+
+Plans:
+- [ ] `03-01-PLAN.md` — Data model foundation: `suppresses` + `templateMap` types, `getTargetsForOption()` reverse index
+- [ ] `03-02-PLAN.md` — useReducer migration: event-sourcing reducer, selection preservation, deselectedSafety tracking
+- [ ] `03-03-PLAN.md` — Template-map renderer: `assemblePrompt()` generic engine, 3 renderer refactors, text_handling coverage
+- [ ] `03-04-PLAN.md` — Suppress detection + appliesTo audit: `applySuppresses()` in brief builder, warning propagation
 
 ### Phase 4: Catalog Expansion ✓
 **Goal**: 11 dimensions expanded; shot/movement split; Markdown export
@@ -81,7 +88,7 @@ Plans:
 |-------|-------|--------|
 | 1. Safety Foundation | 5 plans (2 done, 3 pending) | In progress |
 | 2. Registry Architecture | 5 plans (3 done, 2 pending) | In progress |
-| 3. Metadata Execution | 1/1 | ✓ Complete |
+| 3. Metadata Execution | 0/4 planned | Planned |
 | 4. Catalog Expansion | 1/1 | ✓ Complete |
 | 5. Consumer Translation | 1/1 | ✓ Complete |
 | 6. Quality Intelligence | 1/1 | ✓ Complete |
@@ -107,4 +114,4 @@ All phases complete. 37/37 requirements addressed. 58 tests passing. Static expo
 ---
 
 *Roadmap created: 2026-05-10*
-*Last updated: 2026-05-12 — added Phase 2 plans 02-04, 02-05*
+*Last updated: 2026-05-12 — added Phase 3 plans 03-01 through 03-04*
