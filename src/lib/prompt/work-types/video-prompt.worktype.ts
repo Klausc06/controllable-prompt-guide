@@ -106,13 +106,14 @@ export const videoPromptWorkType: WorkTypeConfig = {
       version: "0.1.0",
       title: { zh: "整体风格是什么？", en: "What is the overall style?" },
       helper: {
-        zh: "不用懂术语，选最接近你脑中画面的感觉。",
-        en: "No jargon needed; choose the feeling closest to your idea."
+        zh: "不用懂术语，选最接近你脑中画面的感觉。可以多选来混合风格。",
+        en: "No jargon needed; choose the feeling closest to your idea. Multi-select for mixed styles."
       },
-      mode: "single",
+      mode: "multi",
       level: "core",
       required: true,
-      optionSetId: "style"
+      optionSetId: "style",
+      minSelections: 1
     },
     {
       id: "constraints",
@@ -147,13 +148,14 @@ export const videoPromptWorkType: WorkTypeConfig = {
       version: "0.1.0",
       title: { zh: "比例和时长", en: "Aspect ratio and duration" },
       helper: {
-        zh: "选择常见平台规格，后续可以继续增加更多尺寸。",
-        en: "Choose a common platform format; more sizes can be added later."
+        zh: "选择常见平台规格，点击上方平台标签可以快捷匹配推荐格式。",
+        en: "Choose common platform formats, or click platform tags above for quick recommendations."
       },
-      mode: "single",
+      mode: "multi",
       level: "advanced",
       required: false,
-      optionSetId: "format"
+      optionSetId: "format",
+      minSelections: 1
     },
     {
       id: "text_handling",
