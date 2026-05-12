@@ -5,6 +5,7 @@ import {
   getAllTargets,
   getAllWorkTypes,
   getOptionById,
+  getOptionsByConsumerTerm,
   getOptionsForTarget,
   getOptionSet,
   registerAdapter,
@@ -407,6 +408,74 @@ describe("registry", () => {
         options: []
       };
       expect(set.categories).toBeUndefined();
+    });
+  });
+
+  describe("consumer term lookup", () => {
+    // Register a test set with consumerTerms
+    const testSetConsumer: OptionSet = {
+      id: "test_set_consumer",
+      version: "0.1.0",
+      label: { zh: "消费者测试", en: "Consumer Test" },
+      options: [
+        {
+          id: "opt_consumer_1",
+          version: "0.1.0",
+          label: { zh: "测试选项1", en: "Test Option 1" },
+          plain: { zh: "", en: "" },
+          professionalTerms: [],
+          promptFragment: { zh: "", en: "" },
+          appliesTo: ["seedance"],
+          consumerTerms: ["测试词A", "测试词B"]
+        },
+        {
+          id: "opt_consumer_2",
+          version: "0.1.0",
+          label: { zh: "测试选项2", en: "Test Option 2" },
+          plain: { zh: "", en: "" },
+          professionalTerms: [],
+          promptFragment: { zh: "", en: "" },
+          appliesTo: ["seedance"],
+          consumerTerms: ["测试词B", "测试词C"]
+        },
+        {
+          id: "opt_consumer_3",
+          version: "0.1.0",
+          label: { zh: "测试选项3", en: "Test Option 3" },
+          plain: { zh: "", en: "" },
+          professionalTerms: [],
+          promptFragment: { zh: "", en: "" },
+          appliesTo: ["seedance"]
+          // No consumerTerms — intentional
+        }
+      ]
+    };
+    registerOptionSet(testSetConsumer);
+
+    it("returns options matching a consumer term", () => {
+      const results = getOptionsByConsumerTerm("测试词A");
+      expect(results).toHaveLength(1);
+      expect(results[0].id).toBe("opt_consumer_1");
+    });
+
+    it("returns multiple options when term appears on multiple options", () => {
+      const results = getOptionsByConsumerTerm("测试词B");
+      expect(results).toHaveLength(2);
+      expect(results.map((o) => o.id)).toContain("opt_consumer_1");
+      expect(results.map((o) => o.id)).toContain("opt_consumer_2");
+    });
+
+    it("returns empty array for unmatched term", () => {
+      const results = getOptionsByConsumerTerm("不存在的词");
+      expect(results).toEqual([]);
+    });
+
+    it("does not return options without consumerTerms", () => {
+      const results = getOptionsByConsumerTerm("测试词C");
+      expect(results).toHaveLength(1);
+      expect(results[0].id).toBe("opt_consumer_2");
+      // opt_consumer_3 has no consumerTerms, should never appear
+      expect(results.map((o) => o.id)).not.toContain("opt_consumer_3");
     });
   });
 
