@@ -1,5 +1,5 @@
 import type { OptionItem, OptionSet, TargetToolId } from "../types";
-import { optionItemMap, optionSetMap } from "./state";
+import { optionItemMap, optionSetMap, targetsByOption } from "./state";
 
 export function registerOptionSet(set: OptionSet): void {
   if (optionSetMap.has(set.id)) {
@@ -12,6 +12,13 @@ export function registerOptionSet(set: OptionSet): void {
       );
     }
     optionItemMap.set(option.id, option);
+    // Populate reverse index for target switching (D-05)
+    const optionTargets = targetsByOption.get(option.id);
+    if (optionTargets) {
+      for (const targetId of option.appliesTo) optionTargets.add(targetId);
+    } else {
+      targetsByOption.set(option.id, new Set(option.appliesTo));
+    }
   }
   optionSetMap.set(set.id, set);
 }
@@ -41,4 +48,9 @@ export function getOptionsForTarget(
 
 export function getAllOptionSets(): OptionSet[] {
   return [...optionSetMap.values()];
+}
+
+/** Reverse lookup: which targets does this option apply to? (D-05) */
+export function getTargetsForOption(optionId: string): string[] {
+  return [...(targetsByOption.get(optionId) ?? [])];
 }

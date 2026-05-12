@@ -15,3 +15,6 @@ export const targetMap = new Map<TargetToolId, TargetToolConfig>();
 export const adapterMap = new Map<TargetToolId, TargetAdapter>();
 export const optionSetMap = new Map<string, OptionSet>();
 export const optionItemMap = new Map<string, OptionItem>();
+
+/** Reverse index: optionId → Set of TargetToolId values that option supports (D-05). */
+export const targetsByOption = new Map<string, Set<string>>();

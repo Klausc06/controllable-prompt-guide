@@ -19,6 +19,8 @@ export interface OptionItem {
   promptFragment: LocalizedText;
   appliesTo: TargetToolId[];
   riskHint?: LocalizedText;
+  /** Option IDs this option overrides when both are selected. Data-driven — rules live in catalog, not code. */
+  suppresses?: string[];
 }
 
 export interface QuestionSchema {
@@ -52,6 +54,8 @@ export interface TargetToolConfig {
   prefer: string[];
   suppress: string[];
   safetyDefaults: string[];
+  /** Maps questionId → localized template string. "{选项}" is placeholder for option text. */
+  templateMap?: Record<string, LocalizedText>;
 }
 
 export type SelectionValue = string | string[];

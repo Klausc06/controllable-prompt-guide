@@ -8,5 +8,6 @@ export {
   getOptionById,
   getOptionSet,
   getOptionsForTarget,
+  getTargetsForOption,
   getAllOptionSets
 } from "./option.registry";

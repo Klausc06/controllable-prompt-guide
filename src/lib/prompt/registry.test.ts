@@ -10,6 +10,7 @@ import {
   registerAdapter,
   registerOptionSet,
   registerTarget,
+  getTargetsForOption,
   registerWorkType,
   resolveAdapter,
   resolveTarget,
@@ -340,6 +341,18 @@ describe("registry", () => {
 
     it("returns empty array for unknown option set", () => {
       expect(getOptionsForTarget("nope", "seedance")).toEqual([]);
+    });
+  });
+
+  describe("reverse index (D-05)", () => {
+    it("getTargetsForOption returns correct targets for a multi-target option", () => {
+      const targets = getTargetsForOption("opt_a2");
+      expect(targets).toContain("seedance");
+      expect(targets).toContain("generic_video");
+    });
+
+    it("getTargetsForOption returns empty array for unknown option ID", () => {
+      expect(getTargetsForOption("nonexistent")).toEqual([]);
     });
   });
 
