@@ -188,5 +188,35 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"],
       riskHint: { zh: "", en: "" }
     }
+  ],
+  categories: [
+    {
+      id: "cat:use_case:biz",
+      label: { zh: "商业推广", en: "Business Promo" },
+      optionIds: [
+        "use_case:gym_opening",
+        "use_case:coffee_new_product",
+        "use_case:product_showcase",
+        "use_case:product_unboxing",
+        "use_case:restaurant_menu_showcase",
+        "use_case:course_promo",
+        "use_case:real_estate_tour"
+      ]
+    },
+    {
+      id: "cat:use_case:social",
+      label: { zh: "社交媒体", en: "Social Media" },
+      optionIds: [
+        "use_case:xiaohongshu_visit",
+        "use_case:social_media_quick_clip",
+        "use_case:livestream_clip",
+        "use_case:tutorial_demo"
+      ]
+    },
+    {
+      id: "cat:use_case:brand",
+      label: { zh: "品牌/活动", en: "Brand & Events" },
+      optionIds: ["use_case:brand_image", "use_case:event_recap", "use_case:city_travel_promo", "use_case:corporate_event"]
+    }
   ]
 };

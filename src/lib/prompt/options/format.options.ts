@@ -155,5 +155,34 @@ export const formatOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"],
       riskHint: { zh: "", en: "" }
     }
+  ],
+  categories: [
+    {
+      id: "cat:format:vertical",
+      label: { zh: "竖屏 9:16", en: "Vertical 9:16" },
+      optionIds: [
+        "format:vertical_3s",
+        "format:vertical_5s",
+        "format:vertical_10s",
+        "format:vertical_15s",
+        "format:vertical_30s",
+        "format:vertical_60s"
+      ]
+    },
+    {
+      id: "cat:format:horizontal",
+      label: { zh: "横屏 16:9", en: "Horizontal 16:9" },
+      optionIds: ["format:horizontal_12s", "format:horizontal_30s", "format:horizontal_60s"]
+    },
+    {
+      id: "cat:format:square",
+      label: { zh: "方形 1:1", en: "Square 1:1" },
+      optionIds: ["format:square_8s", "format:square_15s", "format:square_30s"]
+    },
+    {
+      id: "cat:format:other",
+      label: { zh: "其他比例", en: "Other Ratios" },
+      optionIds: ["format:portrait_34_8s", "format:portrait_45_10s", "format:wide_219_15s"]
+    }
   ]
 };

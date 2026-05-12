@@ -314,5 +314,27 @@ export const styleOptions: OptionSet = {
       riskHint: { zh: "", en: "" },
       consumerTerms: ["梦幻"]
     }
+  ],
+  categories: [
+    {
+      id: "cat:style:realistic",
+      label: { zh: "写实/真实感", en: "Realistic" },
+      optionIds: ["style:cinematic_realism", "style:ugc_handheld", "style:warm_lifestyle", "style:documentary_real"]
+    },
+    {
+      id: "cat:style:mood",
+      label: { zh: "氛围/质感", en: "Mood & Texture" },
+      optionIds: ["style:dark_moody_textured", "style:healing_comfort", "style:dreamy_ethereal", "style:fresh_natural_forest"]
+    },
+    {
+      id: "cat:style:editorial",
+      label: { zh: "精致/商业", en: "Editorial & Commercial" },
+      optionIds: ["style:premium_minimal", "style:luxury_editorial", "style:clean_tech", "style:trend_street_editorial"]
+    },
+    {
+      id: "cat:style:artistic",
+      label: { zh: "艺术/特殊风格", en: "Artistic & Special" },
+      optionIds: ["style:cyberpunk_neon", "style:retro_vhs_ccd", "style:cg_3d_rendered", "style:black_white_monochrome", "style:pop_art_collage", "style:anime_manga_inspired"]
+    }
   ]
 };

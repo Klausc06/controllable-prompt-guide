@@ -200,5 +200,33 @@ export const subjectOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"],
       riskHint: { zh: "", en: "" }
     }
+  ],
+  categories: [
+    {
+      id: "cat:subject:people",
+      label: { zh: "人物", en: "People" },
+      optionIds: ["subject:human_customer", "subject:staff_expert", "subject:person_model"]
+    },
+    {
+      id: "cat:subject:product",
+      label: { zh: "产品", en: "Products" },
+      optionIds: [
+        "subject:hero_product",
+        "subject:electronics_gadgets",
+        "subject:jewelry_accessories",
+        "subject:cosmetics_beauty",
+        "subject:sports_fitness_gear"
+      ]
+    },
+    {
+      id: "cat:subject:space",
+      label: { zh: "空间/场所", en: "Spaces" },
+      optionIds: ["subject:local_storefront", "subject:space_environment", "subject:architecture_interior"]
+    },
+    {
+      id: "cat:subject:other",
+      label: { zh: "其他主体", en: "Other" },
+      optionIds: ["subject:food_drink", "subject:vehicles_transportation", "subject:pets_animals", "subject:baby_children"]
+    }
   ]
 };
