@@ -1,7 +1,7 @@
 # Roadmap: Controllable Prompt Guide
 
 **Project:** 可控提示词向导 (Controllable Prompt Guide)
-**Created:** 2026-05-10 | **Updated:** 2026-05-10
+**Created:** 2026-05-10 | **Updated:** 2026-05-12
 **Granularity:** fine (8 phases)
 **Total v1 requirements:** 37 | **Completed:** 37/37
 
@@ -23,11 +23,19 @@ Plans:
 - [ ] `01-04-PLAN.md` — Safety default deselection tracking across target switches
 - [ ] `01-05-PLAN.md` — Cross-target safety testing for Generic Video and Veo 3
 
-### Phase 2: Registry Architecture ✓
+### Phase 2: Registry Architecture
 **Goal**: Open string target IDs; adapter registry; PromptGuide decoupled; registration-time validation
 **Depends on**: Phase 1
 **Requirements**: ARCH-01, ARCH-02, ARCH-03, TEST-01, TEST-02, TEST-03, TEST-05
-**Status**: Complete. Plans: `02-01-PLAN.md`, `02-02-PLAN.md`, `02-03-PLAN.md`
+**Status**: In progress. Executed: `02-01-PLAN.md`, `02-02-PLAN.md`, `02-03-PLAN.md`. Pending: `02-04-PLAN.md`, `02-05-PLAN.md`.
+**Plans:** 5 plans
+
+Plans:
+- [x] `02-01-PLAN.md` — Registry infrastructure (Maps + register/resolve) + open types + option set wiring
+- [x] `02-02-PLAN.md` — Adapter self-registration + adapters.ts dispatch + validation functions
+- [x] `02-03-PLAN.md` — UI decoupling (PromptGuide uses registry) + init.ts barrel
+- [ ] `02-04-PLAN.md` — D-07 registry domain split (state.ts + 4 domain files + barrel index.ts)
+- [ ] `02-05-PLAN.md` — D-05 formalization + test gap closure (TEST-01 error path, TEST-03 registration path)
 
 ### Phase 3: Metadata Execution ✓
 **Goal**: appliesTo filtering; suppress/warn; renderer template maps; useReducer state; target switching preserves selections
@@ -72,7 +80,7 @@ Plans:
 | Phase | Plans | Status |
 |-------|-------|--------|
 | 1. Safety Foundation | 5 plans (2 done, 3 pending) | In progress |
-| 2. Registry Architecture | 3/3 | ✓ Complete |
+| 2. Registry Architecture | 5 plans (3 done, 2 pending) | In progress |
 | 3. Metadata Execution | 1/1 | ✓ Complete |
 | 4. Catalog Expansion | 1/1 | ✓ Complete |
 | 5. Consumer Translation | 1/1 | ✓ Complete |
@@ -94,9 +102,9 @@ Phase 1 → Phase 2 → Phase 3 ─┐
                                  Phase 8
 ```
 
-All phases complete. 37/37 requirements addressed. 44 tests passing. Static export verified.
+All phases complete. 37/37 requirements addressed. 58 tests passing. Static export verified.
 
 ---
 
 *Roadmap created: 2026-05-10*
-*Last updated: 2026-05-10 after Phase 1-8 completion*
+*Last updated: 2026-05-12 — added Phase 2 plans 02-04, 02-05*
