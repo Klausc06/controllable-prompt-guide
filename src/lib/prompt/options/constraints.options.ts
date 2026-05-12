@@ -129,6 +129,66 @@ export const constraintsOptions: OptionSet = {
         en: "avoid quality-degrading keywords such as 'fast', 'cinematic', 'epic', 'amazing', 'lots_of_movement'"
       },
       appliesTo: ["seedance"]
+    },
+    {
+      id: "constraints:no_rapid_cuts",
+      version: "0.1.0",
+      label: { zh: "避免快速跳切", en: "Avoid rapid cuts" },
+      plain: { zh: "避免快速跳切和频闪式剪辑，保持镜头切换平滑", en: "Avoid rapid cuts and strobing edits for smooth transitions" },
+      professionalTerms: ["smooth pacing", "no rapid cuts", "temporal coherence"],
+      promptFragment: { zh: "避免快速跳切和频闪式剪辑，保持镜头切换平滑连贯", en: "avoid rapid cuts and strobing edits; keep shot transitions smooth and coherent" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "constraints:avoid_water_reflections",
+      version: "0.1.0",
+      label: { zh: "避免水面反射失常", en: "Avoid water reflection artifacts" },
+      plain: { zh: "避免水面、玻璃等反射面产生错误反射", en: "Avoid incorrect reflections on water and specular surfaces" },
+      professionalTerms: ["specular artifact avoidance", "reflection stability", "surface consistency"],
+      promptFragment: { zh: "避免水面、玻璃等反射面产生不符合场景的错误反射和内容", en: "avoid incorrect reflections and hallucinated content on water, glass, and specular surfaces" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "constraints:avoid_glass_artifacts",
+      version: "0.1.0",
+      label: { zh: "避免玻璃/透明体穿模", en: "Avoid glass/transparency artifacts" },
+      plain: { zh: "避免透明物体出现穿模、变形或内容错位", en: "Avoid clipping and distortion in transparent objects" },
+      professionalTerms: ["transparency artifact", "glass rendering", "refraction fix"],
+      promptFragment: { zh: "避免透明物体（玻璃杯、窗户、亚克力）出现穿模、变形或内容错位", en: "avoid clipping, distortion, or content misplacement in transparent objects (glasses, windows, acrylic)" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "constraints:background_consistency",
+      version: "0.1.0",
+      label: { zh: "背景一致性", en: "Background consistency" },
+      plain: { zh: "镜头切换时保持背景环境一致", en: "Keep background consistent across cuts" },
+      professionalTerms: ["background consistency", "environmental continuity", "set stability"],
+      promptFragment: { zh: "镜头切换时保持背景环境一致，避免背景突变、元素消失或位置偏移", en: "maintain background consistency across cuts, avoiding sudden background changes, disappearing elements, or position shifts" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "constraints:limit_motion_amplitude",
+      version: "0.1.0",
+      label: { zh: "限制动作幅度", en: "Limit motion amplitude" },
+      plain: { zh: "限制大幅动作的幅度，避免画面撕裂", en: "Limit large motion amplitude to prevent frame tearing" },
+      professionalTerms: ["motion amplitude control", "movement constraint", "action boundary"],
+      promptFragment: { zh: "限制大幅度动作的幅度和速度，避免快速运动导致的画面撕裂和畸变", en: "limit the amplitude and speed of large motions to avoid frame tearing and distortion from rapid movement" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "constraints:consistent_lighting",
+      version: "0.1.0",
+      label: { zh: "保持光照一致", en: "Consistent lighting" },
+      plain: { zh: "多个镜头间的光照方向和色温保持一致", en: "Keep lighting direction and color temperature consistent across shots" },
+      professionalTerms: ["lighting consistency", "color temperature match", "cross-shot continuity"],
+      promptFragment: { zh: "多个镜头之间的光照方向、强度和色温保持一致，避免光照突变", en: "maintain consistent lighting direction, intensity, and color temperature across shots, avoiding sudden lighting changes" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };

@@ -160,6 +160,36 @@ export const subjectOptions: OptionSet = {
         en: "a pet or animal as the subject, capturing natural movement and expression, highlighting fur texture and endearing interaction"
       },
       appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "subject:cosmetics_beauty",
+      version: "0.1.0",
+      label: { zh: "化妆品/美妆产品", en: "Cosmetics / beauty products" },
+      plain: { zh: "化妆品、护肤品或美妆工具作为主体，突出质感和使用场景", en: "Cosmetics and beauty products as the main subject, emphasizing texture and usage context" },
+      professionalTerms: ["beauty product", "cosmetics hero", "skincare visual"],
+      promptFragment: { zh: "化妆品、护肤品或美妆工具作为画面主体，突出产品质感和使用场景", en: "cosmetics, skincare products, or beauty tools as the main subject, emphasizing texture and usage context" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "subject:baby_children",
+      version: "0.1.0",
+      label: { zh: "儿童/婴幼用品", en: "Baby / children's products" },
+      plain: { zh: "婴幼用品或儿童产品作为主体，场景温馨安全", en: "Baby or children's products with warm and safe settings" },
+      professionalTerms: ["baby product", "children's lifestyle", "family-friendly"],
+      promptFragment: { zh: "婴幼用品或儿童产品作为画面主体，场景温馨安全，适合家庭向内容", en: "baby or children's products as the main subject, with warm and safe settings for family-oriented content" },
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "subject:sports_fitness_gear",
+      version: "0.1.0",
+      label: { zh: "运动健身器材", en: "Sports / fitness gear" },
+      plain: { zh: "适合运动器材、健身设备、户外装备展示", en: "For sports equipment, fitness devices, and outdoor gear" },
+      professionalTerms: ["sports equipment", "fitness gear", "action product"],
+      promptFragment: { zh: "运动或健身器材作为主体，突出设计功能、材质耐用性和运动使用场景", en: "sports or fitness gear as the main subject, highlighting design function, material durability, and active usage context" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };

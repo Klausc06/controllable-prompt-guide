@@ -230,6 +230,16 @@ export const styleOptions: OptionSet = {
         en: "pop art or collage style with high saturation, bold graphics, strong visual impact, and an artistic feel"
       },
       appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "style:anime_manga_inspired",
+      version: "0.1.0",
+      label: { zh: "动漫/漫画风格", en: "Anime / manga inspired" },
+      plain: { zh: "手绘感、日式动漫或漫画分镜风格", en: "Hand-drawn anime or manga panel aesthetic" },
+      professionalTerms: ["anime style", "manga aesthetic", "cel-shaded"],
+      promptFragment: { zh: "日式动漫或漫画风格，手绘质感，线条清晰，色彩层次分明，充满动感表现力", en: "anime or manga inspired style with hand-drawn feel, clean linework, layered coloring, and dynamic expressiveness" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };

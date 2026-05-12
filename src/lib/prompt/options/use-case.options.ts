@@ -136,6 +136,46 @@ export const useCaseOptions: OptionSet = {
         en: "social media quick clip in vertical format, tight pacing, hooking attention in the first 3 seconds"
       },
       appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "use_case:livestream_clip",
+      version: "0.1.0",
+      label: { zh: "直播带货片段", en: "Livestream selling clip" },
+      plain: { zh: "直播带货中的产品展示，以主播视角展示商品效果", en: "Product showcase from a livestream host's perspective" },
+      professionalTerms: ["livestream highlight", "shoppable clip", "host-driven"],
+      promptFragment: { zh: "直播带货中的产品展示片段，以主播视角展示商品使用效果和卖点", en: "product showcase clip from a livestream selling session, from the host's perspective highlighting product features" },
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "use_case:real_estate_tour",
+      version: "0.1.0",
+      label: { zh: "房产/楼盘展示", en: "Real estate property tour" },
+      plain: { zh: "楼盘或室内空间的沉浸式展示", en: "Immersive tour of a property or interior space" },
+      professionalTerms: ["property walkthrough", "architectural tour", "real estate visual"],
+      promptFragment: { zh: "楼盘或室内空间的沉浸式展示，突出空间关系、采光和设计细节", en: "immersive tour of a property or interior space, emphasizing spatial flow, natural light, and design details" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "use_case:corporate_event",
+      version: "0.1.0",
+      label: { zh: "企业年会/庆典", en: "Corporate annual event" },
+      plain: { zh: "企业年会或庆典的精彩集锦", en: "Highlight reel of a corporate celebration" },
+      professionalTerms: ["corporate event", "gala highlight", "ceremony recap"],
+      promptFragment: { zh: "企业年会、庆典或发布会的精彩集锦，突出品牌氛围、舞台效果和参与者互动", en: "highlight reel of a corporate annual event, celebration, or launch, capturing brand atmosphere, stage effects, and attendee interaction" },
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "use_case:restaurant_menu_showcase",
+      version: "0.1.0",
+      label: { zh: "餐厅菜品展示", en: "Restaurant menu showcase" },
+      plain: { zh: "展示多道菜品的摆盘、色彩和诱人细节", en: "Showcase plating, colors, and appetizing details of multiple dishes" },
+      professionalTerms: ["food montage", "menu showcase", "plating presentation"],
+      promptFragment: { zh: "餐厅菜品展示视频，逐一呈现多道菜品的摆盘、色彩搭配和诱人质感", en: "restaurant menu showcase video presenting multiple dishes with attractive plating, color composition, and appetizing texture" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };

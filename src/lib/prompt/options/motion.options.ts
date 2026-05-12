@@ -164,6 +164,26 @@ export const motionOptions: OptionSet = {
         en: "Some video models struggle to precisely control motion amplitude; the output may be more active than intended"
       },
       appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "motion:timelapse_hyperlapse",
+      version: "0.1.0",
+      label: { zh: "延时/加速动作", en: "Time-lapse / hyperlapse" },
+      plain: { zh: "延时摄影效果，适合展示过程变化和光影流转", en: "Time-lapse effect for showing process changes and light transitions" },
+      professionalTerms: ["time-lapse", "hyperlapse", "accelerated motion"],
+      promptFragment: { zh: "延时摄影效果，时间加速流动，适合展示过程变化、光影流转或人流车流", en: "time-lapse effect with accelerated time flow, suitable for showing process changes, light transitions, or crowd/traffic movement" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "motion:slow_motion_dramatic",
+      version: "0.1.0",
+      label: { zh: "慢动作/升格", en: "Slow motion / dramatic speed" },
+      plain: { zh: "动作放慢，增强戏剧感和视觉冲击力", en: "Slowed-down action for dramatic effect and visual impact" },
+      professionalTerms: ["slow motion", "high frame rate", "dramatic speed ramp"],
+      promptFragment: { zh: "慢动作效果，将关键动作放慢呈现，增强画面质感和戏剧张力", en: "slow motion effect, presenting key actions at reduced speed for enhanced visual texture and dramatic impact" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };

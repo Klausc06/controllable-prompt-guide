@@ -160,6 +160,26 @@ export const lightingOptions: OptionSet = {
         en: "overcast diffused soft light where clouds act as a natural softbox, with no harsh shadows, muted saturation, and an even gentle look across the frame"
       },
       appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "lighting:harsh_midday",
+      version: "0.1.0",
+      label: { zh: "正午强光/直射阳光", en: "Harsh midday direct sunlight" },
+      plain: { zh: "正午强烈直射阳光，高对比度，清晰锐利阴影", en: "Harsh midday sunlight with high contrast and sharp shadows" },
+      professionalTerms: ["harsh daylight", "midday sun", "hard shadows"],
+      promptFragment: { zh: "正午强烈直射阳光，高对比度，清晰锐利的阴影，适合户外运动和硬朗风格", en: "harsh midday direct sunlight with high contrast and sharp shadows, suitable for outdoor sports and bold visual styles" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "lighting:twilight_blue_hour",
+      version: "0.1.0",
+      label: { zh: "蓝调时刻/暮光", en: "Twilight / blue hour" },
+      plain: { zh: "日落后的蓝色暮光，静谧浪漫", en: "Blue twilight after sunset, calm and romantic" },
+      professionalTerms: ["blue hour", "twilight", "dusk lighting"],
+      promptFragment: { zh: "蓝调时刻的暮光，天空呈现深蓝色调，城市灯光初上，画面静谧浪漫", en: "blue hour twilight with deep blue sky tones and emerging city lights, creating a calm romantic atmosphere" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };

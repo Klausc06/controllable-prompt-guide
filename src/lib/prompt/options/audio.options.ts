@@ -148,6 +148,36 @@ export const audioOptions: OptionSet = {
         en: "the video contains no embedded audio; all sound (music, SFX, etc.) will be added in post-production"
       },
       appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "audio:sfx_design_heavy",
+      version: "0.1.0",
+      label: { zh: "音效设计为主", en: "SFX-heavy sound design" },
+      plain: { zh: "以音效设计为主，强调动作和环境音效", en: "Sound-design-driven with emphasis on action and ambient sounds" },
+      professionalTerms: ["sound design", "foley emphasis", "SFX-driven"],
+      promptFragment: { zh: "以音效设计为主，强调动作音效、环境音和转场音效，音乐作为辅助背景", en: "sound-design-driven with emphasis on action sounds, ambient effects, and transition SFX, with music as background support" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "audio:classical_orchestral",
+      version: "0.1.0",
+      label: { zh: "古典管弦乐", en: "Classical orchestral score" },
+      plain: { zh: "古典管弦乐配乐，恢宏大气或优雅内敛", en: "Classical orchestral score, grand or refined" },
+      professionalTerms: ["orchestral", "classical score", "symphonic"],
+      promptFragment: { zh: "古典管弦乐配乐，恢宏大气或优雅内敛，适合品牌片、纪录片和高端内容", en: "classical orchestral score, grand or refined, suitable for brand films, documentaries, and premium content" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "audio:lofi_chill_background",
+      version: "0.1.0",
+      label: { zh: "Lo-fi 放松背景", en: "Lo-fi chill background" },
+      plain: { zh: "舒缓放松的 lo-fi 节奏，适合生活方式和居家内容", en: "Calm relaxing lo-fi beats for lifestyle and home content" },
+      professionalTerms: ["lo-fi", "chill beats", "relaxing background"],
+      promptFragment: { zh: "搭配 lo-fi 放松背景音乐，舒缓节奏，适合营造安静舒适的氛围", en: "use lo-fi chill background music with relaxed tempo, creating a quiet comfortable mood" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };

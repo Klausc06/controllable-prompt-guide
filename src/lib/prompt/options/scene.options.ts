@@ -156,6 +156,36 @@ export const sceneOptions: OptionSet = {
         en: "a minimalist gallery or exhibition space with white walls, focused display, balancing artistic and premium feel"
       },
       appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "scene:medical_wellness",
+      version: "0.1.0",
+      label: { zh: "医疗/健康空间", en: "Medical / wellness space" },
+      plain: { zh: "现代医疗或健康管理空间，干净明亮", en: "Modern medical or wellness space, clean and bright" },
+      professionalTerms: ["medical interior", "wellness space", "clinical clean"],
+      promptFragment: { zh: "现代医疗或健康管理空间，干净明亮的诊疗环境，适合大健康类内容", en: "modern medical or wellness space, clean and bright clinical environment, suitable for healthcare content" },
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "scene:night_market_outdoor",
+      version: "0.1.0",
+      label: { zh: "户外集市/夜市", en: "Outdoor night market" },
+      plain: { zh: "户外集市或夜市，暖光、热闹氛围", en: "Outdoor night market with warm lighting and lively atmosphere" },
+      professionalTerms: ["night market", "street fair", "ambient crowd"],
+      promptFragment: { zh: "户外集市或夜市场景，暖光、热闹人群和摊位氛围，适合生活类内容", en: "outdoor night market or street fair with warm lighting, lively crowds, and vendor stalls, suitable for lifestyle content" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "scene:classroom_training",
+      version: "0.1.0",
+      label: { zh: "教室/培训空间", en: "Classroom / training space" },
+      plain: { zh: "适合教育、培训、讲座、研讨会场景", en: "For education, training, lectures, and workshop settings" },
+      professionalTerms: ["classroom setting", "training environment", "educational space"],
+      promptFragment: { zh: "教室或培训空间场景，明亮整洁，学习氛围浓厚，设备齐全", en: "a classroom or training space with bright clean layout, focused learning atmosphere, and well-equipped setup" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };
