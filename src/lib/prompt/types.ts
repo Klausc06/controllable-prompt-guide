@@ -21,6 +21,8 @@ export interface OptionItem {
   riskHint?: LocalizedText;
   /** Option IDs this option overrides when both are selected. Data-driven — rules live in catalog, not code. */
   suppresses?: string[];
+  /** Consumer-facing vocabulary terms that map to this option. Used for quick-entry tag selection. */
+  consumerTerms?: string[];
 }
 
 export interface QuestionSchema {
@@ -98,4 +100,7 @@ export interface OptionSet {
   version: string;
   label: LocalizedText;
   options: OptionItem[];
+  /** Category groupings within this option set. Only for sets with >= 12 options.
+   *  Each category specifies which option IDs it contains. An option may appear in multiple categories. */
+  categories?: { id: string; label: LocalizedText; optionIds: string[] }[];
 }
