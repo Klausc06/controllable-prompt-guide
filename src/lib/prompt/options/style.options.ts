@@ -19,7 +19,8 @@ export const styleOptions: OptionSet = {
         en: "cinematic realism with controlled lighting and a premium commercial look"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      consumerTerms: ["大片感"]
     },
     {
       id: "style:ugc_handheld",
@@ -54,7 +55,8 @@ export const styleOptions: OptionSet = {
         en: "premium minimal visual style with generous negative space, restrained colors, and clean details"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      consumerTerms: ["高级感", "干净"]
     },
     {
       id: "style:cyberpunk_neon",
@@ -73,7 +75,8 @@ export const styleOptions: OptionSet = {
       riskHint: {
         zh: "容易变得信息很满，适合科技、潮流、夜景主题。",
         en: "Can become visually busy; best for tech, trend, and night scenes."
-      }
+      },
+      consumerTerms: ["赛博朋克"]
     },
     {
       id: "style:warm_lifestyle",
@@ -89,7 +92,8 @@ export const styleOptions: OptionSet = {
         en: "warm lifestyle style with soft natural light and an approachable everyday atmosphere"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      consumerTerms: ["ins风", "氛围感"]
     },
     {
       id: "style:luxury_editorial",
@@ -121,7 +125,8 @@ export const styleOptions: OptionSet = {
         en: "clean tech aesthetic with crisp lines, modern materials, and a precise professional mood"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      consumerTerms: ["科技感"]
     },
     {
       id: "style:documentary_real",
@@ -137,7 +142,8 @@ export const styleOptions: OptionSet = {
         en: "documentary realism with observational camera work, natural action, and credible in-the-moment presence"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      consumerTerms: ["烟火气"]
     },
     {
       id: "style:fresh_natural_forest",
@@ -153,7 +159,8 @@ export const styleOptions: OptionSet = {
         en: "fresh natural forest aesthetic with green undertones, diffused daylight, and a clean airy look"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      consumerTerms: ["小清新"]
     },
     {
       id: "style:dark_moody_textured",
@@ -172,7 +179,8 @@ export const styleOptions: OptionSet = {
       riskHint: {
         zh: "暗调可能导致细节丢失，注意主体轮廓清晰度。",
         en: "Dark tones may lose details; ensure the subject silhouette stays clear."
-      }
+      },
+      consumerTerms: ["暗黑", "质感"]
     },
     {
       id: "style:retro_vhs_ccd",
@@ -188,7 +196,8 @@ export const styleOptions: OptionSet = {
         en: "retro VHS or CCD digital look with visible grain, color shift, light distortion, and early-2000s nostalgia"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      consumerTerms: ["复古"]
     },
     {
       id: "style:cg_3d_rendered",
@@ -250,6 +259,60 @@ export const styleOptions: OptionSet = {
       promptFragment: { zh: "日式动漫或漫画风格，手绘质感，线条清晰，色彩层次分明，充满动感表现力", en: "anime or manga inspired style with hand-drawn feel, clean linework, layered coloring, and dynamic expressiveness" },
       appliesTo: ["seedance", "generic_video", "veo3"],
       riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "style:healing_comfort",
+      version: "0.1.0",
+      label: { zh: "治愈温暖", en: "Healing comfort" },
+      plain: {
+        zh: "柔和、安静、让人感到放松和安心 — 治愈系、温暖疗愈",
+        en: "Soft, quiet, and comforting — healing warmth and gentle calm"
+      },
+      professionalTerms: ["healing comfort", "warm soft light", "gentle slow motion", "calming aesthetic"],
+      promptFragment: {
+        zh: "治愈温暖的视觉风格，柔和散射光线，低饱和度暖色调，缓慢平静的镜头运动，营造安心放松的氛围",
+        en: "healing comfort visual style with soft diffused light, low-saturation warm tones, and slow peaceful camera movement for a calming reassuring atmosphere"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" },
+      consumerTerms: ["治愈"]
+    },
+    {
+      id: "style:trend_street_editorial",
+      version: "0.1.0",
+      label: { zh: "潮流街头时尚", en: "Trend street editorial" },
+      plain: {
+        zh: "大胆配色、街头感、年轻潮流 — 潮牌风格、都市时尚",
+        en: "Bold colors, street energy, youth culture — trend-forward fashion editorial"
+      },
+      professionalTerms: ["street editorial", "bold color palette", "urban energy", "trend-forward", "fashion lifestyle"],
+      promptFragment: {
+        zh: "潮流街头时尚风格，大胆色彩搭配，高对比度画面，都市街头氛围，充满年轻能量和时尚态度",
+        en: "trend street editorial style with bold color palette, high contrast visuals, urban street atmosphere, and youthful fashion-forward energy"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: {
+        zh: "潮流风格视觉冲击强，注意与品牌调性是否匹配。",
+        en: "Street editorial has strong visual impact; verify alignment with brand tone."
+      },
+      consumerTerms: ["潮流"]
+    },
+    {
+      id: "style:dreamy_ethereal",
+      version: "0.1.0",
+      label: { zh: "梦幻柔焦", en: "Dreamy ethereal" },
+      plain: {
+        zh: "柔焦、光晕、漂浮感 — 梦幻唯美、仙境般轻盈",
+        en: "Soft focus, lens glow, floating motion — dreamy and ethereal beauty"
+      },
+      professionalTerms: ["dreamy ethereal", "soft focus", "lens flare", "pastel bloom", "floating slow motion"],
+      promptFragment: {
+        zh: "梦幻柔焦风格，轻微柔焦滤镜，镜头光晕和光斑，粉彩色调，漂浮般的慢动作，营造唯美仙境氛围",
+        en: "dreamy ethereal style with soft focus filter, lens flare and bokeh, pastel color bloom, and floating slow motion for a magical wonderland atmosphere"
+      },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" },
+      consumerTerms: ["梦幻"]
     }
   ]
 };
