@@ -2,7 +2,7 @@ import { getAllAdapters, getAllOptionSets, getAllTargets } from "./registry";
 import type { OptionSet, TargetToolConfig, WorkTypeConfig } from "./types";
 
 export function validateOptionIdsUnique(optionSets_?: OptionSet[]) {
-  const sets = optionSets_ ?? [];
+  const sets = optionSets_ ?? getAllOptionSets();
   const seen = new Set<string>();
   const duplicates: string[] = [];
 

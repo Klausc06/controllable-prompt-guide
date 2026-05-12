@@ -210,6 +210,28 @@ describe("registry", () => {
         "minSelections is greater than maxSelections"
       );
     });
+
+    it("throws on unknown optionSetId reference when options are registered (TEST-03)", () => {
+      const badWorkType: WorkTypeConfig = {
+        id: "bad_optset_ref",
+        version: "0.1.0",
+        label: { en: "Bad Refs", zh: "坏引用" },
+        description: { en: "", zh: "" },
+        questions: [
+          {
+            id: "bad_q",
+            version: "0.1.0",
+            title: { en: "Bad", zh: "坏" },
+            helper: { en: "", zh: "" },
+            mode: "single",
+            level: "core",
+            required: false,
+            optionSetId: "nonexistent_set"
+          }
+        ]
+      };
+      expect(() => registerWorkType(badWorkType)).toThrow("unknown optionSet");
+    });
   });
 
   describe("target registration", () => {

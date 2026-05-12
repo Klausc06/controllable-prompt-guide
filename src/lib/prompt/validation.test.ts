@@ -6,6 +6,7 @@ import { optionSets } from "./options";
 import { getAllTargets, resolveWorkType } from "./registry";
 import { targetTools } from "./targets";
 import type { PromptSelections, TargetToolConfig, WorkTypeConfig } from "./types";
+import type { OptionSet } from "./types";
 import { validateAdapterCompleteness, validateOptionIdsUnique, validateOptionTargetRefs, validateSafetyDefaultsIntegrity, validateTargetConfig, validateWorkTypeConfig } from "./validation";
 
 const workType = resolveWorkType("video_prompt");
@@ -28,6 +29,42 @@ const completeSelections: PromptSelections = {
 describe("prompt configuration validation", () => {
   it("keeps option ids unique across reusable catalogs", () => {
     expect(validateOptionIdsUnique(optionSets)).toEqual([]);
+  });
+
+  it("returns duplicate option IDs when they appear across sets (TEST-01)", () => {
+    const collidingA: OptionSet = {
+      id: "collide_a",
+      version: "0.1.0",
+      label: { en: "A", zh: "A" },
+      options: [
+        {
+          id: "shared_id",
+          version: "0.1.0",
+          label: { en: "Shared", zh: "共享" },
+          plain: { en: "", zh: "" },
+          professionalTerms: [],
+          promptFragment: { en: "", zh: "" },
+          appliesTo: ["seedance"]
+        }
+      ]
+    };
+    const collidingB: OptionSet = {
+      id: "collide_b",
+      version: "0.1.0",
+      label: { en: "B", zh: "B" },
+      options: [
+        {
+          id: "shared_id",
+          version: "0.1.0",
+          label: { en: "Shared", zh: "共享" },
+          plain: { en: "", zh: "" },
+          professionalTerms: [],
+          promptFragment: { en: "", zh: "" },
+          appliesTo: ["seedance"]
+        }
+      ]
+    };
+    expect(validateOptionIdsUnique([collidingA, collidingB])).toEqual(["shared_id"]);
   });
 
   it("accepts the first video prompt work type schema", () => {
