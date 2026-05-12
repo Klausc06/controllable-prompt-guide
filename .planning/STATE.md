@@ -2,21 +2,21 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: unknown
-last_updated: "2026-05-11T18:42:30.246Z"
+status: Ready to plan
+last_updated: "2026-05-12T08:52:44.281Z"
 progress:
   total_phases: 8
-  completed_phases: 1
-  total_plans: 8
-  completed_plans: 5
-  percent: 63
+  completed_phases: 2
+  total_plans: 10
+  completed_plans: 10
+  percent: 100
 ---
 
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
 **Last updated:** 2026-05-10 — Post-audit fixes applied
-**Phase:** 02
+**Phase:** 3
 **Tests:** 44/44 passing
 **CI:** test/lint/typecheck/build all green
 
