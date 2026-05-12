@@ -12,7 +12,8 @@ export const formatOptions: OptionSet = {
       plain: { zh: "适合抖音、小红书、视频号", en: "Good for Douyin, RedNote, and short social feeds" },
       professionalTerms: ["9:16 vertical", "short-form social", "10-second cut"],
       promptFragment: { zh: "9:16 竖屏，约 10 秒，适合短视频平台", en: "9:16 vertical, around 10 seconds, suitable for short-form social platforms" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "format:vertical_15s",
@@ -21,7 +22,8 @@ export const formatOptions: OptionSet = {
       plain: { zh: "比 10 秒更完整，适合三段式小故事", en: "More complete than 10s, good for a three-beat story" },
       professionalTerms: ["9:16 vertical", "15-second narrative", "social ad"],
       promptFragment: { zh: "9:16 竖屏，约 15 秒，适合三段式短视频叙事", en: "9:16 vertical, around 15 seconds, suitable for a three-beat short video narrative" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "format:square_8s",
@@ -30,7 +32,8 @@ export const formatOptions: OptionSet = {
       plain: { zh: "适合信息流、商品卡片、轻量展示", en: "Good for feeds, product cards, and compact showcases" },
       professionalTerms: ["1:1 square", "feed creative", "compact product shot"],
       promptFragment: { zh: "1:1 方形画幅，约 8 秒，主体居中，适合信息流展示", en: "1:1 square format, around 8 seconds, centered subject for feed placement" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "format:horizontal_12s",
@@ -39,7 +42,8 @@ export const formatOptions: OptionSet = {
       plain: { zh: "适合官网、展会屏幕、横版广告", en: "Good for websites, event screens, and horizontal ads" },
       professionalTerms: ["16:9 horizontal", "wide composition", "brand film cut"],
       promptFragment: { zh: "16:9 横屏，约 12 秒，画面留出横向空间，适合官网或展示屏", en: "16:9 horizontal, around 12 seconds, with wide composition for websites or display screens" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "format:square_15s",
@@ -119,7 +123,7 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["21:9 ultrawide", "cinemascope", "15-second cut"],
       promptFragment: { zh: "21:9 超宽电影画幅，约 15 秒，适合电影感开场", en: "21:9 ultrawide cinematic format, around 15 seconds, for cinematic opening sequences" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "超宽画幅在部分视频模型中可能出现画面裁切异常或构图偏移。生成后确认画面完整性。", en: "Ultrawide formats may cause unexpected cropping or composition shifts in some video models. Verify frame integrity after generation." }
     },
     {
       id: "format:portrait_34_8s",

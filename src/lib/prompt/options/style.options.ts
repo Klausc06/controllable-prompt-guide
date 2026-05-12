@@ -18,7 +18,8 @@ export const styleOptions: OptionSet = {
         zh: "电影级写实风格，画面真实、光影克制、商业广告质感",
         en: "cinematic realism with controlled lighting and a premium commercial look"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:ugc_handheld",
@@ -52,7 +53,8 @@ export const styleOptions: OptionSet = {
         zh: "高级极简视觉，留白充足，低饱和配色，信息克制",
         en: "premium minimal visual style with generous negative space, restrained colors, and clean details"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:cyberpunk_neon",
@@ -86,7 +88,8 @@ export const styleOptions: OptionSet = {
         zh: "温暖生活方式风格，柔和自然光，亲切真实的日常氛围",
         en: "warm lifestyle style with soft natural light and an approachable everyday atmosphere"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:luxury_editorial",
@@ -101,7 +104,8 @@ export const styleOptions: OptionSet = {
         zh: "奢华杂志大片风格，构图精致，材质高级，画面克制但有品牌气场",
         en: "luxury editorial style with refined composition, premium material detail, and restrained brand presence"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:clean_tech",
@@ -116,7 +120,8 @@ export const styleOptions: OptionSet = {
         zh: "干净科技视觉，线条清晰，材质现代，整体理性、专业、可信",
         en: "clean tech aesthetic with crisp lines, modern materials, and a precise professional mood"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:documentary_real",
@@ -131,7 +136,8 @@ export const styleOptions: OptionSet = {
         zh: "纪实真实风格，观察式镜头，自然动作，不摆拍，强调可信现场感",
         en: "documentary realism with observational camera work, natural action, and credible in-the-moment presence"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:fresh_natural_forest",
@@ -146,7 +152,8 @@ export const styleOptions: OptionSet = {
         zh: "清新自然森系风格，柔和绿调、日光散射、画面干净有呼吸感",
         en: "fresh natural forest aesthetic with green undertones, diffused daylight, and a clean airy look"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:dark_moody_textured",
@@ -180,7 +187,8 @@ export const styleOptions: OptionSet = {
         zh: "复古VHS或CCD数码质感，颗粒明显，色彩偏移，轻度失真，千禧年怀旧风格",
         en: "retro VHS or CCD digital look with visible grain, color shift, light distortion, and early-2000s nostalgia"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:cg_3d_rendered",
@@ -195,7 +203,8 @@ export const styleOptions: OptionSet = {
         zh: "三维CG渲染风格，光影经过计算，材质有数字感，画面精致但非真实拍摄",
         en: "3D CG rendered style with calculated lighting, digital material feel, and polished non-realistic visuals"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:black_white_monochrome",
@@ -229,7 +238,8 @@ export const styleOptions: OptionSet = {
         zh: "波普或拼贴风格，色彩高饱和，图形大胆，视觉冲击强，有艺术感",
         en: "pop art or collage style with high saturation, bold graphics, strong visual impact, and an artistic feel"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "style:anime_manga_inspired",

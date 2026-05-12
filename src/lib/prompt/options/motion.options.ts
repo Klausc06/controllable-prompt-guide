@@ -15,7 +15,8 @@ export const motionOptions: OptionSet = {
         zh: "产品以干净利落的方式亮相，成为画面焦点",
         en: "the product is revealed cleanly and becomes the visual focus"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:person_walks_in",
@@ -27,7 +28,8 @@ export const motionOptions: OptionSet = {
         zh: "人物自然走入画面，动作连贯，视线逐渐引向主体",
         en: "a person naturally walks into the frame with continuous motion, guiding attention toward the subject"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:hands_demonstrate",
@@ -39,7 +41,8 @@ export const motionOptions: OptionSet = {
         zh: "手部自然演示使用过程，动作清楚，重点突出操作细节",
         en: "hands naturally demonstrate the usage process with clear action and visible operational details"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:environment_comes_alive",
@@ -51,7 +54,8 @@ export const motionOptions: OptionSet = {
         zh: "环境中出现自然运动，如灯光变化、风吹动细节和背景人群流动",
         en: "the environment includes natural motion such as shifting light, wind-touched details, and background crowd movement"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:three_beat_story",
@@ -63,7 +67,8 @@ export const motionOptions: OptionSet = {
         zh: "用三段式微叙事呈现：先建立场景，再出现动作变化，最后给出清晰结果",
         en: "present a three-beat micro narrative: establish the scene, show the action change, then end with a clear result"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:before_after",
@@ -75,7 +80,8 @@ export const motionOptions: OptionSet = {
         zh: "用前后对比呈现变化：先展示原始状态，再展示改善后的清晰结果",
         en: "use a before-and-after structure: show the original state first, then reveal the clear improved result"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:customer_experience",
@@ -87,7 +93,8 @@ export const motionOptions: OptionSet = {
         zh: "展示顾客体验流程：进入场景、进行体验、露出自然满意反应",
         en: "show a customer experience flow: entering the scene, trying the service, and showing a natural satisfied reaction"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:step_by_step",
@@ -99,7 +106,8 @@ export const motionOptions: OptionSet = {
         zh: "用清晰步骤演示过程，每一步动作明确，观众能理解操作顺序",
         en: "demonstrate the process step by step, with each action clear enough for viewers to understand the sequence"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:model_fashion_walk",
@@ -111,7 +119,8 @@ export const motionOptions: OptionSet = {
         zh: "人物以走秀姿态前行，服装/配饰随动作自然摆动，展现整体造型",
         en: "the person moves forward with a runway gait, clothing and accessories flow naturally with the motion, presenting the full look"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:product_360_spin",
@@ -123,7 +132,8 @@ export const motionOptions: OptionSet = {
         zh: "产品在画面中心缓慢匀速旋转，展示各个角度的细节和质感",
         en: "the product rotates slowly and evenly at the center of the frame, revealing detail and texture from every angle"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:liquid_pour_fill",
@@ -135,7 +145,8 @@ export const motionOptions: OptionSet = {
         zh: "液体流畅注入容器，产生自然的飞溅和流动效果，液体质感清晰",
         en: "liquid pours smoothly into the container, creating natural splash and flow effects with visible liquid texture"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:unboxing_reveal",
@@ -147,7 +158,8 @@ export const motionOptions: OptionSet = {
         zh: "包装或容器被缓缓打开，内部物品逐渐显露，产生期待和惊喜感",
         en: "the package or container is slowly opened, with the contents gradually revealed, building anticipation and surprise"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "motion:subtle_living_photo",
@@ -173,7 +185,7 @@ export const motionOptions: OptionSet = {
       professionalTerms: ["time-lapse", "hyperlapse", "accelerated motion"],
       promptFragment: { zh: "延时摄影效果，时间加速流动，适合展示过程变化、光影流转或人流车流", en: "time-lapse effect with accelerated time flow, suitable for showing process changes, light transitions, or crowd/traffic movement" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "延时效果在视频模型中可能出现帧间不一致，导致画面闪烁或跳帧。建议生成后检查流畅度。", en: "Time-lapse effects may have frame-to-frame inconsistency in video models, causing flicker or skipped frames. Check smoothness after generation." }
     },
     {
       id: "motion:slow_motion_dramatic",

@@ -15,7 +15,8 @@ export const subjectOptions: OptionSet = {
         zh: "一家线下门店作为核心主体，门头、室内空间、服务细节和顾客体验清晰可见",
         en: "a local storefront as the main subject, with visible signage, interior space, service details, and customer experience"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "subject:hero_product",
@@ -27,7 +28,8 @@ export const subjectOptions: OptionSet = {
         zh: "单个产品作为画面主角，外观轮廓、材质细节和使用价值被清楚突出",
         en: "a single hero product as the visual focus, with clear silhouette, material details, and usage value"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "subject:human_customer",
@@ -55,7 +57,8 @@ export const subjectOptions: OptionSet = {
         zh: "一位专业工作人员或专家作为主体，动作熟练、表情自然，展示服务流程和专业可信感",
         en: "a professional staff member or expert as the subject, skilled and natural, demonstrating the service process and credibility"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "subject:space_environment",
@@ -67,7 +70,8 @@ export const subjectOptions: OptionSet = {
         zh: "空间环境本身作为主体，布局、氛围、动线和关键区域被清楚展示",
         en: "the space itself as the subject, clearly showing layout, atmosphere, movement path, and key zones"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "subject:food_drink",
@@ -79,7 +83,8 @@ export const subjectOptions: OptionSet = {
         zh: "食物或饮品作为主体，突出新鲜质感、制作过程、诱人细节和口感联想",
         en: "food or drink as the main subject, emphasizing freshness, preparation, appetizing details, and taste cues"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "subject:person_model",
@@ -123,7 +128,8 @@ export const subjectOptions: OptionSet = {
         zh: "电子产品作为主体，突出工业设计、屏幕内容、接口细节和使用交互",
         en: "an electronic device as the main subject, emphasizing industrial design, screen content, port details, and user interaction"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "subject:jewelry_accessories",
@@ -135,7 +141,8 @@ export const subjectOptions: OptionSet = {
         zh: "珠宝或配饰为主体，突出材质光泽、工艺细节、精致质感和佩戴效果",
         en: "jewelry or accessories as the subject, highlighting material luster, craftsmanship, refined texture, and wear effect"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "subject:architecture_interior",
@@ -147,7 +154,8 @@ export const subjectOptions: OptionSet = {
         zh: "建筑或室内空间作为主体，突出结构线条、空间层次、材质搭配和设计语言",
         en: "architecture or interior space as the subject, emphasizing structural lines, spatial layering, material palettes, and design language"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "subject:pets_animals",
@@ -159,7 +167,8 @@ export const subjectOptions: OptionSet = {
         zh: "宠物或动物作为主体，捕捉自然动作和神态，突出毛发光泽和可爱互动瞬间",
         en: "a pet or animal as the subject, capturing natural movement and expression, highlighting fur texture and endearing interaction"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "subject:cosmetics_beauty",
@@ -179,7 +188,7 @@ export const subjectOptions: OptionSet = {
       professionalTerms: ["baby product", "children's lifestyle", "family-friendly"],
       promptFragment: { zh: "婴幼用品或儿童产品作为画面主体，场景温馨安全，适合家庭向内容", en: "baby or children's products as the main subject, with warm and safe settings for family-oriented content" },
       appliesTo: ["seedance", "generic_video"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "儿童相关画面需特别注意隐私和肖像权，避免使用可识别的真实儿童形象。", en: "Children-related content requires special attention to privacy and likeness rights; avoid recognizable real children." }
     },
     {
       id: "subject:sports_fitness_gear",

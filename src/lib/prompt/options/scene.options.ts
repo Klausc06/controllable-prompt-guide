@@ -15,7 +15,8 @@ export const sceneOptions: OptionSet = {
         zh: "明亮整洁的商业室内空间，布局有序，背景干净，品牌环境清楚",
         en: "a bright and tidy commercial interior with orderly layout, clean background, and clear brand environment"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:warm_cafe_counter",
@@ -27,7 +28,8 @@ export const sceneOptions: OptionSet = {
         zh: "温暖咖啡店吧台场景，木质细节、柔和灯光和手作氛围清楚可见",
         en: "a warm cafe counter scene with visible wood details, soft lighting, and handcrafted atmosphere"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:urban_street",
@@ -39,7 +41,8 @@ export const sceneOptions: OptionSet = {
         zh: "真实城市街头场景，路人、街景、店招和自然环境动势形成生活氛围",
         en: "a real urban street scene with pedestrians, storefronts, signage, and natural ambient movement"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:clean_studio_scene",
@@ -51,7 +54,8 @@ export const sceneOptions: OptionSet = {
         zh: "干净棚拍环境，背景简洁无干扰，主体和材质细节被清楚突出",
         en: "a clean studio setup with a simple distraction-free background that clearly highlights the subject and material detail"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:landmark_montage",
@@ -63,7 +67,8 @@ export const sceneOptions: OptionSet = {
         zh: "城市地标和街巷生活组合场景，远景建立城市感，近景呈现人文细节",
         en: "a montage of city landmarks and street life, using wide views for place identity and close details for culture"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:home_daily",
@@ -75,7 +80,8 @@ export const sceneOptions: OptionSet = {
         zh: "自然居家生活场景，环境真实、有温度，主体使用方式容易理解",
         en: "a natural home lifestyle scene that feels warm and relatable, with easy-to-understand subject usage"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:outdoor_forest",
@@ -119,7 +125,8 @@ export const sceneOptions: OptionSet = {
         zh: "科技实验室或专业技术空间，设备整齐、环境干净、功能导向的氛围",
         en: "a tech lab or professional workspace with neat equipment, clean surfaces, and a function-driven atmosphere"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:gym_sports_venue",
@@ -131,7 +138,8 @@ export const sceneOptions: OptionSet = {
         zh: "健身房或运动场馆场景，器材齐全，空间开阔，充满动感和活力",
         en: "a gym or sports venue with full equipment, open space, and a dynamic energetic atmosphere"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:bedroom_cozy_home",
@@ -143,7 +151,8 @@ export const sceneOptions: OptionSet = {
         zh: "温馨卧室或居家角落场景，柔软床品、暖光灯光、安静私密的放松氛围",
         en: "a cozy bedroom or home corner with soft bedding, warm lighting, and a quiet intimate atmosphere"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:exhibition_gallery_white",
@@ -155,7 +164,8 @@ export const sceneOptions: OptionSet = {
         zh: "极简画廊或展览空间，纯白墙面，聚焦陈列主体，艺术感和高级感并重",
         en: "a minimalist gallery or exhibition space with white walls, focused display, balancing artistic and premium feel"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "scene:medical_wellness",

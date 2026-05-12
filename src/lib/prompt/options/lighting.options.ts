@@ -15,7 +15,8 @@ export const lightingOptions: OptionSet = {
         zh: "柔和自然日光，阴影轻，画面干净清楚",
         en: "soft natural daylight with gentle shadows and a clean clear image"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:golden_hour",
@@ -27,7 +28,8 @@ export const lightingOptions: OptionSet = {
         zh: "黄金时刻暖色光线，柔和逆光和长阴影，氛围感强",
         en: "golden hour warm lighting with soft backlight and long gentle shadows"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:neon_contrast",
@@ -39,7 +41,8 @@ export const lightingOptions: OptionSet = {
         zh: "霓虹高对比光线，彩色轮廓光，暗部保留细节",
         en: "high-contrast neon lighting with colored rim light and detailed shadows"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:studio_clean",
@@ -51,7 +54,8 @@ export const lightingOptions: OptionSet = {
         zh: "干净棚拍光线，背景简洁，主体受光均匀，商业产品展示质感",
         en: "clean studio lighting with a simple background, even subject illumination, and commercial product presentation"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:moody_low_key",
@@ -63,7 +67,8 @@ export const lightingOptions: OptionSet = {
         zh: "低调氛围光，暗部干净，高光克制，形成高级戏剧感",
         en: "moody low-key lighting with clean shadows, restrained highlights, and a premium dramatic feel"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:bright_retail",
@@ -75,7 +80,8 @@ export const lightingOptions: OptionSet = {
         zh: "明亮零售空间光线，主体清楚，环境可信，适合门店服务展示",
         en: "bright retail-space lighting with clear subject visibility and a credible service environment"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:soft_window_light",
@@ -87,7 +93,8 @@ export const lightingOptions: OptionSet = {
         zh: "窗边柔和侧光，人物和物体边缘自然，生活方式氛围安静舒适",
         en: "soft window side light with natural edges on people and objects, creating a calm lifestyle mood"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:golden_hour_warm",
@@ -99,7 +106,8 @@ export const lightingOptions: OptionSet = {
         zh: "黄金时刻的暖色光线均匀洒在场景中，色调偏橙黄，产生温暖浪漫的视觉氛围",
         en: "golden hour warm light bathes the scene evenly with an orange-yellow tint, creating a warm romantic visual atmosphere"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:neon_colored_lights",
@@ -111,7 +119,8 @@ export const lightingOptions: OptionSet = {
         zh: "彩色霓虹灯光源照射场景，多色交织，高饱和，暗部保留氛围感",
         en: "multicolored neon lights illuminate the scene with interwoven high-saturation hues and atmospheric shadows"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:backlight_silhouette",
@@ -123,7 +132,8 @@ export const lightingOptions: OptionSet = {
         zh: "强光源位于主体后方，形成剪影效果，边缘被光线勾勒出轮廓线",
         en: "a strong light source behind the subject creates a silhouette effect with the edges outlined by rim light"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:overhead_spotlight",
@@ -135,7 +145,8 @@ export const lightingOptions: OptionSet = {
         zh: "顶部聚光灯垂直打向主体，形成强烈的上下明暗对比，主体突出，底部阴影集中",
         en: "an overhead spotlight shines vertically onto the subject, creating strong top-to-bottom contrast with concentrated shadows below"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:candlelight_warm_dim",
@@ -147,7 +158,8 @@ export const lightingOptions: OptionSet = {
         zh: "烛光或其他暖色低亮度光源为主照明，光线微弱柔和，暗部占画面大部，氛围安静私密",
         en: "candlelight or another warm low-level source provides the primary illumination, with soft dim light, expansive shadows, and a quiet intimate mood"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:overcast_soft_natural",
@@ -159,7 +171,8 @@ export const lightingOptions: OptionSet = {
         zh: "阴天漫射柔光，云层充当天然柔光箱，无硬阴影，色彩饱和度较低，画面柔和均匀",
         en: "overcast diffused soft light where clouds act as a natural softbox, with no harsh shadows, muted saturation, and an even gentle look across the frame"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "lighting:harsh_midday",

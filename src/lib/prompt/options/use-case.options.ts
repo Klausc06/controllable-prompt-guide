@@ -15,7 +15,8 @@ export const useCaseOptions: OptionSet = {
         zh: "健身房开业宣传视频，突出新店空间、专业器械、活力训练氛围和到店体验感",
         en: "gym opening promotional video highlighting the new space, professional equipment, energetic training mood, and visit appeal"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:coffee_new_product",
@@ -27,7 +28,8 @@ export const useCaseOptions: OptionSet = {
         zh: "咖啡店新品短视频，突出新品饮品、制作细节、口感联想和温暖店铺氛围",
         en: "coffee shop new product short video highlighting the drink, preparation details, taste cues, and warm shop atmosphere"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:city_travel_promo",
@@ -39,7 +41,8 @@ export const useCaseOptions: OptionSet = {
         zh: "旅游城市宣传片，展示地标景观、街巷生活、美食细节和旅行向往感",
         en: "travel city promotional video showing landmarks, street life, food details, and a sense of travel desire"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:product_showcase",
@@ -51,7 +54,8 @@ export const useCaseOptions: OptionSet = {
         zh: "产品展示视频，突出产品外观、材质细节、核心卖点和商业质感",
         en: "product showcase video emphasizing appearance, material details, key selling points, and commercial polish"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:xiaohongshu_visit",
@@ -63,7 +67,8 @@ export const useCaseOptions: OptionSet = {
         zh: "小红书风格探店视频，突出真实体验、店内氛围、细节发现和可分享感",
         en: "RedNote-style shop visit video highlighting real experience, interior atmosphere, small discoveries, and shareability"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:course_promo",
@@ -75,7 +80,8 @@ export const useCaseOptions: OptionSet = {
         zh: "课程招生宣传视频，突出学习场景、课程价值、适合人群和明确行动理由",
         en: "course enrollment promotional video emphasizing learning context, course value, target audience, and a clear reason to act"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:product_unboxing",
@@ -87,7 +93,8 @@ export const useCaseOptions: OptionSet = {
         zh: "产品开箱展示视频，突出包装质感、产品外观细节和开箱第一印象",
         en: "product unboxing video highlighting packaging quality, product details, and first-impression reveal"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:event_recap",
@@ -99,7 +106,8 @@ export const useCaseOptions: OptionSet = {
         zh: "活动回顾视频，混剪活动现场精彩片段、花絮瞬间和幕后故事，节奏明快",
         en: "event recap video with fast-paced montage of live moments, candid BTS clips, and backstage stories"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:tutorial_demo",
@@ -111,7 +119,8 @@ export const useCaseOptions: OptionSet = {
         zh: "教程演示视频，分步展示操作过程，画面清晰聚焦每一步关键动作",
         en: "tutorial demonstration video showing each step clearly, with focused framing on key actions"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:brand_image",
@@ -123,7 +132,8 @@ export const useCaseOptions: OptionSet = {
         zh: "品牌形象视频，以意境和情绪传递品牌价值观，画面精致且富有感染力",
         en: "brand image video communicating brand values through mood and emotion, with polished, evocative visuals"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:social_media_quick_clip",
@@ -135,7 +145,8 @@ export const useCaseOptions: OptionSet = {
         zh: "社交媒体快拍风格，竖屏构图、节奏紧凑、前3秒抓住注意力",
         en: "social media quick clip in vertical format, tight pacing, hooking attention in the first 3 seconds"
       },
-      appliesTo: ["seedance", "generic_video", "veo3"]
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "use_case:livestream_clip",

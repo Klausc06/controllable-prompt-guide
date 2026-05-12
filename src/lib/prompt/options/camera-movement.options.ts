@@ -12,7 +12,8 @@ export const cameraMovementOptions: OptionSet = {
       plain: { zh: "三脚架式稳定，画面完全不晃", en: "Tripod-stable, zero camera movement" },
       professionalTerms: ["static camera", "locked-off", "tripod shot"],
       promptFragment: { zh: "镜头固定不动，画面完全稳定", en: "a static locked-off shot with zero camera movement" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "camera_movement:slow_push_in",
@@ -21,7 +22,8 @@ export const cameraMovementOptions: OptionSet = {
       plain: { zh: "镜头慢慢靠近主体，增强情绪", en: "Camera slowly moves closer for emotional build" },
       professionalTerms: ["slow push-in", "dolly in", "gradual approach"],
       promptFragment: { zh: "镜头缓慢向主体推进，逐渐加强视觉重点和情绪", en: "the camera slowly pushes in toward the subject, gradually intensifying focus and emotion" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "camera_movement:slow_pull_out",
@@ -30,7 +32,8 @@ export const cameraMovementOptions: OptionSet = {
       plain: { zh: "镜头慢慢远离主体，揭示更大环境", en: "Camera slowly moves away to reveal larger context" },
       professionalTerms: ["pull-out", "dolly out", "context reveal"],
       promptFragment: { zh: "镜头缓慢拉远，从主体逐渐揭示更大的环境和空间关系", en: "the camera slowly pulls out, gradually revealing the larger environment and spatial context" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "camera_movement:handheld_tracking",
@@ -39,7 +42,8 @@ export const cameraMovementOptions: OptionSet = {
       plain: { zh: "镜头跟随主体走，轻微晃动有现场感", en: "Camera follows subject with subtle natural shake" },
       professionalTerms: ["handheld tracking", "natural shake", "following shot"],
       promptFragment: { zh: "手持跟拍镜头，轻微自然晃动，跟随主体移动，增强现场感", en: "a handheld tracking shot with subtle natural shake, following the subject for an immersive in-the-moment feel" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "camera_movement:smooth_pan",
@@ -48,7 +52,8 @@ export const cameraMovementOptions: OptionSet = {
       plain: { zh: "镜头水平转动扫过场景", en: "Camera sweeps horizontally across the scene" },
       professionalTerms: ["pan", "horizontal sweep", "scene reveal"],
       promptFragment: { zh: "镜头平稳水平横摇，从左到右扫过场景", en: "a smooth horizontal pan sweeping across the scene from left to right" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "camera_movement:tilt_up_down",
@@ -57,7 +62,8 @@ export const cameraMovementOptions: OptionSet = {
       plain: { zh: "镜头上下移动，展示高度或层次", en: "Camera moves vertically to show height or layers" },
       professionalTerms: ["tilt", "vertical reveal", "height emphasis"],
       promptFragment: { zh: "镜头垂直摇动，逐步展示物体的高度或空间的纵向层次", en: "a vertical tilt gradually revealing the height or vertical layering of the subject" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "camera_movement:orbit_around",
@@ -66,7 +72,8 @@ export const cameraMovementOptions: OptionSet = {
       plain: { zh: "镜头围绕主体旋转，完整展示", en: "Camera rotates around subject for full reveal" },
       professionalTerms: ["orbit shot", "360 reveal", "parallax movement"],
       promptFragment: { zh: "镜头围绕主体缓慢环绕旋转，形成视差运动，完整展示轮廓和空间关系", en: "the camera slowly orbits around the subject, creating parallax movement for a complete spatial reveal" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "camera_movement:pedestal_up_down",
@@ -75,7 +82,8 @@ export const cameraMovementOptions: OptionSet = {
       plain: { zh: "镜头垂直升降，改变观察高度", en: "Camera rises or descends to change viewing height" },
       professionalTerms: ["pedestal", "crane shot", "height shift"],
       promptFragment: { zh: "镜头垂直升降，改变观察高度和画面层次", en: "a pedestal shot rising or descending to shift viewing height and visual layering" },
-      appliesTo: ["seedance", "generic_video"]
+      appliesTo: ["seedance", "generic_video"],
+      riskHint: { zh: "", en: "" }
     },
     {
       id: "camera_movement:zoom_in",
@@ -105,7 +113,7 @@ export const cameraMovementOptions: OptionSet = {
       professionalTerms: ["whip pan", "swish pan", "speed transition"],
       promptFragment: { zh: "快速水平甩镜，制造速度感和场景切换的动势过渡", en: "fast horizontal whip pan, creating a speed-blur transition between scenes" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "快速甩镜在视频模型中容易产生画面撕裂和运动模糊伪影。建议控制甩镜速度。", en: "Fast whip pans in video models often produce frame tearing and motion blur artifacts. Control pan speed for best results." }
     },
     {
       id: "camera_movement:crane_up",
@@ -125,7 +133,7 @@ export const cameraMovementOptions: OptionSet = {
       professionalTerms: ["rack focus", "pull focus", "depth shift"],
       promptFragment: { zh: "焦点在前后景之间平滑转移，引导观众注意力的视觉重心", en: "focus shifts smoothly between foreground and background, guiding the viewer's visual attention" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "移焦效果可能在视频模型中不够平滑，焦点转移可能出现跳变。", en: "Rack focus effects may not be smooth in video models; focus transitions may jump." }
     },
     {
       id: "camera_movement:steadicam_float",
