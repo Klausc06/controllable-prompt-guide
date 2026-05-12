@@ -54,3 +54,15 @@ export function getAllOptionSets(): OptionSet[] {
 export function getTargetsForOption(optionId: string): string[] {
   return [...(targetsByOption.get(optionId) ?? [])];
 }
+
+/** Query options by consumer-facing vocabulary term. Used for quick-entry tag selection.
+ *  Returns all options whose consumerTerms array includes the given term. */
+export function getOptionsByConsumerTerm(term: string): OptionItem[] {
+  const results: OptionItem[] = [];
+  for (const option of optionItemMap.values()) {
+    if (option.consumerTerms?.includes(term)) {
+      results.push(option);
+    }
+  }
+  return results;
+}

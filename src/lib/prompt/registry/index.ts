@@ -9,5 +9,6 @@ export {
   getOptionSet,
   getOptionsForTarget,
   getTargetsForOption,
+  getOptionsByConsumerTerm,
   getAllOptionSets
 } from "./option.registry";
