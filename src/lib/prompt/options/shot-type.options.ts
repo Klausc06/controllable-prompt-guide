@@ -77,6 +77,76 @@ export const shotTypeOptions: OptionSet = {
       professionalTerms: ["POV", "first-person perspective", "immersive view"],
       promptFragment: { zh: "主观视角镜头，模拟用户第一人称视角观察场景", en: "a POV shot simulating the user's first-person perspective through the scene" },
       appliesTo: ["seedance", "generic_video"]
+    },
+    {
+      id: "shot_type:over_shoulder",
+      version: "0.1.0",
+      label: { zh: "过肩镜头", en: "Over-the-shoulder shot" },
+      plain: { zh: "前景为肩部轮廓，焦点在对面的主体上，营造对话感", en: "Shoulder silhouette in foreground with focus on facing subject, creating dialogue intimacy" },
+      professionalTerms: ["over-the-shoulder", "OTS", "conversation framing"],
+      promptFragment: { zh: "过肩镜头，前景为人物肩部轮廓，焦点落在对面主体上，营造对话感和代入感", en: "over-the-shoulder shot, with a shoulder silhouette in the foreground and focus on the facing subject, creating dialogue intimacy" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "shot_type:two_shot",
+      version: "0.1.0",
+      label: { zh: "双人镜头", en: "Two-shot" },
+      plain: { zh: "两人同框，表现互动关系", en: "Two subjects in frame emphasizing their interaction" },
+      professionalTerms: ["two-shot", "dual subject", "relationship framing"],
+      promptFragment: { zh: "双人同框镜头，两人在画面中占据均衡位置，表现互动关系", en: "two-shot with both subjects balanced in the frame, emphasizing their interaction" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "shot_type:low_angle",
+      version: "0.1.0",
+      label: { zh: "低角度仰拍", en: "Low angle" },
+      plain: { zh: "从下方仰视主体，营造高大权威感", en: "Looking up at subject for scale and authority" },
+      professionalTerms: ["low angle", "worm's-eye view", "heroic perspective"],
+      promptFragment: { zh: "低角度仰拍，摄影机从下方仰视主体，营造高大、权威或戏剧化的视觉效果", en: "low angle shot looking up at the subject, creating a sense of scale, authority, or drama" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "shot_type:high_angle",
+      version: "0.1.0",
+      label: { zh: "高角度俯拍", en: "High angle" },
+      plain: { zh: "从上方俯视场景，展现空间布局", en: "Looking down at the scene to reveal spatial layout" },
+      professionalTerms: ["high angle", "bird's-eye", "overhead perspective"],
+      promptFragment: { zh: "高角度俯拍，摄影机从上方俯视场景，展现空间布局和整体关系", en: "high angle shot looking down at the scene, revealing spatial layout and overall relationships" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "shot_type:insert_detail",
+      version: "0.1.0",
+      label: { zh: "插入特写/细节", en: "Insert detail shot" },
+      plain: { zh: "插入镜头聚焦关键细节，打断主镜头节奏", en: "Insert shot focusing on a key detail to interrupt main shot rhythm" },
+      professionalTerms: ["insert shot", "detail cutaway", "product close-up"],
+      promptFragment: { zh: "插入镜头聚焦于关键细节（产品材质、手部动作、文字内容），打断主镜头节奏", en: "insert shot focusing on a key detail (product texture, hand action, text content), interrupting the main shot rhythm" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "shot_type:split_screen",
+      version: "0.1.0",
+      label: { zh: "分屏/画中画", en: "Split screen" },
+      plain: { zh: "画面分为两个区域，同时展示两个视角", en: "Frame split into two regions showing two perspectives" },
+      professionalTerms: ["split screen", "picture-in-picture", "dual frame"],
+      promptFragment: { zh: "画面分为两个区域，同时展示两个视角或场景，适合对比、对话或产品演示", en: "frame split into two regions showing two perspectives simultaneously, suitable for comparisons, dialogue, or product demos" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "shot_type:profile_side_view",
+      version: "0.1.0",
+      label: { zh: "侧面/侧脸镜头", en: "Profile side view" },
+      plain: { zh: "从侧面拍摄主体，强调轮廓线条", en: "Shot from the side to emphasize silhouette and contour" },
+      professionalTerms: ["profile view", "side angle", "contour emphasis"],
+      promptFragment: { zh: "侧面构图，主体以正侧面的姿态呈现，轮廓线条清晰", en: "a profile side shot with the subject in full side view, emphasizing clean contour lines" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };

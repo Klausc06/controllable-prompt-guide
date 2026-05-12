@@ -95,6 +95,76 @@ export const textHandlingOptions: OptionSet = {
         en: "no text elements appear in the frame; rely entirely on composition, lighting, and motion to convey the message"
       },
       appliesTo: ["seedance", "generic_video", "veo3"]
+    },
+    {
+      id: "text_handling:animated_text_reveal",
+      version: "0.1.0",
+      label: { zh: "动画文字逐字显现", en: "Animated text reveal" },
+      plain: { zh: "文字以逐字动画形式出现，带有节奏感和视觉吸引力", en: "Text appears with character-by-character reveal animation" },
+      professionalTerms: ["typewriter effect", "character reveal", "animated typography"],
+      promptFragment: { zh: "画面文字以逐字动画形式出现，带有节奏感和视觉吸引力", en: "on-screen text appears with a character-by-character reveal animation, creating rhythm and visual interest" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "text_handling:scrolling_credits",
+      version: "0.1.0",
+      label: { zh: "滚动字幕/片尾", en: "Scrolling credits" },
+      plain: { zh: "片尾滚动字幕，适合演职员表或品牌致谢", en: "Scrolling end credits for cast lists or brand acknowledgments" },
+      professionalTerms: ["scrolling credits", "credit roll", "end crawl"],
+      promptFragment: { zh: "片尾滚动字幕从下往上匀速移动，适合演职员表或品牌致谢", en: "end credits scroll upward at a steady pace, suitable for cast lists or brand acknowledgments" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "text_handling:chapter_markers",
+      version: "0.1.0",
+      label: { zh: "章节标记/转场字幕", en: "Chapter markers" },
+      plain: { zh: "在段落之间插入章节标题卡，用于分段叙事", en: "Chapter title cards between sections for segmented storytelling" },
+      professionalTerms: ["chapter markers", "section titles", "transition cards"],
+      promptFragment: { zh: "在段落之间插入章节标题卡，用于分段叙事和信息组织", en: "insert chapter title cards between sections for segmented storytelling and information organization" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "text_handling:watermark_corner",
+      version: "0.1.0",
+      label: { zh: "角标/水印文案", en: "Corner watermark" },
+      plain: { zh: "画面角落添加品牌水印，持续但不影响主体", en: "Brand watermark in corner, persistent but unobtrusive" },
+      professionalTerms: ["corner watermark", "brand bug", "persistent overlay"],
+      promptFragment: { zh: "画面角落添加品牌水印或标识文字，持续显示但不影响主体画面", en: "add a brand watermark or logo text in the corner, persistent but unobtrusive to the main composition" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "text_handling:text_on_object",
+      version: "0.1.0",
+      label: { zh: "文字跟随物体", en: "Text on moving object" },
+      plain: { zh: "文字标签跟随画面中物体移动，适合标注", en: "Text labels track a moving object for labeling" },
+      professionalTerms: ["object tracking text", "motion-tracked label", "3D text attachment"],
+      promptFragment: { zh: "文字标签跟随画面中的物体移动，适合标注产品或人物", en: "text labels track a moving object in the frame, suitable for product or person labeling" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "text_handling:bilingual_subtitles",
+      version: "0.1.0",
+      label: { zh: "中英双语字幕", en: "Bilingual subtitles" },
+      plain: { zh: "画面包含中英双语字幕，适合国际化内容", en: "Bilingual Chinese-English subtitles for international content" },
+      professionalTerms: ["bilingual subtitles", "dual-language captions", "CN-EN layout"],
+      promptFragment: { zh: "画面包含中英双语字幕，中文在上英文在下，适合国际化内容", en: "frame includes bilingual Chinese-English subtitles, Chinese above English, suitable for international content" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "text_handling:lower_third_overlay",
+      version: "0.1.0",
+      label: { zh: "底部信息条/人物介绍", en: "Lower third overlay" },
+      plain: { zh: "底部信息条显示姓名和身份，常用于采访和教程", en: "Lower third name/title overlay for interviews and tutorials" },
+      professionalTerms: ["lower third", "name strap", "title overlay"],
+      promptFragment: { zh: "底部信息条显示人物姓名和身份，常用于采访、教程或宣传片", en: "lower third overlay displays name and title, commonly used in interviews, tutorials, or promotional videos" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };

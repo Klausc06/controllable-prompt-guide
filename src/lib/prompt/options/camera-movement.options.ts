@@ -76,6 +76,76 @@ export const cameraMovementOptions: OptionSet = {
       professionalTerms: ["pedestal", "crane shot", "height shift"],
       promptFragment: { zh: "镜头垂直升降，改变观察高度和画面层次", en: "a pedestal shot rising or descending to shift viewing height and visual layering" },
       appliesTo: ["seedance", "generic_video"]
+    },
+    {
+      id: "camera_movement:zoom_in",
+      version: "0.1.0",
+      label: { zh: "推近变焦", en: "Zoom in" },
+      plain: { zh: "镜头向主体推近，引导注意力聚焦", en: "Zoom in toward the subject to focus viewer attention" },
+      professionalTerms: ["zoom in", "focal length push", "magnification"],
+      promptFragment: { zh: "镜头向主体推近，景别从宽变紧，引导观众注意力聚焦", en: "zoom in toward the subject, tightening the frame to focus viewer attention" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "camera_movement:zoom_out",
+      version: "0.1.0",
+      label: { zh: "拉远变焦", en: "Zoom out" },
+      plain: { zh: "镜头从主体拉远，展现更广阔的环境", en: "Zoom out from the subject to reveal wider context" },
+      professionalTerms: ["zoom out", "reveal shot", "contextual pull"],
+      promptFragment: { zh: "镜头从主体拉远，逐步展现更广阔的环境和场景关系", en: "zoom out from the subject, gradually revealing a wider environment and scene context" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "camera_movement:whip_pan",
+      version: "0.1.0",
+      label: { zh: "快速甩镜头", en: "Whip pan" },
+      plain: { zh: "快速水平甩镜，制造速度感和转场动势", en: "Fast horizontal whip pan for speed-blur scene transitions" },
+      professionalTerms: ["whip pan", "swish pan", "speed transition"],
+      promptFragment: { zh: "快速水平甩镜，制造速度感和场景切换的动势过渡", en: "fast horizontal whip pan, creating a speed-blur transition between scenes" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "camera_movement:crane_up",
+      version: "0.1.0",
+      label: { zh: "摇臂上升", en: "Crane up" },
+      plain: { zh: "摄影机随摇臂平稳上升，过渡到俯瞰视角", en: "Camera rises smoothly on a crane to overhead view" },
+      professionalTerms: ["crane up", "jib rise", "vertical boom"],
+      promptFragment: { zh: "摄影机随摇臂平稳上升，从低角度过渡到俯瞰视角", en: "camera rises smoothly on a crane, transitioning from low angle to overhead perspective" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "camera_movement:rack_focus",
+      version: "0.1.0",
+      label: { zh: "移焦/拉焦", en: "Rack focus" },
+      plain: { zh: "焦点在前后景之间转移，引导视觉重心", en: "Focus shifts between foreground and background to guide attention" },
+      professionalTerms: ["rack focus", "pull focus", "depth shift"],
+      promptFragment: { zh: "焦点在前后景之间平滑转移，引导观众注意力的视觉重心", en: "focus shifts smoothly between foreground and background, guiding the viewer's visual attention" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "camera_movement:steadicam_float",
+      version: "0.1.0",
+      label: { zh: "稳定器漂浮感", en: "Steadicam float" },
+      plain: { zh: "稳定器跟随主体平滑漂浮，画面流畅有呼吸感", en: "Steadicam follows subject with smooth floating motion" },
+      professionalTerms: ["steadicam", "gimbal float", "smooth tracking"],
+      promptFragment: { zh: "稳定器跟随主体平滑漂浮移动，画面流畅无抖动，带有呼吸感", en: "steadicam follows the subject with smooth floating motion, fluid and breathing-like without shake" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
+    },
+    {
+      id: "camera_movement:tracking_dolly",
+      version: "0.1.0",
+      label: { zh: "横向轨道跟移", en: "Side tracking dolly" },
+      plain: { zh: "摄影机在轨道上平行跟随主体移动", en: "Camera on a dolly tracking parallel to the subject" },
+      professionalTerms: ["tracking dolly", "lateral tracking", "parallel follow"],
+      promptFragment: { zh: "摄影机在轨道上横向平行移动，跟随主体保持固定构图关系", en: "the camera moves laterally on a dolly track, following the subject while maintaining a fixed composition" },
+      appliesTo: ["seedance", "generic_video", "veo3"],
+      riskHint: { zh: "", en: "" }
     }
   ]
 };
