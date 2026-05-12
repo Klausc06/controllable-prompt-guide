@@ -50,11 +50,17 @@ Plans:
 - [ ] `03-03-PLAN.md` — Template-map renderer: `assemblePrompt()` generic engine, 3 renderer refactors, text_handling coverage
 - [ ] `03-04-PLAN.md` — Suppress detection + appliesTo audit: `applySuppresses()` in brief builder, warning propagation
 
-### Phase 4: Catalog Expansion ✓
+### Phase 4: Catalog Expansion
 **Goal**: 11 dimensions expanded; shot/movement split; Markdown export
 **Depends on**: Phase 2
 **Requirements**: OPT-01, OPT-02, OPT-03, OPT-05, OPT-06
-**Status**: Complete. Executed inline. Camera split done. Markdown export + copy button added.
+**Status**: Planned. OPT-03 (camera split) and OPT-06 (Markdown export) pre-complete. Three plans addressing OPT-01, OPT-02, OPT-05.
+**Plans:** 3 plans
+
+Plans:
+- [ ] `04-01-PLAN.md` — Namespace prefix migration (D-01): validateOptionIdFormat() + rename 136 IDs + update 7 reference locations
+- [ ] `04-02-PLAN.md` — Catalog expansion to 180+ (D-02): +50 new options across 11 catalogs, each >= 15
+- [ ] `04-03-PLAN.md` — riskHint completion (D-03): substantive for HIGH-risk, empty for LOW-risk, 1 new CI test
 
 ### Phase 5: Consumer Translation ✓
 **Goal**: Chinese consumer aesthetics mapped to professional options; category tabs; platform format hints
@@ -89,7 +95,7 @@ Plans:
 | 1. Safety Foundation | 5 plans (2 done, 3 pending) | In progress |
 | 2. Registry Architecture | 5 plans (3 done, 2 pending) | In progress |
 | 3. Metadata Execution | 0/4 planned | Planned |
-| 4. Catalog Expansion | 1/1 | ✓ Complete |
+| 4. Catalog Expansion | 0/3 planned | Planned |
 | 5. Consumer Translation | 1/1 | ✓ Complete |
 | 6. Quality Intelligence | 1/1 | ✓ Complete |
 | 7. Integration Testing | 1/1 | ✓ Complete |
@@ -114,4 +120,4 @@ All phases complete. 37/37 requirements addressed. 58 tests passing. Static expo
 ---
 
 *Roadmap created: 2026-05-10*
-*Last updated: 2026-05-12 — added Phase 3 plans 03-01 through 03-04*
+*Last updated: 2026-05-12 — added Phase 3 plans 03-01 through 03-04 and Phase 4 plans 04-01 through 04-03*
