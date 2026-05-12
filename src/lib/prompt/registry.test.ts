@@ -17,6 +17,7 @@ import {
   resolveWorkType
 } from "./registry";
 import type {
+  OptionItem,
   OptionSet,
   PromptBrief,
   RenderedPrompt,
@@ -353,6 +354,59 @@ describe("registry", () => {
 
     it("getTargetsForOption returns empty array for unknown option ID", () => {
       expect(getTargetsForOption("nonexistent")).toEqual([]);
+    });
+  });
+
+  describe("option type extensions (05-01 consumerTerms + categories)", () => {
+    it("allows consumerTerms field on OptionItem", () => {
+      const opt: OptionItem = {
+        id: "opt_with_terms",
+        version: "0.1.0",
+        label: { zh: "测试", en: "Test" },
+        plain: { zh: "", en: "" },
+        professionalTerms: [],
+        promptFragment: { zh: "", en: "" },
+        appliesTo: [],
+        consumerTerms: ["高级感"]
+      };
+      expect(opt.consumerTerms).toEqual(["高级感"]);
+    });
+
+    it("allows categories field on OptionSet", () => {
+      const set: OptionSet = {
+        id: "cat_set",
+        version: "0.1.0",
+        label: { zh: "分类集", en: "Cat Set" },
+        options: [],
+        categories: [
+          { id: "cat1", label: { zh: "类别1", en: "Cat 1" }, optionIds: ["opt1"] }
+        ]
+      };
+      expect(set.categories).toHaveLength(1);
+      expect(set.categories![0].id).toBe("cat1");
+    });
+
+    it("existing OptionItem without consumerTerms is still valid", () => {
+      const opt: OptionItem = {
+        id: "plain_opt",
+        version: "0.1.0",
+        label: { zh: "", en: "" },
+        plain: { zh: "", en: "" },
+        professionalTerms: [],
+        promptFragment: { zh: "", en: "" },
+        appliesTo: []
+      };
+      expect(opt.consumerTerms).toBeUndefined();
+    });
+
+    it("existing OptionSet without categories is still valid", () => {
+      const set: OptionSet = {
+        id: "plain_set",
+        version: "0.1.0",
+        label: { zh: "", en: "" },
+        options: []
+      };
+      expect(set.categories).toBeUndefined();
     });
   });
 
