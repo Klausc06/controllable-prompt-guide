@@ -6,7 +6,7 @@ export const audioOptions: OptionSet = {
   label: { zh: "声音", en: "Audio" },
   options: [
     {
-      id: "ambient_only",
+      id: "audio:ambient_only",
       version: "0.1.0",
       label: { zh: "只有环境音", en: "Ambient only" },
       plain: { zh: "保留现场感，不说话", en: "Keeps atmosphere without dialogue" },
@@ -18,7 +18,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "upbeat_music",
+      id: "audio:upbeat_music",
       version: "0.1.0",
       label: { zh: "轻快音乐", en: "Upbeat music" },
       plain: { zh: "适合宣传、促销、探店", en: "Good for promotion, offers, and visit-style clips" },
@@ -30,7 +30,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "voiceover",
+      id: "audio:voiceover",
       version: "0.1.0",
       label: { zh: "旁白说明", en: "Voiceover" },
       plain: { zh: "用旁白解释重点", en: "Narration explains the key message" },
@@ -42,7 +42,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "no_audio_requirement",
+      id: "audio:no_audio_requirement",
       version: "0.1.0",
       label: { zh: "声音不重要", en: "Audio not required" },
       plain: { zh: "画面本身能看懂，后期再配音也可以", en: "The visuals should work even if audio is added later" },
@@ -54,7 +54,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "soft_luxury_music",
+      id: "audio:soft_luxury_music",
       version: "0.1.0",
       label: { zh: "轻奢背景音乐", en: "Soft luxury music" },
       plain: { zh: "更高级、更克制，适合精品、产品和空间展示", en: "More premium and restrained for boutique, product, and space showcases" },
@@ -66,7 +66,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "energetic_beat",
+      id: "audio:energetic_beat",
       version: "0.1.0",
       label: { zh: "强节奏动感音乐", en: "Energetic beat" },
       plain: { zh: "适合健身、活动、潮流产品", en: "Good for fitness, events, and trend products" },
@@ -78,7 +78,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "natural_dialogue",
+      id: "audio:natural_dialogue",
       version: "0.1.0",
       label: { zh: "自然对话感", en: "Natural dialogue feel" },
       plain: { zh: "像真实交流，不是硬广告", en: "Feels like real conversation rather than a hard ad" },
@@ -90,7 +90,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "rhythmic_electronic",
+      id: "audio:rhythmic_electronic",
       version: "0.1.0",
       label: { zh: "节奏感电子音乐", en: "Rhythmic electronic music" },
       plain: { zh: "现代、动感，适合科技、潮流、运动内容", en: "Modern and dynamic for tech, trend, and sports content" },
@@ -102,7 +102,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "light_jazz_piano",
+      id: "audio:light_jazz_piano",
       version: "0.1.0",
       label: { zh: "轻钢琴/爵士背景", en: "Light piano / jazz background" },
       plain: { zh: "舒缓优雅，适合咖啡店、生活方式、空间展示", en: "Calm and elegant for cafés, lifestyle, and space showcases" },
@@ -114,7 +114,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "spoken_narration",
+      id: "audio:spoken_narration",
       version: "0.1.0",
       label: { zh: "人声旁白/解说", en: "Voiceover narration" },
       plain: { zh: "专业解说贯穿视频，传递完整信息", en: "Professional narration carries the full message throughout" },
@@ -126,7 +126,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "urban_ambient",
+      id: "audio:urban_ambient",
       version: "0.1.0",
       label: { zh: "城市环境音", en: "Urban ambient sound" },
       plain: { zh: "街景、咖啡馆、城市氛围感", en: "Street scenes, cafés, city atmosphere" },
@@ -138,7 +138,7 @@ export const audioOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "silent_post_music",
+      id: "audio:silent_post_music",
       version: "0.1.0",
       label: { zh: "完全静音/后期配乐", en: "Silent (music in post)" },
       plain: { zh: "视频原生无声音，后期自行配乐", en: "No native audio; add custom music in post-production" },

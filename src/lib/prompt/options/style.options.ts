@@ -6,7 +6,7 @@ export const styleOptions: OptionSet = {
   label: { zh: "风格", en: "Style" },
   options: [
     {
-      id: "cinematic_realism",
+      id: "style:cinematic_realism",
       version: "0.1.0",
       label: { zh: "电影真实感", en: "Cinematic realism" },
       plain: {
@@ -21,7 +21,7 @@ export const styleOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "ugc_handheld",
+      id: "style:ugc_handheld",
       version: "0.1.0",
       label: { zh: "手机随拍感", en: "UGC handheld" },
       plain: {
@@ -40,7 +40,7 @@ export const styleOptions: OptionSet = {
       }
     },
     {
-      id: "premium_minimal",
+      id: "style:premium_minimal",
       version: "0.1.0",
       label: { zh: "高级极简", en: "Premium minimal" },
       plain: {
@@ -55,7 +55,7 @@ export const styleOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "cyberpunk_neon",
+      id: "style:cyberpunk_neon",
       version: "0.1.0",
       label: { zh: "赛博霓虹", en: "Cyberpunk neon" },
       plain: {
@@ -74,7 +74,7 @@ export const styleOptions: OptionSet = {
       }
     },
     {
-      id: "warm_lifestyle",
+      id: "style:warm_lifestyle",
       version: "0.1.0",
       label: { zh: "温暖生活感", en: "Warm lifestyle" },
       plain: {
@@ -89,7 +89,7 @@ export const styleOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "luxury_editorial",
+      id: "style:luxury_editorial",
       version: "0.1.0",
       label: { zh: "奢华杂志感", en: "Luxury editorial" },
       plain: {
@@ -104,7 +104,7 @@ export const styleOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "clean_tech",
+      id: "style:clean_tech",
       version: "0.1.0",
       label: { zh: "干净科技感", en: "Clean tech" },
       plain: {
@@ -119,7 +119,7 @@ export const styleOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "documentary_real",
+      id: "style:documentary_real",
       version: "0.1.0",
       label: { zh: "纪实真实感", en: "Documentary realism" },
       plain: {
@@ -134,7 +134,7 @@ export const styleOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "fresh_natural_forest",
+      id: "style:fresh_natural_forest",
       version: "0.1.0",
       label: { zh: "清新自然/森系", en: "Fresh natural / forest aesthetic" },
       plain: {
@@ -149,7 +149,7 @@ export const styleOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "dark_moody_textured",
+      id: "style:dark_moody_textured",
       version: "0.1.0",
       label: { zh: "暗黑/质感调", en: "Dark moody / textured" },
       plain: {
@@ -168,7 +168,7 @@ export const styleOptions: OptionSet = {
       }
     },
     {
-      id: "retro_vhs_ccd",
+      id: "style:retro_vhs_ccd",
       version: "0.1.0",
       label: { zh: "复古 VHS/CCD 数码感", en: "Retro VHS / CCD digital" },
       plain: {
@@ -183,7 +183,7 @@ export const styleOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "cg_3d_rendered",
+      id: "style:cg_3d_rendered",
       version: "0.1.0",
       label: { zh: "3D CG/渲染感", en: "3D CG / rendered look" },
       plain: {
@@ -198,7 +198,7 @@ export const styleOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "black_white_monochrome",
+      id: "style:black_white_monochrome",
       version: "0.1.0",
       label: { zh: "黑白/单色", en: "Black and white / monochrome" },
       plain: {
@@ -217,7 +217,7 @@ export const styleOptions: OptionSet = {
       }
     },
     {
-      id: "pop_art_collage",
+      id: "style:pop_art_collage",
       version: "0.1.0",
       label: { zh: "波普/拼贴风", en: "Pop art / collage" },
       plain: {

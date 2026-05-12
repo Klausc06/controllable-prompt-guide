@@ -6,7 +6,7 @@ export const motionOptions: OptionSet = {
   label: { zh: "动作", en: "Motion" },
   options: [
     {
-      id: "product_reveal",
+      id: "motion:product_reveal",
       version: "0.1.0",
       label: { zh: "产品亮相", en: "Product reveal" },
       plain: { zh: "让产品从遮挡或背景中出现", en: "The product appears from behind cover or background" },
@@ -18,7 +18,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "person_walks_in",
+      id: "motion:person_walks_in",
       version: "0.1.0",
       label: { zh: "人物走入画面", en: "Person enters frame" },
       plain: { zh: "人物自然走进画面，适合开场", en: "A person naturally walks into the frame, good for openings" },
@@ -30,7 +30,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "hands_demonstrate",
+      id: "motion:hands_demonstrate",
       version: "0.1.0",
       label: { zh: "手部演示", en: "Hands demonstrate" },
       plain: { zh: "用手展示怎么使用或打开", en: "Hands show how to use or open something" },
@@ -42,7 +42,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "environment_comes_alive",
+      id: "motion:environment_comes_alive",
       version: "0.1.0",
       label: { zh: "环境动起来", en: "Environment comes alive" },
       plain: { zh: "风、灯光、人群或物体让画面更有生命力", en: "Wind, lights, crowds, or objects add life to the scene" },
@@ -54,7 +54,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "three_beat_story",
+      id: "motion:three_beat_story",
       version: "0.1.0",
       label: { zh: "三段式小故事", en: "Three-beat story" },
       plain: { zh: "开场、变化、结果，短视频更完整", en: "Opening, change, and result for a complete short clip" },
@@ -66,7 +66,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "before_after",
+      id: "motion:before_after",
       version: "0.1.0",
       label: { zh: "前后对比", en: "Before and after" },
       plain: { zh: "先展示问题，再展示改善后的结果", en: "Show the problem first, then the improved result" },
@@ -78,7 +78,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "customer_experience",
+      id: "motion:customer_experience",
       version: "0.1.0",
       label: { zh: "顾客体验过程", en: "Customer experience flow" },
       plain: { zh: "展示进店、体验、满意离开的过程", en: "Show arrival, experience, and satisfied exit" },
@@ -90,7 +90,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "step_by_step",
+      id: "motion:step_by_step",
       version: "0.1.0",
       label: { zh: "步骤演示", en: "Step-by-step demo" },
       plain: { zh: "适合教程、产品使用、服务流程", en: "For tutorials, product usage, and service process" },
@@ -102,7 +102,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "model_fashion_walk",
+      id: "motion:model_fashion_walk",
       version: "0.1.0",
       label: { zh: "人物走秀/模特展示", en: "Model walk / fashion showcase" },
       plain: { zh: "模特或人物像走秀一样展示穿着，适合服装和时尚场景", en: "A model or person showcases attire like a runway walk, ideal for fashion scenes" },
@@ -114,7 +114,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "product_360_spin",
+      id: "motion:product_360_spin",
       version: "0.1.0",
       label: { zh: "产品旋转展示", en: "360-degree product spin" },
       plain: { zh: "产品缓慢旋转一周，观众可以看到各个角度的细节", en: "The product rotates slowly for a full view from every angle" },
@@ -126,7 +126,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "liquid_pour_fill",
+      id: "motion:liquid_pour_fill",
       version: "0.1.0",
       label: { zh: "液体倾倒/注入", en: "Liquid pour / fill" },
       plain: { zh: "液体倒入容器，适合饮品、调酒、水景画面", en: "Liquid pours into a container, great for beverages, cocktails, and water scenes" },
@@ -138,7 +138,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "unboxing_reveal",
+      id: "motion:unboxing_reveal",
       version: "0.1.0",
       label: { zh: "展开/打开", en: "Unboxing reveal" },
       plain: { zh: "打开包装或盖子，展现内部物品，适合开箱和收纳展示", en: "Opening a package or lid to reveal contents, ideal for unboxing and storage showcases" },
@@ -150,7 +150,7 @@ export const motionOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "subtle_living_photo",
+      id: "motion:subtle_living_photo",
       version: "0.1.0",
       label: { zh: "微动静态", en: "Subtle living photo" },
       plain: { zh: "画面基本静止，只有极轻微的运动（如飘动的头发、微光闪烁），适合产品静物视频", en: "The scene is nearly still with only minimal motion (like drifting hair or subtle light shimmer), ideal for product still-life videos" },

@@ -6,7 +6,7 @@ export const lightingOptions: OptionSet = {
   label: { zh: "光线", en: "Lighting" },
   options: [
     {
-      id: "soft_daylight",
+      id: "lighting:soft_daylight",
       version: "0.1.0",
       label: { zh: "柔和日光", en: "Soft daylight" },
       plain: { zh: "清楚、自然、舒服", en: "Clear, natural, and comfortable" },
@@ -18,7 +18,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "golden_hour",
+      id: "lighting:golden_hour",
       version: "0.1.0",
       label: { zh: "黄金时刻", en: "Golden hour" },
       plain: { zh: "夕阳暖光，更有氛围", en: "Warm sunset light with a strong atmosphere" },
@@ -30,7 +30,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "neon_contrast",
+      id: "lighting:neon_contrast",
       version: "0.1.0",
       label: { zh: "霓虹高对比", en: "Neon contrast" },
       plain: { zh: "夜景、科技感、强烈视觉冲击", en: "Night, tech mood, and strong visual impact" },
@@ -42,7 +42,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "studio_clean",
+      id: "lighting:studio_clean",
       version: "0.1.0",
       label: { zh: "干净棚拍", en: "Clean studio" },
       plain: { zh: "产品清楚、背景干净、适合商业展示", en: "Clear product view with a clean commercial setup" },
@@ -54,7 +54,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "moody_low_key",
+      id: "lighting:moody_low_key",
       version: "0.1.0",
       label: { zh: "低调氛围光", en: "Moody low-key" },
       plain: { zh: "更戏剧化，适合高级、夜晚、精品感", en: "More dramatic for premium, night, or boutique mood" },
@@ -66,7 +66,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "bright_retail",
+      id: "lighting:bright_retail",
       version: "0.1.0",
       label: { zh: "明亮零售灯光", en: "Bright retail lighting" },
       plain: { zh: "看起来清楚、可信，适合门店和服务展示", en: "Clear and credible for stores and service showcases" },
@@ -78,7 +78,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "soft_window_light",
+      id: "lighting:soft_window_light",
       version: "0.1.0",
       label: { zh: "窗边柔光", en: "Soft window light" },
       plain: { zh: "自然、安静、适合生活方式和人物体验", en: "Natural and calm for lifestyle and human experience scenes" },
@@ -90,7 +90,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "golden_hour_warm",
+      id: "lighting:golden_hour_warm",
       version: "0.1.0",
       label: { zh: "黄金时刻暖光", en: "Golden hour warm light" },
       plain: { zh: "日落前后的暖色光，画面整体偏橙黄，温馨浪漫", en: "Warm-toned light around sunset, the whole frame shifts to orange-yellow for a cozy romantic feel" },
@@ -102,7 +102,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "neon_colored_lights",
+      id: "lighting:neon_colored_lights",
       version: "0.1.0",
       label: { zh: "霓虹彩色光源", en: "Neon / colored lighting" },
       plain: { zh: "多色霓虹灯管作主要光源，适合赛博朋克、夜店、街头风", en: "Multiple neon tubes as the primary light source, ideal for cyberpunk, nightclub, and street style" },
@@ -114,7 +114,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "backlight_silhouette",
+      id: "lighting:backlight_silhouette",
       version: "0.1.0",
       label: { zh: "逆光/剪影", en: "Backlight / silhouette" },
       plain: { zh: "光源在主体后方，主体变暗成剪影，轮廓被光勾勒", en: "The light source is behind the subject, turning it into a dark silhouette with a bright rim outline" },
@@ -126,7 +126,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "overhead_spotlight",
+      id: "lighting:overhead_spotlight",
       version: "0.1.0",
       label: { zh: "顶光/聚光灯", en: "Overhead spotlight" },
       plain: { zh: "从正上方打下来的集中光线，适合产品主角展示、舞台效果", en: "Concentrated light from directly above, great for hero product shots and stage effects" },
@@ -138,7 +138,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "candlelight_warm_dim",
+      id: "lighting:candlelight_warm_dim",
       version: "0.1.0",
       label: { zh: "烛光/暖暗调", en: "Candlelight warm dim" },
       plain: { zh: "蜡烛或暖色低亮度光源，营造私密、安静、温馨的氛围", en: "Candle or warm low-level light creates an intimate, quiet, and cozy atmosphere" },
@@ -150,7 +150,7 @@ export const lightingOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "overcast_soft_natural",
+      id: "lighting:overcast_soft_natural",
       version: "0.1.0",
       label: { zh: "自然阴天柔光", en: "Overcast soft natural light" },
       plain: { zh: "阴天云层过滤后的柔光，没有明显阴影，画面柔和均匀", en: "Soft light filtered by overcast clouds with no harsh shadows -- gentle and even across the scene" },

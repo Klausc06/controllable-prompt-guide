@@ -6,7 +6,7 @@ export const shotTypeOptions: OptionSet = {
   label: { zh: "镜头构图", en: "Shot type" },
   options: [
     {
-      id: "establishing_wide",
+      id: "shot_type:establishing_wide",
       version: "0.1.0",
       label: { zh: "远景/定场", en: "Establishing wide shot" },
       plain: { zh: "先展示环境，再引入主体", en: "Reveal the environment first, then introduce the subject" },
@@ -15,7 +15,7 @@ export const shotTypeOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "full_body",
+      id: "shot_type:full_body",
       version: "0.1.0",
       label: { zh: "全身/全貌", en: "Full body / Full view" },
       plain: { zh: "展示主体完整外形", en: "Show the complete outline of the subject" },
@@ -24,7 +24,7 @@ export const shotTypeOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "medium_shot",
+      id: "shot_type:medium_shot",
       version: "0.1.0",
       label: { zh: "中景", en: "Medium shot" },
       plain: { zh: "主体占画面主体，清晰但不压迫", en: "Subject fills the frame naturally without crowding" },
@@ -33,7 +33,7 @@ export const shotTypeOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "close_up",
+      id: "shot_type:close_up",
       version: "0.1.0",
       label: { zh: "特写", en: "Close-up" },
       plain: { zh: "聚焦产品或表情细节", en: "Focus on product or expression details" },
@@ -42,7 +42,7 @@ export const shotTypeOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "extreme_close_up",
+      id: "shot_type:extreme_close_up",
       version: "0.1.0",
       label: { zh: "超特写", en: "Extreme close-up" },
       plain: { zh: "极致细节，眼睛/手部/材质", en: "Extreme detail — eyes, hands, texture" },
@@ -51,7 +51,7 @@ export const shotTypeOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "top_down_flat_lay",
+      id: "shot_type:top_down_flat_lay",
       version: "0.1.0",
       label: { zh: "俯拍平铺", en: "Top-down flat lay" },
       plain: { zh: "从正上方拍，食物/产品/桌面", en: "Shot from directly above — food, products, tabletop" },
@@ -60,7 +60,7 @@ export const shotTypeOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "dutch_angle",
+      id: "shot_type:dutch_angle",
       version: "0.1.0",
       label: { zh: "斜角构图", en: "Dutch angle" },
       plain: { zh: "镜头倾斜，制造紧张或动感", en: "Tilted camera for tension or dynamic feel" },
@@ -70,7 +70,7 @@ export const shotTypeOptions: OptionSet = {
       riskHint: { zh: "斜角构图不宜过多使用，建议只在关键转场采用。", en: "Use Dutch angles sparingly — reserve for key transitions." }
     },
     {
-      id: "pov_shot",
+      id: "shot_type:pov_shot",
       version: "0.1.0",
       label: { zh: "主观视角", en: "POV shot" },
       plain: { zh: "用户视角，第一人称看世界", en: "User's perspective — first-person view" },

@@ -14,7 +14,7 @@ export const veo3Target: TargetToolConfig = {
   },
   prefer: ["subject", "motion", "scene", "camera", "lighting", "style", "audio", "format"],
   suppress: [],
-  safetyDefaults: ["no_ip_or_celebrity", "stable_identity"],
+  safetyDefaults: ["constraints:no_ip_or_celebrity", "constraints:stable_identity"],
   templateMap: {
     use_case:       { zh: "意图：{选项}", en: "Intent: {选项}" },
     format:         { zh: "时长：{选项}", en: "Duration: {选项}" },

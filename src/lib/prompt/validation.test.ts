@@ -7,28 +7,32 @@ import { getAllTargets, resolveWorkType } from "./registry";
 import { targetTools } from "./targets";
 import type { PromptSelections, TargetToolConfig, WorkTypeConfig } from "./types";
 import type { OptionSet } from "./types";
-import { validateAdapterCompleteness, validateOptionIdsUnique, validateOptionTargetRefs, validateSafetyDefaultsIntegrity, validateTargetConfig, validateWorkTypeConfig } from "./validation";
+import { validateAdapterCompleteness, validateOptionIdFormat, validateOptionIdsUnique, validateOptionTargetRefs, validateSafetyDefaultsIntegrity, validateTargetConfig, validateWorkTypeConfig } from "./validation";
 
 const workType = resolveWorkType("video_prompt");
 
 const completeSelections: PromptSelections = {
-  use_case: "coffee_new_product",
-  subject: "food_drink",
-  scene: "warm_cafe_counter",
-  motion: "product_reveal",
-  shot_type: "close_up",
-  camera_movement: "slow_push_in",
-  lighting: "soft_daylight",
-  style: "warm_lifestyle",
-  constraints: ["no_ip_or_celebrity", "stable_identity", "readable_text"],
-  audio: "ambient_only",
-  format: "vertical_10s",
-  text_handling: "short_title_only"
+  use_case: "use_case:coffee_new_product",
+  subject: "subject:food_drink",
+  scene: "scene:warm_cafe_counter",
+  motion: "motion:product_reveal",
+  shot_type: "shot_type:close_up",
+  camera_movement: "camera_movement:slow_push_in",
+  lighting: "lighting:soft_daylight",
+  style: "style:warm_lifestyle",
+  constraints: ["constraints:no_ip_or_celebrity", "constraints:stable_identity", "constraints:readable_text"],
+  audio: "audio:ambient_only",
+  format: "format:vertical_10s",
+  text_handling: "text_handling:short_title_only"
 };
 
 describe("prompt configuration validation", () => {
   it("keeps option ids unique across reusable catalogs", () => {
     expect(validateOptionIdsUnique(optionSets)).toEqual([]);
+  });
+
+  it("validates option IDs have namespace prefix matching their optionSet (OPT-05)", () => {
+    expect(validateOptionIdFormat(optionSets)).toEqual([]);
   });
 
   it("returns duplicate option IDs when they appear across sets (TEST-01)", () => {
@@ -135,7 +139,7 @@ describe("prompt configuration validation", () => {
   it("warns when safety defaults are deselected from Seedance output (TEST-08)", () => {
     const unsafe: PromptSelections = {
       ...completeSelections,
-      constraints: ["simple_scene"]
+      constraints: ["constraints:simple_scene"]
     };
 
     const result = renderPrompt({
@@ -148,9 +152,9 @@ describe("prompt configuration validation", () => {
     expect(result.warnings.length).toBeGreaterThanOrEqual(1);
     const zhWarnings = result.warnings.map((w) => w.zh).join("");
     expect(zhWarnings).toContain("安全约束");
-    expect(zhWarnings).toContain("no_ip_or_celebrity");
-    expect(zhWarnings).toContain("stable_identity");
-    expect(zhWarnings).toContain("readable_text");
+    expect(zhWarnings).toContain("constraints:no_ip_or_celebrity");
+    expect(zhWarnings).toContain("constraints:stable_identity");
+    expect(zhWarnings).toContain("constraints:readable_text");
   });
 
   it("includes safety constraint text in Generic Video output (TEST-08)", () => {
@@ -169,7 +173,7 @@ describe("prompt configuration validation", () => {
   it("warns when safety defaults are deselected from Generic Video output (TEST-08)", () => {
     const unsafe: PromptSelections = {
       ...completeSelections,
-      constraints: ["simple_scene"]
+      constraints: ["constraints:simple_scene"]
     };
 
     const result = renderPrompt({
@@ -182,8 +186,8 @@ describe("prompt configuration validation", () => {
     expect(result.warnings.length).toBeGreaterThanOrEqual(1);
     const zhWarnings = result.warnings.map((w) => w.zh).join("");
     expect(zhWarnings).toContain("安全约束");
-    expect(zhWarnings).toContain("no_ip_or_celebrity");
-    expect(zhWarnings).toContain("stable_identity");
+    expect(zhWarnings).toContain("constraints:no_ip_or_celebrity");
+    expect(zhWarnings).toContain("constraints:stable_identity");
   });
 
   it("includes safety constraint text in Veo 3 output (TEST-08)", () => {
@@ -202,7 +206,7 @@ describe("prompt configuration validation", () => {
   it("warns when safety defaults are deselected from Veo 3 output (TEST-08)", () => {
     const unsafe: PromptSelections = {
       ...completeSelections,
-      constraints: ["simple_scene"]
+      constraints: ["constraints:simple_scene"]
     };
 
     const result = renderPrompt({
@@ -215,8 +219,8 @@ describe("prompt configuration validation", () => {
     expect(result.warnings.length).toBeGreaterThanOrEqual(1);
     const zhWarnings = result.warnings.map((w) => w.zh).join("");
     expect(zhWarnings).toContain("安全约束");
-    expect(zhWarnings).toContain("no_ip_or_celebrity");
-    expect(zhWarnings).toContain("stable_identity");
+    expect(zhWarnings).toContain("constraints:no_ip_or_celebrity");
+    expect(zhWarnings).toContain("constraints:stable_identity");
   });
 
   it("ensures every registered target has a corresponding adapter (TEST-05)", () => {
@@ -294,10 +298,10 @@ describe("prompt configuration validation", () => {
     const overMax: PromptSelections = {
       ...completeSelections,
       constraints: [
-        "no_ip_or_celebrity",
-        "stable_identity",
-        "readable_text",
-        "simple_scene",
+        "constraints:no_ip_or_celebrity",
+        "constraints:stable_identity",
+        "constraints:readable_text",
+        "constraints:simple_scene",
         "no_logo_hallucination"
       ]
     };

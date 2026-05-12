@@ -14,7 +14,7 @@ export const seedanceTarget: TargetToolConfig = {
   },
   prefer: ["subject", "scene", "motion", "camera", "lighting", "style", "audio", "format", "constraints"],
   suppress: [],
-  safetyDefaults: ["no_ip_or_celebrity", "stable_identity", "readable_text"],
+  safetyDefaults: ["constraints:no_ip_or_celebrity", "constraints:stable_identity", "constraints:readable_text"],
   templateMap: {
     use_case:       { zh: "核心意图：{选项}", en: "Core intent: {选项}" },
     subject:        { zh: "主体：{选项}。", en: "Subject: {选项}." },

@@ -21,18 +21,18 @@ function getWorkType() {
 }
 
 const defaults: PromptSelections = {
-  use_case: "gym_opening",
-  subject: "local_storefront",
-  scene: "bright_commercial_interior",
-  motion: "three_beat_story",
-  shot_type: "medium_shot",
-  camera_movement: "slow_push_in",
-  lighting: "studio_clean",
-  style: "cinematic_realism",
-  constraints: ["no_ip_or_celebrity", "stable_identity", "readable_text"],
-  audio: "upbeat_music",
-  format: "vertical_10s",
-  text_handling: "short_title_only"
+  use_case: "use_case:gym_opening",
+  subject: "subject:local_storefront",
+  scene: "scene:bright_commercial_interior",
+  motion: "motion:three_beat_story",
+  shot_type: "shot_type:medium_shot",
+  camera_movement: "camera_movement:slow_push_in",
+  lighting: "lighting:studio_clean",
+  style: "style:cinematic_realism",
+  constraints: ["constraints:no_ip_or_celebrity", "constraints:stable_identity", "constraints:readable_text"],
+  audio: "audio:upbeat_music",
+  format: "format:vertical_10s",
+  text_handling: "text_handling:short_title_only"
 };
 
 function selectionArray(value: SelectionValue | undefined): string[] {

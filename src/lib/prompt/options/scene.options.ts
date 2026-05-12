@@ -6,7 +6,7 @@ export const sceneOptions: OptionSet = {
   label: { zh: "场景", en: "Scene" },
   options: [
     {
-      id: "bright_commercial_interior",
+      id: "scene:bright_commercial_interior",
       version: "0.1.0",
       label: { zh: "明亮商业室内", en: "Bright commercial interior" },
       plain: { zh: "干净、专业，适合门店、健身房、展厅", en: "Clean and professional for stores, gyms, and showrooms" },
@@ -18,7 +18,7 @@ export const sceneOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "warm_cafe_counter",
+      id: "scene:warm_cafe_counter",
       version: "0.1.0",
       label: { zh: "温暖咖啡吧台", en: "Warm cafe counter" },
       plain: { zh: "适合饮品、甜品、生活方式内容", en: "For drinks, desserts, and lifestyle content" },
@@ -30,7 +30,7 @@ export const sceneOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "urban_street",
+      id: "scene:urban_street",
       version: "0.1.0",
       label: { zh: "城市街头", en: "Urban street" },
       plain: { zh: "更有生活感，适合探店、潮流、城市宣传", en: "More lived-in, good for visits, trends, and city promos" },
@@ -42,7 +42,7 @@ export const sceneOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "clean_studio_scene",
+      id: "scene:clean_studio_scene",
       version: "0.1.0",
       label: { zh: "干净棚拍", en: "Clean studio" },
       plain: { zh: "背景简单，产品更突出", en: "Simple background that makes the product stand out" },
@@ -54,7 +54,7 @@ export const sceneOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "landmark_montage",
+      id: "scene:landmark_montage",
       version: "0.1.0",
       label: { zh: "城市地标组合", en: "Landmark montage" },
       plain: { zh: "适合旅游城市、活动、区域宣传", en: "For travel cities, events, and regional promos" },
@@ -66,7 +66,7 @@ export const sceneOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "home_daily",
+      id: "scene:home_daily",
       version: "0.1.0",
       label: { zh: "居家日常", en: "Home daily life" },
       plain: { zh: "亲切自然，适合生活用品、课程、服务类", en: "Approachable and natural for lifestyle products, courses, and services" },
@@ -78,7 +78,7 @@ export const sceneOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "outdoor_forest",
+      id: "scene:outdoor_forest",
       version: "0.1.0",
       label: { zh: "户外自然/森林", en: "Outdoor nature / forest" },
       plain: { zh: "适合自然风光、户外运动、野餐、旅行内容", en: "For nature scenery, outdoor sports, picnics, and travel content" },
@@ -94,7 +94,7 @@ export const sceneOptions: OptionSet = {
       }
     },
     {
-      id: "beach_poolside",
+      id: "scene:beach_poolside",
       version: "0.1.0",
       label: { zh: "海滩/泳池边", en: "Beach / poolside" },
       plain: { zh: "适合度假、泳装、水上运动、夏日主题", en: "For vacations, swimwear, water sports, and summer themes" },
@@ -110,7 +110,7 @@ export const sceneOptions: OptionSet = {
       }
     },
     {
-      id: "lab_tech_space",
+      id: "scene:lab_tech_space",
       version: "0.1.0",
       label: { zh: "实验室/科技空间", en: "Lab / tech space" },
       plain: { zh: "适合科技产品、科研、创新、医疗健康类", en: "For tech products, research, innovation, and healthcare" },
@@ -122,7 +122,7 @@ export const sceneOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "gym_sports_venue",
+      id: "scene:gym_sports_venue",
       version: "0.1.0",
       label: { zh: "健身房/运动场", en: "Gym / sports venue" },
       plain: { zh: "适合健身、运动品牌、赛事宣传、健康生活", en: "For fitness, sports brands, event promos, and healthy lifestyle" },
@@ -134,7 +134,7 @@ export const sceneOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "bedroom_cozy_home",
+      id: "scene:bedroom_cozy_home",
       version: "0.1.0",
       label: { zh: "卧室/居家角落", en: "Bedroom / cozy home corner" },
       plain: { zh: "适合家居用品、个人护理、睡前读物、安静时光", en: "For home goods, personal care, bedtime reading, and quiet moments" },
@@ -146,7 +146,7 @@ export const sceneOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "exhibition_gallery_white",
+      id: "scene:exhibition_gallery_white",
       version: "0.1.0",
       label: { zh: "展览/画廊白空间", en: "Exhibition / gallery white space" },
       plain: { zh: "适合艺术、设计、品牌展示、高端产品", en: "For art, design, brand displays, and premium products" },

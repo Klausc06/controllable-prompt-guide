@@ -6,7 +6,7 @@ export const subjectOptions: OptionSet = {
   label: { zh: "主体", en: "Subject" },
   options: [
     {
-      id: "local_storefront",
+      id: "subject:local_storefront",
       version: "0.1.0",
       label: { zh: "线下店铺/门店", en: "Local storefront" },
       plain: { zh: "适合餐饮、咖啡、健身、美业、零售店", en: "For restaurants, coffee shops, gyms, salons, and retail stores" },
@@ -18,7 +18,7 @@ export const subjectOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "hero_product",
+      id: "subject:hero_product",
       version: "0.1.0",
       label: { zh: "单个产品", en: "Single hero product" },
       plain: { zh: "适合杯子、饮品、护肤品、数码配件等", en: "For cups, drinks, skincare, gadgets, and accessories" },
@@ -30,7 +30,7 @@ export const subjectOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "human_customer",
+      id: "subject:human_customer",
       version: "0.1.0",
       label: { zh: "真实顾客/用户", en: "Real customer or user" },
       plain: { zh: "用普通人的体验带出可信度", en: "Use a normal person's experience to build credibility" },
@@ -46,7 +46,7 @@ export const subjectOptions: OptionSet = {
       }
     },
     {
-      id: "staff_expert",
+      id: "subject:staff_expert",
       version: "0.1.0",
       label: { zh: "工作人员/专家", en: "Staff or expert" },
       plain: { zh: "适合展示专业、服务流程、可信背书", en: "Good for professionalism, service process, and credibility" },
@@ -58,7 +58,7 @@ export const subjectOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "space_environment",
+      id: "subject:space_environment",
       version: "0.1.0",
       label: { zh: "空间环境", en: "Space and environment" },
       plain: { zh: "让场地本身成为主角，适合旅游、门店、展厅", en: "Let the location itself be the hero, for travel, stores, and showrooms" },
@@ -70,7 +70,7 @@ export const subjectOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "food_drink",
+      id: "subject:food_drink",
       version: "0.1.0",
       label: { zh: "食物/饮品", en: "Food or drink" },
       plain: { zh: "突出新鲜、口感、制作过程和诱人细节", en: "Highlight freshness, taste, preparation, and appetizing detail" },
@@ -82,7 +82,7 @@ export const subjectOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "person_model",
+      id: "subject:person_model",
       version: "0.1.0",
       label: { zh: "人物/模特", en: "Person / model" },
       plain: { zh: "通过人物形象展示产品、服装、妆容或生活方式", en: "Use a person to showcase products, clothing, makeup, or lifestyle" },
@@ -98,7 +98,7 @@ export const subjectOptions: OptionSet = {
       }
     },
     {
-      id: "vehicles_transportation",
+      id: "subject:vehicles_transportation",
       version: "0.1.0",
       label: { zh: "汽车/交通工具", en: "Vehicles / transportation" },
       plain: { zh: "适合汽车广告、出行服务、交通工具展示", en: "For car ads, travel services, and vehicle showcases" },
@@ -114,7 +114,7 @@ export const subjectOptions: OptionSet = {
       }
     },
     {
-      id: "electronics_gadgets",
+      id: "subject:electronics_gadgets",
       version: "0.1.0",
       label: { zh: "电子数码产品", en: "Electronics / gadgets" },
       plain: { zh: "适合手机、耳机、电脑、智能设备等数码产品", en: "For phones, headphones, computers, smart devices, and gadgets" },
@@ -126,7 +126,7 @@ export const subjectOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "jewelry_accessories",
+      id: "subject:jewelry_accessories",
       version: "0.1.0",
       label: { zh: "珠宝/配饰", en: "Jewelry / accessories" },
       plain: { zh: "适合项链、戒指、手表、包袋、眼镜等配饰", en: "For necklaces, rings, watches, bags, glasses, and accessories" },
@@ -138,7 +138,7 @@ export const subjectOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "architecture_interior",
+      id: "subject:architecture_interior",
       version: "0.1.0",
       label: { zh: "建筑/室内空间", en: "Architecture / interior space" },
       plain: { zh: "适合地产、设计、空间改造、酒店民宿展示", en: "For real estate, design, renovations, hotels, and B&Bs" },
@@ -150,7 +150,7 @@ export const subjectOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "pets_animals",
+      id: "subject:pets_animals",
       version: "0.1.0",
       label: { zh: "宠物/动物", en: "Pets / animals" },
       plain: { zh: "适合宠物用品、动物主题、温馨生活内容", en: "For pet products, animal themes, and warm lifestyle content" },

@@ -1,6 +1,20 @@
 import { getAllAdapters, getAllOptionSets, getAllTargets } from "./registry";
 import type { OptionSet, TargetToolConfig, WorkTypeConfig } from "./types";
 
+/** Validates all option IDs use their catalog prefix (OPT-05). Returns mismatches. */
+export function validateOptionIdFormat(sets?: OptionSet[]): string[] {
+  const errors: string[] = [];
+  for (const set of sets ?? getAllOptionSets()) {
+    const prefix = `${set.id}:`;
+    for (const opt of set.options) {
+      if (!opt.id.startsWith(prefix)) {
+        errors.push(`Option "${opt.id}" in set "${set.id}" should have namespace prefix "${prefix}"`);
+      }
+    }
+  }
+  return errors;
+}
+
 export function validateOptionIdsUnique(optionSets_?: OptionSet[]) {
   const sets = optionSets_ ?? getAllOptionSets();
   const seen = new Set<string>();

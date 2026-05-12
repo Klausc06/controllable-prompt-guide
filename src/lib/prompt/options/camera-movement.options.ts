@@ -6,7 +6,7 @@ export const cameraMovementOptions: OptionSet = {
   label: { zh: "镜头运动", en: "Camera movement" },
   options: [
     {
-      id: "static_locked",
+      id: "camera_movement:static_locked",
       version: "0.1.0",
       label: { zh: "固定不动", en: "Static / Locked-off" },
       plain: { zh: "三脚架式稳定，画面完全不晃", en: "Tripod-stable, zero camera movement" },
@@ -15,7 +15,7 @@ export const cameraMovementOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "slow_push_in",
+      id: "camera_movement:slow_push_in",
       version: "0.1.0",
       label: { zh: "缓慢推进", en: "Slow push-in" },
       plain: { zh: "镜头慢慢靠近主体，增强情绪", en: "Camera slowly moves closer for emotional build" },
@@ -24,7 +24,7 @@ export const cameraMovementOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "slow_pull_out",
+      id: "camera_movement:slow_pull_out",
       version: "0.1.0",
       label: { zh: "缓慢拉远", en: "Slow pull-out" },
       plain: { zh: "镜头慢慢远离主体，揭示更大环境", en: "Camera slowly moves away to reveal larger context" },
@@ -33,7 +33,7 @@ export const cameraMovementOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "handheld_tracking",
+      id: "camera_movement:handheld_tracking",
       version: "0.1.0",
       label: { zh: "手持跟拍", en: "Handheld tracking" },
       plain: { zh: "镜头跟随主体走，轻微晃动有现场感", en: "Camera follows subject with subtle natural shake" },
@@ -42,7 +42,7 @@ export const cameraMovementOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "smooth_pan",
+      id: "camera_movement:smooth_pan",
       version: "0.1.0",
       label: { zh: "平稳横摇", en: "Smooth pan" },
       plain: { zh: "镜头水平转动扫过场景", en: "Camera sweeps horizontally across the scene" },
@@ -51,7 +51,7 @@ export const cameraMovementOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "tilt_up_down",
+      id: "camera_movement:tilt_up_down",
       version: "0.1.0",
       label: { zh: "垂直摇镜", en: "Tilt up/down" },
       plain: { zh: "镜头上下移动，展示高度或层次", en: "Camera moves vertically to show height or layers" },
@@ -60,7 +60,7 @@ export const cameraMovementOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "orbit_around",
+      id: "camera_movement:orbit_around",
       version: "0.1.0",
       label: { zh: "环绕主体", en: "Orbit around subject" },
       plain: { zh: "镜头围绕主体旋转，完整展示", en: "Camera rotates around subject for full reveal" },
@@ -69,7 +69,7 @@ export const cameraMovementOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "pedestal_up_down",
+      id: "camera_movement:pedestal_up_down",
       version: "0.1.0",
       label: { zh: "升降镜头", en: "Pedestal up/down" },
       plain: { zh: "镜头垂直升降，改变观察高度", en: "Camera rises or descends to change viewing height" },

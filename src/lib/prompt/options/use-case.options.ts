@@ -6,7 +6,7 @@ export const useCaseOptions: OptionSet = {
   label: { zh: "作品目标", en: "Use case" },
   options: [
     {
-      id: "gym_opening",
+      id: "use_case:gym_opening",
       version: "0.1.0",
       label: { zh: "健身房开业宣传", en: "Gym opening promo" },
       plain: { zh: "突出新店、专业器械、活力氛围和到店冲动", en: "Highlight a new gym, equipment, energy, and visit intent" },
@@ -18,7 +18,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "coffee_new_product",
+      id: "use_case:coffee_new_product",
       version: "0.1.0",
       label: { zh: "咖啡店新品短视频", en: "Coffee shop new product" },
       plain: { zh: "突出新品饮品、手作过程、口感联想和店铺气质", en: "Highlight a new drink, craft process, taste cues, and shop mood" },
@@ -30,7 +30,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "city_travel_promo",
+      id: "use_case:city_travel_promo",
       version: "0.1.0",
       label: { zh: "旅游城市宣传片", en: "Travel city promo" },
       plain: { zh: "展示城市地标、美食、人文和旅行向往感", en: "Show landmarks, food, culture, and travel desire" },
@@ -42,7 +42,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "product_showcase",
+      id: "use_case:product_showcase",
       version: "0.1.0",
       label: { zh: "产品展示视频", en: "Product showcase" },
       plain: { zh: "让产品看起来清楚、可信、有质感", en: "Make a product look clear, credible, and polished" },
@@ -54,7 +54,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "xiaohongshu_visit",
+      id: "use_case:xiaohongshu_visit",
       version: "0.1.0",
       label: { zh: "小红书探店视频", en: "RedNote shop visit" },
       plain: { zh: "像真实探店笔记，强调氛围、体验和可分享感", en: "Feel like an authentic shop visit note with atmosphere and shareability" },
@@ -66,7 +66,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "course_promo",
+      id: "use_case:course_promo",
       version: "0.1.0",
       label: { zh: "课程/训练营招生", en: "Course enrollment promo" },
       plain: { zh: "让用户理解课程价值、适合人群和行动理由", en: "Explain course value, target audience, and reason to act" },
@@ -78,7 +78,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "product_unboxing",
+      id: "use_case:product_unboxing",
       version: "0.1.0",
       label: { zh: "产品展示/开箱", en: "Product showcase / unboxing" },
       plain: { zh: "突出产品外观、包装细节和第一印象", en: "Highlight product appearance, packaging, and first impressions" },
@@ -90,7 +90,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "event_recap",
+      id: "use_case:event_recap",
       version: "0.1.0",
       label: { zh: "活动回顾/花絮", en: "Event recap / behind the scenes" },
       plain: { zh: "展示活动现场、精彩瞬间和幕后故事", en: "Show event highlights, candid moments, and backstage stories" },
@@ -102,7 +102,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "tutorial_demo",
+      id: "use_case:tutorial_demo",
       version: "0.1.0",
       label: { zh: "教程/操作演示", en: "Tutorial / how-to demo" },
       plain: { zh: "清晰展示操作步骤，让用户能跟着做", en: "Clearly demonstrate steps so users can follow along" },
@@ -114,7 +114,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "brand_image",
+      id: "use_case:brand_image",
       version: "0.1.0",
       label: { zh: "品牌形象片", en: "Brand image / corporate video" },
       plain: { zh: "传递品牌调性、使命和情感，而非具体产品", en: "Convey brand tone, mission, and emotion rather than specific products" },
@@ -126,7 +126,7 @@ export const useCaseOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video", "veo3"]
     },
     {
-      id: "social_media_quick_clip",
+      id: "use_case:social_media_quick_clip",
       version: "0.1.0",
       label: { zh: "社交媒体快拍", en: "Social media quick clip" },
       plain: { zh: "适合 Stories / Reels 的快节奏短片", en: "Fast-paced short clip for Stories and Reels" },

@@ -6,7 +6,7 @@ export const constraintsOptions: OptionSet = {
   label: { zh: "限制", en: "Constraints" },
   options: [
     {
-      id: "no_ip_or_celebrity",
+      id: "constraints:no_ip_or_celebrity",
       version: "0.1.0",
       label: { zh: "避开明星和影视 IP", en: "Avoid celebrities and IP" },
       plain: {
@@ -21,7 +21,7 @@ export const constraintsOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "stable_identity",
+      id: "constraints:stable_identity",
       version: "0.1.0",
       label: { zh: "人物/主体保持一致", en: "Keep identity stable" },
       plain: { zh: "主体不要变脸、变形或突然变成别的东西", en: "The subject should not morph or change identity" },
@@ -33,7 +33,7 @@ export const constraintsOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "readable_text",
+      id: "constraints:readable_text",
       version: "0.1.0",
       label: { zh: "文字少且可读", en: "Readable minimal text" },
       plain: { zh: "如果有文字，就短、清楚、不要乱码", en: "If text appears, keep it short, clear, and not garbled" },
@@ -49,7 +49,7 @@ export const constraintsOptions: OptionSet = {
       }
     },
     {
-      id: "simple_scene",
+      id: "constraints:simple_scene",
       version: "0.1.0",
       label: { zh: "画面不要太复杂", en: "Keep scene simple" },
       plain: { zh: "减少人物和杂物，降低翻车概率", en: "Fewer people and objects reduce failure risk" },
@@ -61,7 +61,7 @@ export const constraintsOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "no_logo_hallucination",
+      id: "constraints:no_logo_hallucination",
       version: "0.1.0",
       label: { zh: "不要乱生成品牌标志", en: "Avoid fake logos" },
       plain: { zh: "避免出现奇怪 logo、错误商标或假品牌", en: "Avoid odd logos, incorrect trademarks, or fake branding" },
@@ -77,7 +77,7 @@ export const constraintsOptions: OptionSet = {
       }
     },
     {
-      id: "no_extra_limbs",
+      id: "constraints:no_extra_limbs",
       version: "0.1.0",
       label: { zh: "避免手脚畸形", en: "Avoid hand and limb defects" },
       plain: { zh: "适合有人物、手部演示、运动动作时使用", en: "Useful for people, hand demos, and athletic actions" },
@@ -89,7 +89,7 @@ export const constraintsOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "single_focal_subject",
+      id: "constraints:single_focal_subject",
       version: "0.1.0",
       label: { zh: "只保留一个视觉重点", en: "Single focal subject" },
       plain: { zh: "让模型知道谁最重要，减少跑题", en: "Tell the model what matters most and reduce drift" },
@@ -101,7 +101,7 @@ export const constraintsOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "avoid_temporal_flicker",
+      id: "constraints:avoid_temporal_flicker",
       version: "0.1.0",
       label: { zh: "避免画面闪烁和跳变", en: "Avoid temporal flicker and frame jitter" },
       plain: {
@@ -116,7 +116,7 @@ export const constraintsOptions: OptionSet = {
       appliesTo: ["seedance"]
     },
     {
-      id: "avoid_quality_keywords",
+      id: "constraints:avoid_quality_keywords",
       version: "0.1.0",
       label: { zh: "避免降低输出质量的关键词", en: "Avoid quality-degrading keywords" },
       plain: {

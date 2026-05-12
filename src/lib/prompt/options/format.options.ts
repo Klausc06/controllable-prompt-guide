@@ -6,7 +6,7 @@ export const formatOptions: OptionSet = {
   label: { zh: "比例和时长", en: "Format" },
   options: [
     {
-      id: "vertical_10s",
+      id: "format:vertical_10s",
       version: "0.1.0",
       label: { zh: "9:16 竖屏 10 秒", en: "9:16 vertical, 10s" },
       plain: { zh: "适合抖音、小红书、视频号", en: "Good for Douyin, RedNote, and short social feeds" },
@@ -15,7 +15,7 @@ export const formatOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "vertical_15s",
+      id: "format:vertical_15s",
       version: "0.1.0",
       label: { zh: "9:16 竖屏 15 秒", en: "9:16 vertical, 15s" },
       plain: { zh: "比 10 秒更完整，适合三段式小故事", en: "More complete than 10s, good for a three-beat story" },
@@ -24,7 +24,7 @@ export const formatOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "square_8s",
+      id: "format:square_8s",
       version: "0.1.0",
       label: { zh: "1:1 方形 8 秒", en: "1:1 square, 8s" },
       plain: { zh: "适合信息流、商品卡片、轻量展示", en: "Good for feeds, product cards, and compact showcases" },
@@ -33,7 +33,7 @@ export const formatOptions: OptionSet = {
       appliesTo: ["seedance", "generic_video"]
     },
     {
-      id: "horizontal_12s",
+      id: "format:horizontal_12s",
       version: "0.1.0",
       label: { zh: "16:9 横屏 12 秒", en: "16:9 horizontal, 12s" },
       plain: { zh: "适合官网、展会屏幕、横版广告", en: "Good for websites, event screens, and horizontal ads" },
