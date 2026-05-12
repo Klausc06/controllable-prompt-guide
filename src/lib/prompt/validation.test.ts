@@ -3,7 +3,7 @@ import { renderPrompt } from "./adapters";
 import { getBriefText, renderMarkdown, getCameraText, buildPromptBrief } from "./brief";
 import { evaluatePromptQuality } from "./heuristics";
 import { optionSets } from "./options";
-import { getAllTargets, resolveWorkType } from "./registry";
+import { getAllOptionSets, getAllTargets, resolveWorkType } from "./registry";
 import { targetTools } from "./targets";
 import type { PromptSelections, TargetToolConfig, WorkTypeConfig } from "./types";
 import type { OptionSet } from "./types";
@@ -403,5 +403,65 @@ describe("brief utilities", () => {
     const zh = warnings.map(w => w.zh).join("");
     expect(zh).toContain("fast");
     expect(zh).toContain("Seedance");
+  });
+});
+
+describe("riskHint completeness (D-03)", () => {
+  const allSets = getAllOptionSets();
+
+  it("every option has riskHint field (not undefined)", () => {
+    const missing: string[] = [];
+    for (const set of allSets) {
+      for (const opt of set.options) {
+        if (opt.riskHint === undefined) {
+          missing.push(`${opt.id} (set: ${set.id})`);
+        }
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+
+  it("HIGH-risk catalogs (constraints, text_handling) have substantive riskHint", () => {
+    const violations: string[] = [];
+    for (const setId of ["constraints", "text_handling"]) {
+      const set = allSets.find((s) => s.id === setId);
+      if (!set) continue;
+      for (const opt of set.options) {
+        if (!opt.riskHint || opt.riskHint.zh.length === 0 || opt.riskHint.en.length === 0) {
+          violations.push(`${opt.id}: riskHint missing or empty zh/en`);
+        }
+      }
+    }
+    expect(violations).toEqual([]);
+  });
+
+  it("LOW-risk catalogs (lighting, style, scene, audio, use_case) have riskHint present", () => {
+    const missing: string[] = [];
+    const lowRiskIds = ["lighting", "style", "scene", "audio", "use_case"];
+    for (const setId of lowRiskIds) {
+      const set = allSets.find((s) => s.id === setId);
+      if (!set) continue;
+      for (const opt of set.options) {
+        if (opt.riskHint === undefined) {
+          missing.push(`${opt.id} (set: ${set.id})`);
+        }
+      }
+    }
+    expect(missing).toEqual([]);
+  });
+
+  it("borderline catalogs (format, shot_type, camera_movement, subject, motion) have riskHint present", () => {
+    const missing: string[] = [];
+    const borderlineIds = ["format", "shot_type", "camera_movement", "subject", "motion"];
+    for (const setId of borderlineIds) {
+      const set = allSets.find((s) => s.id === setId);
+      if (!set) continue;
+      for (const opt of set.options) {
+        if (opt.riskHint === undefined) {
+          missing.push(`${opt.id} (set: ${set.id})`);
+        }
+      }
+    }
+    expect(missing).toEqual([]);
   });
 });
