@@ -3,21 +3,22 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: Ready to plan
-last_updated: "2026-05-12T10:43:51.915Z"
+last_updated: "2026-05-12T17:01:05.838Z"
 progress:
   total_phases: 8
   completed_phases: 3
-  total_plans: 14
-  completed_plans: 14
-  percent: 100
+  total_plans: 17
+  completed_plans: 16
+  percent: 94
 ---
 
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
 **Last updated:** 2026-05-10 — Post-audit fixes applied
-**Phase:** 4
-**Tests:** 44/44 passing
+**Phase:** 4 — Plan 02 complete
+**Current Plan:** 2 / 3
+**Tests:** 71/71 passing
 **CI:** test/lint/typecheck/build all green
 
 ## Architecture
@@ -45,6 +46,5 @@ progress:
 
 ## Next
 
-- Veo 3 adapter research (highest priority)
-- Option catalog expansion (~90 → ~143)
+- Plan 04-03: Complete riskHint metadata for all 180 options
 - Tailwind v4 migration
