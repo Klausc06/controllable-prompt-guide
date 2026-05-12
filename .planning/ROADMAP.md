@@ -62,11 +62,17 @@ Plans:
 - [ ] `04-02-PLAN.md` — Catalog expansion to 180+ (D-02): +50 new options across 11 catalogs, each >= 15
 - [ ] `04-03-PLAN.md` — riskHint completion (D-03): substantive for HIGH-risk, empty for LOW-risk, 1 new CI test
 
-### Phase 5: Consumer Translation ✓
+### Phase 5: Consumer Translation
 **Goal**: Chinese consumer aesthetics mapped to professional options; category tabs; platform format hints
 **Depends on**: Phase 4
 **Requirements**: DIFF-01, DIFF-04, DIFF-05
-**Status**: Complete. Executed inline. 5 consumer aesthetics mapped to style options.
+**Status**: Planned. Ready for execution.
+**Plans:** 3 plans
+
+Plans:
+- [ ] `05-01-PLAN.md` — Type extensions (consumerTerms + categories fields), consumer terms on 12 existing + 3 new style options, getOptionsByConsumerTerm() registry query
+- [ ] `05-02-PLAN.md` — Category definitions on Style/Subject/Use Case/Format option sets, platform config file (platform-data.ts)
+- [ ] `05-03-PLAN.md` — UI integration (ConsumerTagGroup, CategoryTabs, PlatformTagGroup in QuestionBlock) + test extensions
 
 ### Phase 6: Quality Intelligence ✓
 **Goal**: Deterministic heuristics; amber warnings; use case smart defaults; research documented
@@ -96,7 +102,7 @@ Plans:
 | 2. Registry Architecture | 5 plans (3 done, 2 pending) | In progress |
 | 3. Metadata Execution | 0/4 planned | Planned |
 | 4. Catalog Expansion | 0/3 planned | Planned |
-| 5. Consumer Translation | 1/1 | ✓ Complete |
+| 5. Consumer Translation | 0/3 | Planned |
 | 6. Quality Intelligence | 1/1 | ✓ Complete |
 | 7. Integration Testing | 1/1 | ✓ Complete |
 | 8. Hardening & Forward Planning | 1/1 | ✓ Complete |

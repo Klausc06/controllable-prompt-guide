@@ -3,14 +3,14 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 current_plan: Not started
-status: Ready to plan
+status: Planned
 last_updated: "2026-05-12T17:31:35.265Z"
 progress:
   total_phases: 8
   completed_phases: 4
-  total_plans: 17
+  total_plans: 20
   completed_plans: 17
-  percent: 100
+  percent: 85
 ---
 
 # State: Controllable Prompt Guide
@@ -18,7 +18,7 @@ progress:
 **Project:** 可控提示词向导
 **Last updated:** 2026-05-10 — Post-audit fixes applied
 **Phase:** 5
-**Current Plan:** Not started
+**Current Plan:** 05-01 — Type Extensions + Consumer Aesthetics Data
 **Tests:** 75/75 passing
 **CI:** test/lint/typecheck/build all green
 
@@ -47,5 +47,6 @@ progress:
 
 ## Next
 
+- Phase 05 planned (3 plans, 3 waves) — ready for execution via /gsd-execute-phase 05
 - Phase 04 complete — 180 options across 12 catalogs with namespace prefixes, expanded catalogs (15+ each), and full riskHint metadata
 - Tailwind v4 migration

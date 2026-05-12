@@ -139,11 +139,11 @@ Every v1 requirement mapped to exactly one phase. Updated during roadmap creatio
 | RES-01 | Phase 6: Quality Intelligence | Pending |
 | RES-02 | Phase 6: Quality Intelligence | Pending |
 | RES-03 | Phase 8: Hardening & Forward Planning | Pending |
-| DIFF-01 | Phase 5: Consumer Translation | Pending |
+| DIFF-01 | Phase 5: Consumer Translation | Planned |
 | DIFF-02 | Phase 6: Quality Intelligence | Pending |
 | DIFF-03 | Phase 6: Quality Intelligence | Pending |
-| DIFF-04 | Phase 5: Consumer Translation | Pending |
-| DIFF-05 | Phase 5: Consumer Translation | Pending |
+| DIFF-04 | Phase 5: Consumer Translation | Planned |
+| DIFF-05 | Phase 5: Consumer Translation | Planned |
 
 **Coverage:**
 - v1 requirements: 37 total
