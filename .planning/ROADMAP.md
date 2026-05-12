@@ -55,7 +55,7 @@ Plans:
 **Depends on**: Phase 2
 **Requirements**: OPT-01, OPT-02, OPT-03, OPT-05, OPT-06
 **Status**: Planned. OPT-03 (camera split) and OPT-06 (Markdown export) pre-complete. Three plans addressing OPT-01, OPT-02, OPT-05.
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] `04-01-PLAN.md` — Namespace prefix migration (D-01): validateOptionIdFormat() + rename 136 IDs + update 7 reference locations

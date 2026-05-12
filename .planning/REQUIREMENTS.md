@@ -21,7 +21,7 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Option Taxonomy (OPT)
 
 - [x] **OPT-01**: 扩充全部 11 个选项目录至最低数量（约 143 个选项），覆盖主体、场景、动作、镜头、运镜、光线、风格、声音、节奏、画面密度、文字处理、安全约束
-- [ ] **OPT-02**: 每个 option 包含完整的 label/plain/professionalTerms/promptFragment.{zh,en}/appliesTo/riskHint
+- [x] **OPT-02**: 每个 option 包含完整的 label/plain/professionalTerms/promptFragment.{zh,en}/appliesTo/riskHint
 - [ ] **OPT-03**: 镜头维度拆分为 shot type（构图）和 camera movement（运镜）两个独立维度
 - [ ] **OPT-04**: 新增缺失安全约束：avoid_temporal_flicker, avoid_quality_keywords
 - [ ] **OPT-05**: Option ID 使用 namespace 前缀（{optionSetId}:{optionId}），防止跨 catalog 碰撞
@@ -116,7 +116,7 @@ Every v1 requirement mapped to exactly one phase. Updated during roadmap creatio
 | ARCH-07 | Phase 1: Safety Foundation | Pending |
 | ARCH-08 | Phase 3: Metadata Execution | Pending |
 | OPT-01 | Phase 4: Catalog Expansion | Complete |
-| OPT-02 | Phase 4: Catalog Expansion | Pending |
+| OPT-02 | Phase 4: Catalog Expansion | Complete |
 | OPT-03 | Phase 4: Catalog Expansion | Pending |
 | OPT-04 | Phase 1: Safety Foundation | Pending |
 | OPT-05 | Phase 4: Catalog Expansion | Pending |
