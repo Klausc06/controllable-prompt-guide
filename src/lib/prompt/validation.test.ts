@@ -340,14 +340,48 @@ describe("prompt configuration validation", () => {
     expect(zhWarnings).toContain("画面质量");
   });
 
-  it("JSON brief is parseable and contains required fields (TEST-10)", () => {
-    const result = renderPrompt({ workType, targetToolId: "seedance", rawIntent: "", selections: completeSelections });
-    const json = JSON.stringify(result.brief, null, 2);
-    const parsed = JSON.parse(json);
-    expect(parsed.workTypeId).toBe("video_prompt");
-    expect(parsed.targetToolId).toBe("seedance");
-    expect(Array.isArray(parsed.items)).toBe(true);
-    expect(parsed.items.length).toBeGreaterThan(0);
+  describe("JSON brief (TEST-10)", () => {
+    it("is parseable for seedance target", () => {
+      const result = renderPrompt({ workType, targetToolId: "seedance", rawIntent: "", selections: completeSelections });
+      const json = JSON.stringify(result.brief, null, 2);
+      const parsed = JSON.parse(json);
+      expect(parsed.workTypeId).toBe("video_prompt");
+      expect(parsed.targetToolId).toBe("seedance");
+      expect(Array.isArray(parsed.items)).toBe(true);
+      expect(parsed.items.length).toBeGreaterThan(0);
+    });
+
+    it("is parseable for generic_video target", () => {
+      const result = renderPrompt({ workType, targetToolId: "generic_video", rawIntent: "", selections: completeSelections });
+      const json = JSON.stringify(result.brief, null, 2);
+      const parsed = JSON.parse(json);
+      expect(parsed.workTypeId).toBe("video_prompt");
+      expect(parsed.targetToolId).toBe("generic_video");
+      expect(Array.isArray(parsed.items)).toBe(true);
+      expect(parsed.items.length).toBeGreaterThan(0);
+    });
+
+    it("is parseable for veo3 target", () => {
+      const result = renderPrompt({ workType, targetToolId: "veo3", rawIntent: "", selections: completeSelections });
+      const json = JSON.stringify(result.brief, null, 2);
+      const parsed = JSON.parse(json);
+      expect(parsed.workTypeId).toBe("video_prompt");
+      expect(parsed.targetToolId).toBe("veo3");
+      expect(Array.isArray(parsed.items)).toBe(true);
+      expect(parsed.items.length).toBeGreaterThan(0);
+    });
+
+    it("target IDs are distinct across all 3 targets", () => {
+      const seedanceResult = renderPrompt({ workType, targetToolId: "seedance", rawIntent: "", selections: completeSelections });
+      const genericResult = renderPrompt({ workType, targetToolId: "generic_video", rawIntent: "", selections: completeSelections });
+      const veo3Result = renderPrompt({ workType, targetToolId: "veo3", rawIntent: "", selections: completeSelections });
+      const ids = new Set([
+        seedanceResult.brief.targetToolId,
+        genericResult.brief.targetToolId,
+        veo3Result.brief.targetToolId
+      ]);
+      expect(ids.size).toBe(3);
+    });
   });
 });
 
