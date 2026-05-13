@@ -43,12 +43,62 @@ describe("PromptGuide", () => {
     await waitFor(() => expect(navigator.clipboard.writeText).toHaveBeenCalled());
   });
 
-  it("copy buttons expose correct payload content (TEST-11)", () => {
-    render(<PromptGuide />);
+  describe("copy payload content (TEST-11)", () => {
+    it("all 4 copy buttons are rendered", () => {
+      render(<PromptGuide />);
+      expect(screen.getByText("复制中文")).toBeInTheDocument();
+      expect(screen.getByText("复制英文")).toBeInTheDocument();
+      expect(screen.getByText("复制 JSON")).toBeInTheDocument();
+      expect(screen.getByText("复制 Markdown")).toBeInTheDocument();
+    });
 
-    expect(screen.getByText("复制中文")).toBeInTheDocument();
-    expect(screen.getByText("复制英文")).toBeInTheDocument();
-    expect(screen.getByText("复制 JSON")).toBeInTheDocument();
+    it("复制中文 calls clipboard.writeText with the rendered zhPrompt text", async () => {
+      render(<PromptGuide />);
+      fireEvent.click(screen.getByText("复制中文"));
+      await waitFor(() => {
+        expect(navigator.clipboard.writeText).toHaveBeenCalled();
+      });
+      const callArg = (navigator.clipboard.writeText as ReturnType<typeof vi.fn>).mock.calls[0][0];
+      expect(typeof callArg).toBe("string");
+      expect(callArg.length).toBeGreaterThan(50);
+      expect(callArg).toContain("生成一段");
+    });
+
+    it("复制英文 calls clipboard.writeText with the rendered enPrompt text", async () => {
+      render(<PromptGuide />);
+      fireEvent.click(screen.getByText("复制英文"));
+      await waitFor(() => {
+        expect(navigator.clipboard.writeText).toHaveBeenCalled();
+      });
+      const callArg = (navigator.clipboard.writeText as ReturnType<typeof vi.fn>).mock.calls[0][0];
+      expect(typeof callArg).toBe("string");
+      expect(callArg.length).toBeGreaterThan(50);
+      expect(callArg).toContain("Generate");
+    });
+
+    it("复制 JSON calls clipboard.writeText with valid JSON having brief structure", async () => {
+      render(<PromptGuide />);
+      fireEvent.click(screen.getByText("复制 JSON"));
+      await waitFor(() => {
+        expect(navigator.clipboard.writeText).toHaveBeenCalled();
+      });
+      const callArg = (navigator.clipboard.writeText as ReturnType<typeof vi.fn>).mock.calls[0][0];
+      const parsed = JSON.parse(callArg);
+      expect(parsed.workTypeId).toBe("video_prompt");
+      expect(parsed.targetToolId).toBeTruthy();
+      expect(Array.isArray(parsed.items)).toBe(true);
+    });
+
+    it("复制 Markdown calls clipboard.writeText with markdown containing expected sections", async () => {
+      render(<PromptGuide />);
+      fireEvent.click(screen.getByText("复制 Markdown"));
+      await waitFor(() => {
+        expect(navigator.clipboard.writeText).toHaveBeenCalled();
+      });
+      const callArg = (navigator.clipboard.writeText as ReturnType<typeof vi.fn>).mock.calls[0][0];
+      expect(callArg).toContain("# Video Prompt Brief");
+      expect(callArg).toContain("| Dimension | Selection |");
+    });
   });
 
   it("handles clipboard failure gracefully (TEST-12)", async () => {
