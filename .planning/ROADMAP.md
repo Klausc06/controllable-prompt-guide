@@ -66,13 +66,15 @@ Plans:
 **Goal**: Chinese consumer aesthetics mapped to professional options; category tabs; platform format hints
 **Depends on**: Phase 4
 **Requirements**: DIFF-01, DIFF-04, DIFF-05
-**Status**: Planned. Ready for execution.
-**Plans:** 3 plans
+**Status**: Executed (3 plans). Gap closure (2 plans) ready for execution.
+**Plans:** 5 plans
 
 Plans:
-- [ ] `05-01-PLAN.md` — Type extensions (consumerTerms + categories fields), consumer terms on 12 existing + 3 new style options, getOptionsByConsumerTerm() registry query
-- [ ] `05-02-PLAN.md` — Category definitions on Style/Subject/Use Case/Format option sets, platform config file (platform-data.ts)
-- [ ] `05-03-PLAN.md` — UI integration (ConsumerTagGroup, CategoryTabs, PlatformTagGroup in QuestionBlock) + test extensions
+- [x] `05-01-PLAN.md` — Type extensions (consumerTerms + categories fields), consumer terms on 12 existing + 3 new style options, getOptionsByConsumerTerm() registry query
+- [x] `05-02-PLAN.md` — Category definitions on Style/Subject/Use Case/Format option sets, platform config file (platform-data.ts)
+- [x] `05-03-PLAN.md` — UI integration (ConsumerTagGroup, CategoryTabs, PlatformTagGroup in QuestionBlock) + test extensions
+- [ ] `05-04-PLAN.md` — Gap closure: Change 9 remaining single-mode dimensions to multi-select + suppresses for conflicting option pairs
+- [ ] `05-05-PLAN.md` — Gap closure: Replace PlatformTagGroup with per-format-option inline usageHint badges; delete platform-data.ts
 
 ### Phase 6: Quality Intelligence ✓
 **Goal**: Deterministic heuristics; amber warnings; use case smart defaults; research documented
@@ -102,7 +104,7 @@ Plans:
 | 2. Registry Architecture | 5 plans (3 done, 2 pending) | In progress |
 | 3. Metadata Execution | 0/4 planned | Planned |
 | 4. Catalog Expansion | 0/3 planned | Planned |
-| 5. Consumer Translation | 0/3 | Planned |
+| 5. Consumer Translation | 5 (3 done, 2 gap closure pending) | Gap closure |
 | 6. Quality Intelligence | 1/1 | ✓ Complete |
 | 7. Integration Testing | 1/1 | ✓ Complete |
 | 8. Hardening & Forward Planning | 1/1 | ✓ Complete |
