@@ -3,6 +3,7 @@ import { renderPrompt } from "./adapters";
 import { getBriefText, renderMarkdown, getCameraText, buildPromptBrief } from "./brief";
 import { evaluatePromptQuality } from "./heuristics";
 import { optionSets } from "./options";
+import "./options/image";
 import { getAllOptionSets, getAllTargets, resolveWorkType } from "./registry";
 import { targetTools } from "./targets";
 import type { PromptSelections, TargetToolConfig, WorkTypeConfig } from "./types";
@@ -257,7 +258,8 @@ describe("prompt configuration validation", () => {
   });
 
   it("confirms all safetyDefaults option IDs resolve to registered options (CI)", () => {
-    const errors = validateSafetyDefaultsIntegrity(targetTools, optionSets);
+    const allSets = getAllOptionSets();
+    const errors = validateSafetyDefaultsIntegrity(targetTools, allSets);
     expect(errors).toEqual([]);
   });
 
