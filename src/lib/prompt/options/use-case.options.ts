@@ -16,6 +16,15 @@ export const useCaseOptions: OptionSet = {
         en: "gym opening promotional video highlighting the new space, professional equipment, energetic training mood, and visit appeal"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:space_environment"],
+        scene: ["scene:gym_sports_venue"],
+        shot_type: ["shot_type:medium_shot"],
+        camera_movement: ["camera_movement:slow_push_in"],
+        lighting: ["lighting:bright_retail"],
+        style: ["style:cinematic_realism"],
+        motion: ["motion:person_walks_in"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -29,6 +38,15 @@ export const useCaseOptions: OptionSet = {
         en: "coffee shop new product short video highlighting the drink, preparation details, taste cues, and warm shop atmosphere"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:food_drink"],
+        scene: ["scene:warm_cafe_counter"],
+        shot_type: ["shot_type:close_up"],
+        camera_movement: ["camera_movement:slow_push_in"],
+        lighting: ["lighting:soft_window_light"],
+        style: ["style:warm_lifestyle"],
+        motion: ["motion:product_reveal"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -42,6 +60,15 @@ export const useCaseOptions: OptionSet = {
         en: "travel city promotional video showing landmarks, street life, food details, and a sense of travel desire"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:space_environment"],
+        scene: ["scene:landmark_montage"],
+        shot_type: ["shot_type:establishing_wide"],
+        camera_movement: ["camera_movement:orbit_around"],
+        lighting: ["lighting:golden_hour"],
+        style: ["style:cinematic_realism"],
+        motion: ["motion:timelapse_hyperlapse"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -55,6 +82,15 @@ export const useCaseOptions: OptionSet = {
         en: "product showcase video emphasizing appearance, material details, key selling points, and commercial polish"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:hero_product"],
+        scene: ["scene:clean_studio_scene"],
+        shot_type: ["shot_type:medium_shot"],
+        camera_movement: ["camera_movement:orbit_around"],
+        lighting: ["lighting:studio_clean"],
+        style: ["style:premium_minimal"],
+        motion: ["motion:product_360_spin"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -68,6 +104,15 @@ export const useCaseOptions: OptionSet = {
         en: "RedNote-style shop visit video highlighting real experience, interior atmosphere, small discoveries, and shareability"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:human_customer"],
+        scene: ["scene:urban_street"],
+        shot_type: ["shot_type:pov_shot"],
+        camera_movement: ["camera_movement:handheld_tracking"],
+        lighting: ["lighting:soft_daylight"],
+        style: ["style:ugc_handheld"],
+        motion: ["motion:customer_experience"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -81,6 +126,15 @@ export const useCaseOptions: OptionSet = {
         en: "course enrollment promotional video emphasizing learning context, course value, target audience, and a clear reason to act"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:staff_expert"],
+        scene: ["scene:classroom_training"],
+        shot_type: ["shot_type:medium_shot"],
+        camera_movement: ["camera_movement:static_locked"],
+        lighting: ["lighting:studio_clean"],
+        style: ["style:documentary_real"],
+        motion: ["motion:step_by_step"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -94,6 +148,15 @@ export const useCaseOptions: OptionSet = {
         en: "product unboxing video highlighting packaging quality, product details, and first-impression reveal"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:hero_product"],
+        scene: ["scene:clean_studio_scene"],
+        shot_type: ["shot_type:top_down_flat_lay"],
+        camera_movement: ["camera_movement:static_locked"],
+        lighting: ["lighting:studio_clean"],
+        style: ["style:premium_minimal"],
+        motion: ["motion:unboxing_reveal"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -107,6 +170,15 @@ export const useCaseOptions: OptionSet = {
         en: "event recap video with fast-paced montage of live moments, candid BTS clips, and backstage stories"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:human_customer"],
+        scene: ["scene:bright_commercial_interior"],
+        shot_type: ["shot_type:medium_shot"],
+        camera_movement: ["camera_movement:handheld_tracking"],
+        lighting: ["lighting:bright_retail"],
+        style: ["style:documentary_real"],
+        motion: ["motion:customer_experience"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -120,6 +192,15 @@ export const useCaseOptions: OptionSet = {
         en: "tutorial demonstration video showing each step clearly, with focused framing on key actions"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:hero_product"],
+        scene: ["scene:clean_studio_scene"],
+        shot_type: ["shot_type:top_down_flat_lay"],
+        camera_movement: ["camera_movement:static_locked"],
+        lighting: ["lighting:studio_clean"],
+        style: ["style:clean_tech"],
+        motion: ["motion:step_by_step"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -133,6 +214,15 @@ export const useCaseOptions: OptionSet = {
         en: "brand image video communicating brand values through mood and emotion, with polished, evocative visuals"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:space_environment"],
+        scene: ["scene:exhibition_gallery_white"],
+        shot_type: ["shot_type:establishing_wide"],
+        camera_movement: ["camera_movement:slow_push_in"],
+        lighting: ["lighting:moody_low_key"],
+        style: ["style:luxury_editorial"],
+        motion: ["motion:three_beat_story"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -146,6 +236,15 @@ export const useCaseOptions: OptionSet = {
         en: "social media quick clip in vertical format, tight pacing, hooking attention in the first 3 seconds"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:person_model"],
+        scene: ["scene:urban_street"],
+        shot_type: ["shot_type:medium_shot"],
+        camera_movement: ["camera_movement:handheld_tracking"],
+        lighting: ["lighting:neon_contrast"],
+        style: ["style:trend_street_editorial"],
+        motion: ["motion:model_fashion_walk"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -156,6 +255,15 @@ export const useCaseOptions: OptionSet = {
       professionalTerms: ["livestream highlight", "shoppable clip", "host-driven"],
       promptFragment: { zh: "直播带货中的产品展示片段，以主播视角展示商品使用效果和卖点", en: "product showcase clip from a livestream selling session, from the host's perspective highlighting product features" },
       appliesTo: ["seedance", "generic_video"],
+      suggests: {
+        subject: ["subject:hero_product"],
+        scene: ["scene:bright_commercial_interior"],
+        shot_type: ["shot_type:close_up"],
+        camera_movement: ["camera_movement:static_locked"],
+        lighting: ["lighting:bright_retail"],
+        style: ["style:documentary_real"],
+        motion: ["motion:hands_demonstrate"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -166,6 +274,15 @@ export const useCaseOptions: OptionSet = {
       professionalTerms: ["property walkthrough", "architectural tour", "real estate visual"],
       promptFragment: { zh: "楼盘或室内空间的沉浸式展示，突出空间关系、采光和设计细节", en: "immersive tour of a property or interior space, emphasizing spatial flow, natural light, and design details" },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:architecture_interior"],
+        scene: ["scene:bright_commercial_interior"],
+        shot_type: ["shot_type:establishing_wide"],
+        camera_movement: ["camera_movement:smooth_pan"],
+        lighting: ["lighting:soft_daylight"],
+        style: ["style:premium_minimal"],
+        motion: ["motion:environment_comes_alive"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -176,6 +293,15 @@ export const useCaseOptions: OptionSet = {
       professionalTerms: ["corporate event", "gala highlight", "ceremony recap"],
       promptFragment: { zh: "企业年会、庆典或发布会的精彩集锦，突出品牌氛围、舞台效果和参与者互动", en: "highlight reel of a corporate annual event, celebration, or launch, capturing brand atmosphere, stage effects, and attendee interaction" },
       appliesTo: ["seedance", "generic_video"],
+      suggests: {
+        subject: ["subject:space_environment"],
+        scene: ["scene:bright_commercial_interior"],
+        shot_type: ["shot_type:establishing_wide"],
+        camera_movement: ["camera_movement:smooth_pan"],
+        lighting: ["lighting:bright_retail"],
+        style: ["style:cinematic_realism"],
+        motion: ["motion:environment_comes_alive"]
+      },
       riskHint: { zh: "", en: "" }
     },
     {
@@ -186,6 +312,15 @@ export const useCaseOptions: OptionSet = {
       professionalTerms: ["food montage", "menu showcase", "plating presentation"],
       promptFragment: { zh: "餐厅菜品展示视频，逐一呈现多道菜品的摆盘、色彩搭配和诱人质感", en: "restaurant menu showcase video presenting multiple dishes with attractive plating, color composition, and appetizing texture" },
       appliesTo: ["seedance", "generic_video", "veo3"],
+      suggests: {
+        subject: ["subject:food_drink"],
+        scene: ["scene:warm_cafe_counter"],
+        shot_type: ["shot_type:top_down_flat_lay"],
+        camera_movement: ["camera_movement:slow_push_in"],
+        lighting: ["lighting:soft_window_light"],
+        style: ["style:warm_lifestyle"],
+        motion: ["motion:product_reveal"]
+      },
       riskHint: { zh: "", en: "" }
     }
   ],
