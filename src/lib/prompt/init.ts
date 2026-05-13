@@ -13,6 +13,7 @@ import "./targets";
 import "./renderers/seedance.renderer";
 import "./renderers/generic-video.renderer";
 import "./renderers/veo3.renderer";
+import "./renderers/generic-image.renderer";
 
 // 4. Work types — register with question validation (checks optionSetId refs)
 import "./work-types/video-prompt.worktype";

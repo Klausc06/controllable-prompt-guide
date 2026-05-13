@@ -12,6 +12,7 @@ import type {
 // Side-effect imports: trigger registerAdapter() calls
 import "./renderers/seedance.renderer";
 import "./renderers/generic-video.renderer";
+import "./renderers/generic-image.renderer";
 
 export function renderPrompt(params: {
   workType: WorkTypeConfig;
