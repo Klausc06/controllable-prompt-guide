@@ -445,7 +445,7 @@ export function PromptGuide() {
         rawIntent: "",
         selections
       }),
-    [selections, targetToolId]
+    [selections, targetToolId, workType]
   );
 
   const jsonBrief = useMemo(() => JSON.stringify(rendered.brief, null, 2), [rendered.brief]);

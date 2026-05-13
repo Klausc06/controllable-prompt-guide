@@ -179,7 +179,8 @@ export function promptGuideReducer(
     }
 
     case "WORK_TYPE_CHANGED": {
-      const newWorkType = resolveWorkType(action.to);
+      // Validate the work type exists (throws on unknown IDs)
+      resolveWorkType(action.to);
       const firstCompatible = getAllTargets().find(
         (t) => t.supportedWorkTypes.includes(action.to)
       );
