@@ -28,7 +28,8 @@ describe("PromptGuide", () => {
     fireEvent.click(screen.getByText("旅游城市宣传片"));
     fireEvent.click(screen.getByText("通用视频模型"));
 
-    expect(screen.getAllByText(/目标：旅游城市宣传片/).length).toBeGreaterThan(0);
+    // Multi-mode: both default gym_opening and newly selected travel promo appear in brief
+    expect(screen.getAllByText(/旅游城市宣传片/).length).toBeGreaterThan(0);
     expect(screen.getAllByText("线下店铺/门店").length).toBeGreaterThan(0);
   });
 

@@ -18,10 +18,11 @@ export const videoPromptWorkType: WorkTypeConfig = {
         zh: "先选作品目标，系统会自动把粗糙意图写进 prompt。",
         en: "Choose the use case first; the system turns it into the prompt intent."
       },
-      mode: "single",
+      mode: "multi",
       level: "core",
       required: true,
-      optionSetId: "use_case"
+      optionSetId: "use_case",
+      minSelections: 1
     },
     {
       id: "subject",
@@ -31,10 +32,11 @@ export const videoPromptWorkType: WorkTypeConfig = {
         zh: "不用自己描述主体，选最接近的类别即可。",
         en: "No writing needed; choose the closest subject type."
       },
-      mode: "single",
+      mode: "multi",
       level: "core",
       required: true,
-      optionSetId: "subject"
+      optionSetId: "subject",
+      minSelections: 1
     },
     {
       id: "scene",
@@ -44,10 +46,11 @@ export const videoPromptWorkType: WorkTypeConfig = {
         zh: "选择一个能承载这个视频的典型场景。",
         en: "Choose a typical scene that supports this video."
       },
-      mode: "single",
+      mode: "multi",
       level: "core",
       required: true,
-      optionSetId: "scene"
+      optionSetId: "scene",
+      minSelections: 1
     },
     {
       id: "motion",
@@ -57,10 +60,11 @@ export const videoPromptWorkType: WorkTypeConfig = {
         zh: "选一个最关键的动作，避免一次塞太多。",
         en: "Choose the key action and avoid overloading the clip."
       },
-      mode: "single",
+      mode: "multi",
       level: "core",
       required: true,
-      optionSetId: "motion"
+      optionSetId: "motion",
+      minSelections: 1
     },
     {
       id: "shot_type",
@@ -70,10 +74,11 @@ export const videoPromptWorkType: WorkTypeConfig = {
         zh: "决定画面包含多少内容：远景看环境，特写看细节。",
         en: "How much does the shot include — wide for context, close-up for detail."
       },
-      mode: "single",
+      mode: "multi",
       level: "core",
       required: true,
-      optionSetId: "shot_type"
+      optionSetId: "shot_type",
+      minSelections: 1
     },
     {
       id: "camera_movement",
@@ -83,10 +88,11 @@ export const videoPromptWorkType: WorkTypeConfig = {
         zh: "不动更稳，推进更有情绪，环绕更有展示感。（Seedance 要求镜头构图和运动分开设置以避免画面抖动）",
         en: "Static is stable, push-in builds emotion, orbit showcases. (Seedance requires separating shot type from camera movement to avoid jitter.)"
       },
-      mode: "single",
+      mode: "multi",
       level: "core",
       required: true,
-      optionSetId: "camera_movement"
+      optionSetId: "camera_movement",
+      minSelections: 1
     },
     {
       id: "lighting",
@@ -96,10 +102,11 @@ export const videoPromptWorkType: WorkTypeConfig = {
         zh: "光线会直接影响专业感和情绪。",
         en: "Lighting strongly affects polish and emotion."
       },
-      mode: "single",
+      mode: "multi",
       level: "core",
       required: true,
-      optionSetId: "lighting"
+      optionSetId: "lighting",
+      minSelections: 1
     },
     {
       id: "style",
@@ -138,7 +145,7 @@ export const videoPromptWorkType: WorkTypeConfig = {
         zh: "如果目标工具不支持声音，这部分也可以作为后期说明。",
         en: "If the target tool does not support audio, this becomes post-production guidance."
       },
-      mode: "single",
+      mode: "multi",
       level: "advanced",
       required: false,
       optionSetId: "audio"
@@ -165,7 +172,7 @@ export const videoPromptWorkType: WorkTypeConfig = {
         zh: "生成模型写字不稳定，先选安全的文字策略。",
         en: "Generated text is unstable, so choose a safer text strategy."
       },
-      mode: "single",
+      mode: "multi",
       level: "advanced",
       required: false,
       optionSetId: "text_handling"

@@ -79,7 +79,7 @@ describe("promptGuideReducer", () => {
   });
 
   describe("OPTION_SELECTED", () => {
-    it("replaces selection on single-mode question", () => {
+    it("adds to multi-mode question (subject now multi)", () => {
       const state = makeState();
       const action: PromptGuideAction = {
         type: "OPTION_SELECTED",
@@ -87,7 +87,7 @@ describe("promptGuideReducer", () => {
         optionId: "person"
       };
       const next = promptGuideReducer(state, action);
-      expect(next.selections.subject).toBe("person");
+      expect(next.selections.subject).toEqual(["subject:local_storefront", "person"]);
     });
 
     it("adds to multi-mode question, enforcing maxSelections cap", () => {
