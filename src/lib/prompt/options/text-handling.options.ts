@@ -13,7 +13,8 @@ export const textHandlingOptions: OptionSet = {
       professionalTerms: ["post-production typography", "avoid text artifacts", "clean footage"],
       promptFragment: { zh: "画面中不生成文字，所有标题、价格和活动信息都建议后期添加", en: "do not generate on-screen text; add titles, prices, and campaign information in post-production" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "部分模型可能在纯画面场景中仍生成意外文字。生成后检查画面是否完全干净，可考虑后期裁剪意外文字区域。", en: "Some models may still generate unexpected text in text-free scenes. Check if the frame is fully clean after generation; consider cropping accidental text areas in post." }
+      riskHint: { zh: "部分模型可能在纯画面场景中仍生成意外文字。生成后检查画面是否完全干净，可考虑后期裁剪意外文字区域。", en: "Some models may still generate unexpected text in text-free scenes. Check if the frame is fully clean after generation; consider cropping accidental text areas in post." },
+      suppresses: ["text_handling:no_text_pure_visual"]
     },
     {
       id: "text_handling:short_title_only",
@@ -98,7 +99,8 @@ export const textHandlingOptions: OptionSet = {
         en: "no text elements appear in the frame; rely entirely on composition, lighting, and motion to convey the message"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "视频模型有时仍会在画面中生成意料之外的文字。如出现，建议后期裁切或遮罩处理。", en: "Video models may still hallucinate unexpected text in the frame. If it occurs, crop or mask in post-production." }
+      riskHint: { zh: "视频模型有时仍会在画面中生成意料之外的文字。如出现，建议后期裁切或遮罩处理。", en: "Video models may still hallucinate unexpected text in the frame. If it occurs, crop or mask in post-production." },
+      suppresses: ["text_handling:no_text"]
     },
     {
       id: "text_handling:animated_text_reveal",

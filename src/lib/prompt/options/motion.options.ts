@@ -185,7 +185,8 @@ export const motionOptions: OptionSet = {
       professionalTerms: ["time-lapse", "hyperlapse", "accelerated motion"],
       promptFragment: { zh: "延时摄影效果，时间加速流动，适合展示过程变化、光影流转或人流车流", en: "time-lapse effect with accelerated time flow, suitable for showing process changes, light transitions, or crowd/traffic movement" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "延时效果在视频模型中可能出现帧间不一致，导致画面闪烁或跳帧。建议生成后检查流畅度。", en: "Time-lapse effects may have frame-to-frame inconsistency in video models, causing flicker or skipped frames. Check smoothness after generation." }
+      riskHint: { zh: "延时效果在视频模型中可能出现帧间不一致，导致画面闪烁或跳帧。建议生成后检查流畅度。", en: "Time-lapse effects may have frame-to-frame inconsistency in video models, causing flicker or skipped frames. Check smoothness after generation." },
+      suppresses: ["motion:slow_motion_dramatic"]
     },
     {
       id: "motion:slow_motion_dramatic",
@@ -195,7 +196,8 @@ export const motionOptions: OptionSet = {
       professionalTerms: ["slow motion", "high frame rate", "dramatic speed ramp"],
       promptFragment: { zh: "慢动作效果，将关键动作放慢呈现，增强画面质感和戏剧张力", en: "slow motion effect, presenting key actions at reduced speed for enhanced visual texture and dramatic impact" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["motion:timelapse_hyperlapse"]
     }
   ]
 };

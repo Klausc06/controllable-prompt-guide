@@ -29,7 +29,8 @@ export const lightingOptions: OptionSet = {
         en: "golden hour warm lighting with soft backlight and long gentle shadows"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["lighting:golden_hour_warm"]
     },
     {
       id: "lighting:neon_contrast",
@@ -42,7 +43,8 @@ export const lightingOptions: OptionSet = {
         en: "high-contrast neon lighting with colored rim light and detailed shadows"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["lighting:neon_colored_lights"]
     },
     {
       id: "lighting:studio_clean",
@@ -68,7 +70,8 @@ export const lightingOptions: OptionSet = {
         en: "moody low-key lighting with clean shadows, restrained highlights, and a premium dramatic feel"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["lighting:bright_retail"]
     },
     {
       id: "lighting:bright_retail",
@@ -81,7 +84,8 @@ export const lightingOptions: OptionSet = {
         en: "bright retail-space lighting with clear subject visibility and a credible service environment"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["lighting:moody_low_key"]
     },
     {
       id: "lighting:soft_window_light",
@@ -107,7 +111,8 @@ export const lightingOptions: OptionSet = {
         en: "golden hour warm light bathes the scene evenly with an orange-yellow tint, creating a warm romantic visual atmosphere"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["lighting:golden_hour"]
     },
     {
       id: "lighting:neon_colored_lights",
@@ -120,7 +125,8 @@ export const lightingOptions: OptionSet = {
         en: "multicolored neon lights illuminate the scene with interwoven high-saturation hues and atmospheric shadows"
       },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["lighting:neon_contrast"]
     },
     {
       id: "lighting:backlight_silhouette",

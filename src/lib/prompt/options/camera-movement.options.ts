@@ -13,7 +13,23 @@ export const cameraMovementOptions: OptionSet = {
       professionalTerms: ["static camera", "locked-off", "tripod shot"],
       promptFragment: { zh: "镜头固定不动，画面完全稳定", en: "a static locked-off shot with zero camera movement" },
       appliesTo: ["seedance", "generic_video"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: [
+        "camera_movement:slow_push_in",
+        "camera_movement:slow_pull_out",
+        "camera_movement:handheld_tracking",
+        "camera_movement:smooth_pan",
+        "camera_movement:tilt_up_down",
+        "camera_movement:orbit_around",
+        "camera_movement:pedestal_up_down",
+        "camera_movement:zoom_in",
+        "camera_movement:zoom_out",
+        "camera_movement:whip_pan",
+        "camera_movement:crane_up",
+        "camera_movement:rack_focus",
+        "camera_movement:steadicam_float",
+        "camera_movement:tracking_dolly"
+      ]
     },
     {
       id: "camera_movement:slow_push_in",
@@ -23,7 +39,8 @@ export const cameraMovementOptions: OptionSet = {
       professionalTerms: ["slow push-in", "dolly in", "gradual approach"],
       promptFragment: { zh: "镜头缓慢向主体推进，逐渐加强视觉重点和情绪", en: "the camera slowly pushes in toward the subject, gradually intensifying focus and emotion" },
       appliesTo: ["seedance", "generic_video"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["camera_movement:slow_pull_out", "camera_movement:static_locked"]
     },
     {
       id: "camera_movement:slow_pull_out",
@@ -33,7 +50,8 @@ export const cameraMovementOptions: OptionSet = {
       professionalTerms: ["pull-out", "dolly out", "context reveal"],
       promptFragment: { zh: "镜头缓慢拉远，从主体逐渐揭示更大的环境和空间关系", en: "the camera slowly pulls out, gradually revealing the larger environment and spatial context" },
       appliesTo: ["seedance", "generic_video"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["camera_movement:slow_push_in", "camera_movement:static_locked"]
     },
     {
       id: "camera_movement:handheld_tracking",
@@ -93,7 +111,8 @@ export const cameraMovementOptions: OptionSet = {
       professionalTerms: ["zoom in", "focal length push", "magnification"],
       promptFragment: { zh: "镜头向主体推近，景别从宽变紧，引导观众注意力聚焦", en: "zoom in toward the subject, tightening the frame to focus viewer attention" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["camera_movement:zoom_out"]
     },
     {
       id: "camera_movement:zoom_out",
@@ -103,7 +122,8 @@ export const cameraMovementOptions: OptionSet = {
       professionalTerms: ["zoom out", "reveal shot", "contextual pull"],
       promptFragment: { zh: "镜头从主体拉远，逐步展现更广阔的环境和场景关系", en: "zoom out from the subject, gradually revealing a wider environment and scene context" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      suppresses: ["camera_movement:zoom_in"]
     },
     {
       id: "camera_movement:whip_pan",
