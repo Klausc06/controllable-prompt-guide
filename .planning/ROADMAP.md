@@ -33,11 +33,11 @@ Plans:
 ### Phase 12: Image Quality & Smart Defaults
 **Goal**: Extend heuristics+suggests; negative prompt; 6+ image rules
 **Requirements**: QUAL-01..04
-**Plans:** 3 plans
+**Plans:** 2/3 plans executed
 
 Plans:
-- [ ] 12-01-PLAN.md — Make evaluatePromptQuality() work-type-aware; add 7 image heuristic rules (6 conflict + 1 completeness)
-- [ ] 12-02-PLAN.md — Fix suggests keys + enrich suggests on 18 image use cases + CI validation
+- [x] 12-01-PLAN.md — Make evaluatePromptQuality() work-type-aware; add 7 image heuristic rules (6 conflict + 1 completeness)
+- [x] 12-02-PLAN.md — Fix suggests keys + enrich suggests on 18 image use cases + CI validation
 - [ ] 12-03-PLAN.md — Three-tier negative prompt injection for generic_image target
 
 ### Phase 13: UI Integration & Polish
