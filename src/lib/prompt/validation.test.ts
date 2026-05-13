@@ -465,3 +465,100 @@ describe("riskHint completeness (D-03)", () => {
     expect(missing).toEqual([]);
   });
 });
+
+describe("quality heuristics — new rules (DIFF-02)", () => {
+  it("warns when no subject is selected", () => {
+    const selections: PromptSelections = { ...completeSelections, subject: "" };
+    const warnings = evaluatePromptQuality(selections, "seedance");
+    const zh = warnings.map(w => w.zh).join("");
+    expect(zh).toContain("未选择主体");
+    expect(zh).toContain("主体是视频提示词最关键的维度");
+  });
+
+  it("does not warn when subject IS selected", () => {
+    const warnings = evaluatePromptQuality(completeSelections, "seedance");
+    const zh = warnings.map(w => w.zh).join("");
+    expect(zh).not.toContain("未选择主体");
+  });
+
+  it("warns when static_locked coexists with another camera movement for Seedance", () => {
+    const selections: PromptSelections = {
+      ...completeSelections,
+      camera_movement: ["camera_movement:static_locked", "camera_movement:slow_push_in"]
+    };
+    const warnings = evaluatePromptQuality(selections, "seedance");
+    const zh = warnings.map(w => w.zh).join("");
+    expect(zh).toContain("固定不动");
+    expect(zh).toContain("混合使用");
+  });
+
+  it("does NOT warn when only static_locked is selected (no conflict)", () => {
+    const selections: PromptSelections = {
+      ...completeSelections,
+      camera_movement: "camera_movement:static_locked"
+    };
+    const warnings = evaluatePromptQuality(selections, "seedance");
+    const zh = warnings.map(w => w.zh).join("");
+    expect(zh).not.toContain("固定不动");
+  });
+
+  it("does NOT warn when two non-static movements are selected (no static)", () => {
+    const selections: PromptSelections = {
+      ...completeSelections,
+      camera_movement: ["camera_movement:slow_push_in", "camera_movement:orbit_around"]
+    };
+    const warnings = evaluatePromptQuality(selections, "seedance");
+    const zh = warnings.map(w => w.zh).join("");
+    expect(zh).not.toContain("固定不动");
+  });
+
+  it("does NOT trigger static+motion warning for non-Seedance targets", () => {
+    const selections: PromptSelections = {
+      ...completeSelections,
+      camera_movement: ["camera_movement:static_locked", "camera_movement:slow_push_in"]
+    };
+    const warnings = evaluatePromptQuality(selections, "generic_video");
+    const zh = warnings.map(w => w.zh).join("");
+    expect(zh).not.toContain("固定不动");
+  });
+});
+
+describe("suggests field validation (DIFF-03)", () => {
+  const allSets = getAllOptionSets();
+  const allQuestionIds = new Set(
+    resolveWorkType("video_prompt").questions.map(q => q.id)
+  );
+
+  it("all suggests keys reference valid question IDs", () => {
+    const invalid: string[] = [];
+    for (const set of allSets) {
+      for (const opt of set.options) {
+        if (!opt.suggests) continue;
+        for (const key of Object.keys(opt.suggests)) {
+          if (!allQuestionIds.has(key)) {
+            invalid.push(`${opt.id}: suggests key "${key}" is not a valid question ID`);
+          }
+        }
+      }
+    }
+    expect(invalid).toEqual([]);
+  });
+
+  it("all suggests values are non-empty string arrays", () => {
+    const invalid: string[] = [];
+    for (const set of allSets) {
+      for (const opt of set.options) {
+        if (!opt.suggests) continue;
+        for (const [key, ids] of Object.entries(opt.suggests)) {
+          if (!Array.isArray(ids) || ids.length === 0) {
+            invalid.push(`${opt.id}: suggests["${key}"] is empty or not an array`);
+          }
+          if (Array.isArray(ids) && ids.some(id => typeof id !== "string")) {
+            invalid.push(`${opt.id}: suggests["${key}"] contains non-string values`);
+          }
+        }
+      }
+    }
+    expect(invalid).toEqual([]);
+  });
+});
