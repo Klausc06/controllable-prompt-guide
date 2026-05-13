@@ -23,6 +23,24 @@ export function evaluatePromptQuality(
     });
   }
 
+  // 5. No subject specified — subject is the most critical dimension per all sources
+  // Sources: Apiyi Seedance 2.0 (Subject is Step 1 of 6-step formula);
+  // Veo 3 Prompt Guide 2026 (specificity imperative: "a golden retriever running" vs "a dog");
+  // Seedance TV ("one primary subject", warns against "crowding with equally important subjects");
+  // atlabs.ai (dedicated [Characters] field, "Seedance 2.0 rewards specificity");
+  // Community practice: all 2000+ awesome-seedance-2-prompts include explicit subject
+  const subject = selections["subject"];
+  const hasSubject =
+    typeof subject === "string"
+      ? subject.trim().length > 0
+      : Array.isArray(subject) && subject.length > 0;
+  if (!hasSubject) {
+    warnings.push({
+      zh: "未选择主体 — 主体是视频提示词最关键的维度，建议添加主体选择以帮助模型理解画面焦点。",
+      en: "No subject specified — subject is the most critical dimension for any video prompt. Consider adding a subject choice to help the model understand visual focus."
+    });
+  }
+
   // 2. Seedance-specific: check for quality-killing keywords
   if (targetToolId === SEEDANCE_ID) {
     const selectionTexts = Object.values(selections)
@@ -49,6 +67,30 @@ export function evaluatePromptQuality(
       warnings.push({
         zh: "声音未指定 — 建议至少选择环境音或后期配音。",
         en: "Audio not specified — consider selecting ambient audio or post-production voiceover."
+      });
+    }
+
+    // 6. Static camera + any movement conflict
+    // Sources: Apiyi Seedance 2.0 (Rule 1: "Use only one primary camera instruction",
+    //   multiple conflicting instructions "will confuse the model, leading to jittery or
+    //   incoherent footage." Static/locked is one of 8 supported camera types);
+    //   Seedance TV (static/locked for "atmosphere, contemplation" as distinct from
+    //   dynamic movements like "slow dolly forward," "orbit around subject");
+    //   atlabs.ai (warns against "complex simultaneous movements");
+    //   Existing data: camera_movement:static_locked.suppresses already encodes this incompatibility
+    const cameraMovement = selections["camera_movement"];
+    const movementIds =
+      typeof cameraMovement === "string"
+        ? [cameraMovement].filter(Boolean)
+        : Array.isArray(cameraMovement) ? cameraMovement : [];
+    const hasStatic = movementIds.includes("camera_movement:static_locked");
+    const hasOtherMovement = movementIds.some(
+      (id) => id !== "camera_movement:static_locked"
+    );
+    if (hasStatic && hasOtherMovement) {
+      warnings.push({
+        zh: "镜头同时选择了「固定不动」和其他运镜方式 — Seedance 官方建议每次只使用一种主要运镜指令，混合使用可能导致画面抖动或结果不一致。",
+        en: "Both static/locked camera and other movement types selected — Seedance officially recommends only one primary camera instruction per prompt. Combining them may cause jitter or inconsistent results."
       });
     }
   }
