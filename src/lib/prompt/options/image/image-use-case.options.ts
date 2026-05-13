@@ -56,6 +56,7 @@ export const imageUseCaseOptions: OptionSet = {
     }
   ],
   options: [
+    // ── 1. poster ──
     {
       id: "image_use_case:poster",
       version: "0.1.0",
@@ -68,13 +69,17 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:hero_product", "image_subject:single_person"],
-        image_composition: ["image_composition:centered", "image_composition:symmetrical"],
-        image_aspect_ratio: ["image_aspect_ratio:portrait_2_3"],
-        image_art_style: ["image_art_style:digital_painting", "image_art_style:vector_flat"]
+        subject: ["image_subject:hero_product", "image_subject:single_person"],
+        composition: ["image_composition:centered", "image_composition:symmetrical"],
+        lighting: ["image_lighting:cinematic", "image_lighting:hard_dramatic"],
+        art_style: ["image_art_style:digital_painting", "image_art_style:vector_flat", "image_art_style:photorealistic"],
+        color_palette: ["image_color_palette:vibrant", "image_color_palette:complementary"],
+        mood: ["image_mood:epic_grand", "image_mood:cool_sleek"],
+        aspect_ratio: ["image_aspect_ratio:portrait_2_3"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 2. cover_image ──
     {
       id: "image_use_case:cover_image",
       version: "0.1.0",
@@ -87,12 +92,15 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:hero_product", "image_subject:single_person"],
-        image_composition: ["image_composition:centered", "image_composition:negative_space"],
-        image_aspect_ratio: ["image_aspect_ratio:landscape_16_9"]
+        subject: ["image_subject:hero_product", "image_subject:single_person"],
+        composition: ["image_composition:centered", "image_composition:negative_space"],
+        color_palette: ["image_color_palette:vibrant", "image_color_palette:complementary"],
+        mood: ["image_mood:epic_grand", "image_mood:mysterious"],
+        aspect_ratio: ["image_aspect_ratio:landscape_16_9"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 3. product_photo ──
     {
       id: "image_use_case:product_photo",
       version: "0.1.0",
@@ -105,13 +113,17 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:hero_product"],
-        image_scene: ["image_scene:white_bg", "image_scene:studio_env"],
-        image_lighting: ["image_lighting:studio_clean"],
-        image_composition: ["image_composition:centered"]
+        subject: ["image_subject:hero_product"],
+        scene: ["image_scene:white_bg", "image_scene:studio_env"],
+        composition: ["image_composition:centered"],
+        lighting: ["image_lighting:studio_clean"],
+        art_style: ["image_art_style:product_photography", "image_art_style:minimalist"],
+        color_palette: ["image_color_palette:muted", "image_color_palette:monochrome"],
+        aspect_ratio: ["image_aspect_ratio:square_1_1"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 4. avatar ──
     {
       id: "image_use_case:avatar",
       version: "0.1.0",
@@ -124,13 +136,18 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:single_person"],
-        image_scene: ["image_scene:solid_color"],
-        image_composition: ["image_composition:centered", "image_composition:fill_frame"],
-        image_aspect_ratio: ["image_aspect_ratio:square_1_1"]
+        subject: ["image_subject:single_person"],
+        scene: ["image_scene:solid_color"],
+        composition: ["image_composition:centered", "image_composition:fill_frame"],
+        lighting: ["image_lighting:window_soft", "image_lighting:rembrandt"],
+        art_style: ["image_art_style:portrait_photography"],
+        color_palette: ["image_color_palette:monochrome", "image_color_palette:muted"],
+        mood: ["image_mood:warm_cozy"],
+        aspect_ratio: ["image_aspect_ratio:square_1_1"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 5. wallpaper ──
     {
       id: "image_use_case:wallpaper",
       version: "0.1.0",
@@ -143,13 +160,18 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:landscape_scene"],
-        image_scene: ["image_scene:natural_landscape", "image_scene:sky_cloud"],
-        image_color_palette: ["image_color_palette:pastel", "image_color_palette:muted"],
-        image_mood: ["image_mood:serene", "image_mood:hopeful_bright"]
+        subject: ["image_subject:landscape_scene"],
+        scene: ["image_scene:natural_landscape", "image_scene:sky_cloud"],
+        composition: ["image_composition:rule_of_thirds"],
+        lighting: ["image_lighting:golden_hour", "image_lighting:blue_hour"],
+        art_style: ["image_art_style:minimalist", "image_art_style:digital_painting"],
+        color_palette: ["image_color_palette:pastel", "image_color_palette:muted"],
+        mood: ["image_mood:serene", "image_mood:hopeful_bright"],
+        aspect_ratio: ["image_aspect_ratio:landscape_16_9"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 6. illustration ──
     {
       id: "image_use_case:illustration",
       version: "0.1.0",
@@ -162,12 +184,15 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_art_style: ["image_art_style:digital_painting", "image_art_style:watercolor", "image_art_style:vector_flat"],
-        image_subject: ["image_subject:character_design", "image_subject:geometric_abstract"],
-        image_color_palette: ["image_color_palette:vibrant", "image_color_palette:pastel"]
+        subject: ["image_subject:character_design", "image_subject:geometric_abstract"],
+        art_style: ["image_art_style:digital_painting", "image_art_style:watercolor", "image_art_style:vector_flat"],
+        color_palette: ["image_color_palette:vibrant", "image_color_palette:pastel"],
+        mood: ["image_mood:playful_cute", "image_mood:serene"],
+        detail_level: ["image_detail_level:simplified", "image_detail_level:moderate"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 7. logo_icon ──
     {
       id: "image_use_case:logo_icon",
       version: "0.1.0",
@@ -180,12 +205,16 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_composition: ["image_composition:centered", "image_composition:negative_space"],
-        image_color_palette: ["image_color_palette:monochrome", "image_color_palette:complementary"],
-        image_detail_level: ["image_detail_level:simplified", "image_detail_level:minimalist"]
+        composition: ["image_composition:centered", "image_composition:negative_space"],
+        art_style: ["image_art_style:minimalist", "image_art_style:vector_flat"],
+        color_palette: ["image_color_palette:monochrome", "image_color_palette:complementary"],
+        mood: ["image_mood:cool_sleek"],
+        aspect_ratio: ["image_aspect_ratio:square_1_1"],
+        detail_level: ["image_detail_level:simplified", "image_detail_level:minimalist"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 8. banner ──
     {
       id: "image_use_case:banner",
       version: "0.1.0",
@@ -198,12 +227,15 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_aspect_ratio: ["image_aspect_ratio:landscape_16_9", "image_aspect_ratio:ultra_wide_2_1"],
-        image_composition: ["image_composition:negative_space", "image_composition:centered"],
-        image_subject: ["image_subject:hero_product"]
+        subject: ["image_subject:hero_product", "image_subject:single_person"],
+        composition: ["image_composition:negative_space", "image_composition:centered"],
+        aspect_ratio: ["image_aspect_ratio:landscape_16_9", "image_aspect_ratio:ultra_wide_2_1"],
+        color_palette: ["image_color_palette:vibrant", "image_color_palette:complementary"],
+        mood: ["image_mood:epic_grand", "image_mood:cool_sleek"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 9. social_media_post ──
     {
       id: "image_use_case:social_media_post",
       version: "0.1.0",
@@ -216,12 +248,17 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_aspect_ratio: ["image_aspect_ratio:square_1_1", "image_aspect_ratio:portrait_4_5"],
-        image_subject: ["image_subject:single_person", "image_subject:food_beverage"],
-        image_color_palette: ["image_color_palette:vibrant", "image_color_palette:warm"]
+        subject: ["image_subject:single_person", "image_subject:food_beverage"],
+        composition: ["image_composition:fill_frame"],
+        lighting: ["image_lighting:window_soft"],
+        art_style: ["image_art_style:fashion_photography", "image_art_style:film_photography"],
+        color_palette: ["image_color_palette:vibrant", "image_color_palette:warm"],
+        mood: ["image_mood:joyful_energetic", "image_mood:warm_cozy"],
+        aspect_ratio: ["image_aspect_ratio:square_1_1", "image_aspect_ratio:portrait_4_5"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 10. thumbnail ──
     {
       id: "image_use_case:thumbnail",
       version: "0.1.0",
@@ -234,12 +271,17 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:single_person"],
-        image_composition: ["image_composition:centered", "image_composition:fill_frame"],
-        image_aspect_ratio: ["image_aspect_ratio:landscape_16_9"]
+        subject: ["image_subject:single_person", "image_subject:hero_product"],
+        composition: ["image_composition:centered", "image_composition:fill_frame"],
+        lighting: ["image_lighting:high_key", "image_lighting:hard_dramatic"],
+        art_style: ["image_art_style:photorealistic", "image_art_style:digital_painting"],
+        color_palette: ["image_color_palette:vibrant", "image_color_palette:complementary"],
+        mood: ["image_mood:epic_grand", "image_mood:joyful_energetic"],
+        aspect_ratio: ["image_aspect_ratio:landscape_16_9"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 11. ecommerce_main ──
     {
       id: "image_use_case:ecommerce_main",
       version: "0.1.0",
@@ -252,13 +294,18 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:hero_product"],
-        image_scene: ["image_scene:white_bg"],
-        image_lighting: ["image_lighting:studio_clean"],
-        image_aspect_ratio: ["image_aspect_ratio:square_1_1"]
+        subject: ["image_subject:hero_product"],
+        scene: ["image_scene:white_bg"],
+        composition: ["image_composition:centered"],
+        lighting: ["image_lighting:studio_clean"],
+        art_style: ["image_art_style:product_photography"],
+        color_palette: ["image_color_palette:monochrome", "image_color_palette:muted"],
+        mood: ["image_mood:cool_sleek"],
+        aspect_ratio: ["image_aspect_ratio:square_1_1"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 12. greeting_card ──
     {
       id: "image_use_case:greeting_card",
       version: "0.1.0",
@@ -271,12 +318,15 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_color_palette: ["image_color_palette:warm", "image_color_palette:pastel"],
-        image_mood: ["image_mood:warm_cozy", "image_mood:joyful_energetic"],
-        image_art_style: ["image_art_style:watercolor", "image_art_style:digital_painting"]
+        composition: ["image_composition:centered", "image_composition:symmetrical"],
+        lighting: ["image_lighting:golden_hour", "image_lighting:soft_dreamy"],
+        art_style: ["image_art_style:watercolor", "image_art_style:digital_painting"],
+        color_palette: ["image_color_palette:warm", "image_color_palette:pastel"],
+        mood: ["image_mood:warm_cozy", "image_mood:joyful_energetic"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 13. presentation_image ──
     {
       id: "image_use_case:presentation_image",
       version: "0.1.0",
@@ -289,12 +339,17 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_composition: ["image_composition:negative_space", "image_composition:centered"],
-        image_color_palette: ["image_color_palette:sophisticated_gray", "image_color_palette:cool"],
-        image_detail_level: ["image_detail_level:simplified", "image_detail_level:moderate"]
+        composition: ["image_composition:negative_space", "image_composition:centered"],
+        lighting: ["image_lighting:studio_clean"],
+        art_style: ["image_art_style:minimalist", "image_art_style:vector_flat"],
+        color_palette: ["image_color_palette:sophisticated_gray", "image_color_palette:cool"],
+        mood: ["image_mood:cool_sleek"],
+        aspect_ratio: ["image_aspect_ratio:landscape_16_9"],
+        detail_level: ["image_detail_level:simplified", "image_detail_level:moderate"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 14. article_hero ──
     {
       id: "image_use_case:article_hero",
       version: "0.1.0",
@@ -307,12 +362,17 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:geometric_abstract", "image_subject:landscape_scene"],
-        image_composition: ["image_composition:rule_of_thirds", "image_composition:negative_space"],
-        image_aspect_ratio: ["image_aspect_ratio:landscape_16_9"]
+        subject: ["image_subject:geometric_abstract", "image_subject:landscape_scene"],
+        composition: ["image_composition:rule_of_thirds", "image_composition:negative_space"],
+        lighting: ["image_lighting:cinematic", "image_lighting:golden_hour"],
+        art_style: ["image_art_style:digital_painting", "image_art_style:photorealistic"],
+        color_palette: ["image_color_palette:sophisticated_gray", "image_color_palette:cool"],
+        mood: ["image_mood:epic_grand", "image_mood:mysterious"],
+        aspect_ratio: ["image_aspect_ratio:landscape_16_9"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 15. packaging ──
     {
       id: "image_use_case:packaging",
       version: "0.1.0",
@@ -325,12 +385,18 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:hero_product"],
-        image_composition: ["image_composition:centered", "image_composition:flat_lay"],
-        image_aspect_ratio: ["image_aspect_ratio:square_1_1", "image_aspect_ratio:portrait_3_4"]
+        subject: ["image_subject:hero_product"],
+        composition: ["image_composition:centered", "image_composition:flat_lay"],
+        lighting: ["image_lighting:studio_clean", "image_lighting:soft_dreamy"],
+        art_style: ["image_art_style:product_photography", "image_art_style:minimalist"],
+        color_palette: ["image_color_palette:muted", "image_color_palette:pastel"],
+        mood: ["image_mood:cool_sleek"],
+        aspect_ratio: ["image_aspect_ratio:square_1_1", "image_aspect_ratio:portrait_3_4"],
+        detail_level: ["image_detail_level:high_detail"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 16. menu ──
     {
       id: "image_use_case:menu",
       version: "0.1.0",
@@ -343,12 +409,18 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_subject: ["image_subject:food_beverage", "image_subject:plated_dish"],
-        image_lighting: ["image_lighting:soft_dreamy", "image_lighting:warm_lamp"],
-        image_scene: ["image_scene:indoor_setting"]
+        subject: ["image_subject:food_beverage", "image_subject:plated_dish"],
+        scene: ["image_scene:indoor_setting"],
+        composition: ["image_composition:centered", "image_composition:flat_lay"],
+        lighting: ["image_lighting:soft_dreamy", "image_lighting:warm_lamp"],
+        art_style: ["image_art_style:food_photography"],
+        color_palette: ["image_color_palette:warm", "image_color_palette:vibrant"],
+        mood: ["image_mood:warm_cozy", "image_mood:joyful_energetic"],
+        perspective: ["image_perspective:top_down"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 17. invitation ──
     {
       id: "image_use_case:invitation",
       version: "0.1.0",
@@ -361,12 +433,15 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_color_palette: ["image_color_palette:jewel_tones", "image_color_palette:pastel"],
-        image_art_style: ["image_art_style:minimalist", "image_art_style:art_deco"],
-        image_composition: ["image_composition:centered", "image_composition:symmetrical"]
+        composition: ["image_composition:centered", "image_composition:symmetrical"],
+        lighting: ["image_lighting:soft_dreamy", "image_lighting:candlelight"],
+        art_style: ["image_art_style:art_deco", "image_art_style:minimalist", "image_art_style:watercolor"],
+        color_palette: ["image_color_palette:jewel_tones", "image_color_palette:pastel"],
+        mood: ["image_mood:luxurious_premium", "image_mood:warm_cozy"]
       },
       riskHint: { zh: "", en: "" }
     },
+    // ── 18. print_material ──
     {
       id: "image_use_case:print_material",
       version: "0.1.0",
@@ -379,9 +454,14 @@ export const imageUseCaseOptions: OptionSet = {
       },
       appliesTo: ["generic_image"],
       suggests: {
-        image_detail_level: ["image_detail_level:hyper_detailed", "image_detail_level:high_detail"],
-        image_aspect_ratio: ["image_aspect_ratio:portrait_3_4", "image_aspect_ratio:landscape_4_3"],
-        image_color_palette: ["image_color_palette:sophisticated_gray", "image_color_palette:muted"]
+        subject: ["image_subject:hero_product"],
+        composition: ["image_composition:centered"],
+        lighting: ["image_lighting:studio_clean"],
+        art_style: ["image_art_style:minimalist", "image_art_style:photorealistic"],
+        color_palette: ["image_color_palette:sophisticated_gray", "image_color_palette:muted"],
+        mood: ["image_mood:cool_sleek"],
+        aspect_ratio: ["image_aspect_ratio:portrait_3_4", "image_aspect_ratio:landscape_4_3"],
+        detail_level: ["image_detail_level:hyper_detailed", "image_detail_level:high_detail"]
       },
       riskHint: { zh: "", en: "" }
     }
