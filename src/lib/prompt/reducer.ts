@@ -1,8 +1,9 @@
-import { resolveTarget, resolveWorkType } from "./registry";
+import { getAllTargets, resolveTarget, resolveWorkType } from "./registry";
 import { getTargetsForOption } from "./registry";
-import type { PromptSelections, TargetToolId } from "./types";
+import type { PromptSelections, TargetToolId, WorkTypeId } from "./types";
 
 export interface PromptGuideState {
+  workTypeId: WorkTypeId;
   targetToolId: TargetToolId;
   selections: PromptSelections;
   advancedOpen: boolean;
@@ -11,15 +12,18 @@ export interface PromptGuideState {
 
 export type PromptGuideAction =
   | { type: "TARGET_CHANGED"; from: TargetToolId; to: TargetToolId }
+  | { type: "WORK_TYPE_CHANGED"; from: WorkTypeId; to: WorkTypeId }
   | { type: "OPTION_SELECTED"; questionId: string; optionId: string }
   | { type: "OPTION_DESELECTED"; questionId: string; optionId: string }
   | { type: "TOGGLE_ADVANCED" };
 
 export function createInitialState(
+  workTypeId: WorkTypeId,
   targetToolId: TargetToolId,
   defaultSelections: PromptSelections
 ): PromptGuideState {
   return {
+    workTypeId,
     targetToolId,
     selections: defaultSelections,
     advancedOpen: false,
@@ -74,7 +78,7 @@ export function promptGuideReducer(
     }
 
     case "OPTION_SELECTED": {
-      const workType = resolveWorkType("video_prompt");
+      const workType = resolveWorkType(state.workTypeId);
       const question = workType.questions.find(
         (q) => q.id === action.questionId
       );
@@ -136,7 +140,7 @@ export function promptGuideReducer(
     }
 
     case "OPTION_DESELECTED": {
-      const workType = resolveWorkType("video_prompt");
+      const workType = resolveWorkType(state.workTypeId);
       const question = workType.questions.find(
         (q) => q.id === action.questionId
       );
@@ -172,6 +176,25 @@ export function promptGuideReducer(
       }
 
       return state;
+    }
+
+    case "WORK_TYPE_CHANGED": {
+      const newWorkType = resolveWorkType(action.to);
+      const firstCompatible = getAllTargets().find(
+        (t) => t.supportedWorkTypes.includes(action.to)
+      );
+      if (!firstCompatible) {
+        // No target supports this work type — leave state unchanged
+        return state;
+      }
+      return {
+        ...state,
+        workTypeId: action.to,
+        targetToolId: firstCompatible.id,
+        selections: {},
+        advancedOpen: false,
+        deselectedSafety: new Set<string>()
+      };
     }
 
     case "TOGGLE_ADVANCED":

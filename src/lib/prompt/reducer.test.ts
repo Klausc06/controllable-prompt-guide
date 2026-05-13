@@ -18,6 +18,7 @@ const defaults = {
 
 function makeState(overrides?: Partial<PromptGuideState>): PromptGuideState {
   return {
+    workTypeId: "video_prompt",
     targetToolId: "seedance",
     selections: { ...defaults },
     advancedOpen: false,
@@ -131,6 +132,71 @@ describe("promptGuideReducer", () => {
       };
       const next = promptGuideReducer(state, action);
       expect(next.selections.subject).toBeUndefined();
+    });
+  });
+
+  describe("WORK_TYPE_CHANGED", () => {
+    it("clears all selections and resets deselectedSafety", () => {
+      const state = makeState({
+        deselectedSafety: new Set(["constraints:readable_text"])
+      });
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "video_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      // Selections cleared
+      expect(next.selections).toEqual({});
+      // deselectedSafety reset
+      expect(next.deselectedSafety.size).toBe(0);
+      // workTypeId updated
+      expect(next.workTypeId).toBe("video_prompt");
+    });
+
+    it("picks the first compatible target for the new work type", () => {
+      const state = makeState();
+      // Switch to video_prompt (stays on first target — seedance)
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "video_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      // seedance is the first target with supportedWorkTypes: ["video_prompt"]
+      expect(next.targetToolId).toBe("seedance");
+    });
+
+    it("resets advancedOpen to false", () => {
+      const state = makeState({ advancedOpen: true });
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "video_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.advancedOpen).toBe(false);
+    });
+
+    it("throws for unknown work type", () => {
+      const state = makeState();
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "nonexistent_work_type"
+      };
+      expect(() => promptGuideReducer(state, action)).toThrow("Unknown work type");
+    });
+
+    it("preserves workTypeId in returned state", () => {
+      const state = makeState();
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "video_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.workTypeId).toBe("video_prompt");
     });
   });
 
