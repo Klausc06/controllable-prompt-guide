@@ -25,6 +25,12 @@ export interface OptionItem {
   consumerTerms?: string[];
   /** Inline usage hint displayed as a small badge on option cards. Used for format options to indicate platform/scenario suitability. */
   usageHint?: LocalizedText;
+  /** Option IDs in other dimensions that are recommended when this option is selected.
+   *  Keys are QuestionId strings (e.g., "subject", "lighting", "shot_type").
+   *  Values are arrays of option ID strings (e.g., ["subject:food_drink", "subject:space_environment"]).
+   *  Only populated on use_case options (D-07: core visual dimensions only — style, lighting, motion,
+   *  scene, subject, shot_type, camera_movement. Excludes: format, audio, text_handling, constraints). */
+  suggests?: Record<string, string[]>;
 }
 
 export interface QuestionSchema {
