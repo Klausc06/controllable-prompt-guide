@@ -1,7 +1,7 @@
 # Roadmap: Controllable Prompt Guide
 
 **Project:** 可控提示词向导 (Controllable Prompt Guide)
-**Created:** 2026-05-10 | **Updated:** 2026-05-12
+**Created:** 2026-05-10 | **Updated:** 2026-05-13
 **Granularity:** fine (8 phases)
 **Total v1 requirements:** 37 | **Completed:** 37/37
 
@@ -76,11 +76,17 @@ Plans:
 - [ ] `05-04-PLAN.md` — Gap closure: Change 9 remaining single-mode dimensions to multi-select + suppresses for conflicting option pairs
 - [ ] `05-05-PLAN.md` — Gap closure: Replace PlatformTagGroup with per-format-option inline usageHint badges; delete platform-data.ts
 
-### Phase 6: Quality Intelligence ✓
+### Phase 6: Quality Intelligence
 **Goal**: Deterministic heuristics; amber warnings; use case smart defaults; research documented
 **Depends on**: Phase 5
 **Requirements**: DIFF-02, DIFF-03, RES-01, RES-02
-**Status**: Complete. Executed inline. heuristics.ts with 4 rules. Seedance/Veo research documented.
+**Status**: Planned. 3 plans, 3 waves. Ready for execution.
+**Plans:** 3 plans
+
+Plans:
+- [ ] `06-01-PLAN.md` — Type foundation (suggests field on OptionItem) + 2 new heuristic rules (no subject, static+motion conflict)
+- [ ] `06-02-PLAN.md` — suggests data on all 15 use case options + heuristic/suggests validation tests
+- [ ] `06-03-PLAN.md` — UI suggestion badges on OptionCard with amber star "推荐" label + component tests
 
 ### Phase 7: Integration Testing ✓
 **Goal**: All output pathways verified; clipboard reliability; browser smoke; advanced options
@@ -105,7 +111,7 @@ Plans:
 | 3. Metadata Execution | 0/4 planned | Planned |
 | 4. Catalog Expansion | 0/3 planned | Planned |
 | 5. Consumer Translation | 5 (3 done, 2 gap closure pending) | Gap closure |
-| 6. Quality Intelligence | 1/1 | ✓ Complete |
+| 6. Quality Intelligence | 0/3 planned | Planned |
 | 7. Integration Testing | 1/1 | ✓ Complete |
 | 8. Hardening & Forward Planning | 1/1 | ✓ Complete |
 
@@ -128,4 +134,4 @@ All phases complete. 37/37 requirements addressed. 58 tests passing. Static expo
 ---
 
 *Roadmap created: 2026-05-10*
-*Last updated: 2026-05-12 — added Phase 3 plans 03-01 through 03-04 and Phase 4 plans 04-01 through 04-03*
+*Last updated: 2026-05-13 — Phase 6 planned (3 plans, 3 waves)*

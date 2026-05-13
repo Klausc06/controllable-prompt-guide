@@ -2,23 +2,23 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_plan: Not started
-status: Planned
-last_updated: "2026-05-12T17:31:35.265Z"
+current_plan: Planned
+status: Ready to execute
+last_updated: "2026-05-13T07:34:34.310Z"
 progress:
   total_phases: 8
   completed_phases: 4
-  total_plans: 20
-  completed_plans: 17
-  percent: 85
+  total_plans: 24
+  completed_plans: 21
+  percent: 88
 ---
 
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-10 — Post-audit fixes applied
-**Phase:** 5
-**Current Plan:** 05-01 — Type Extensions + Consumer Aesthetics Data
+**Last updated:** 2026-05-13 — Phase 06 planned (3 plans, 3 waves)
+**Phase:** 6
+**Current Plan:** 06-01 (ready for execution)
 **Tests:** 75/75 passing
 **CI:** test/lint/typecheck/build all green
 
@@ -29,7 +29,7 @@ progress:
 - UI: resolveWorkType() + getAllTargets() from registry
 - Camera: shot_type + camera_movement (split per Seedance requirement)
 - SafetyDefaults: auto-select + amber warning
-- Quality: 4 heuristic rules
+- Quality: 4 heuristic rules (expanding to 6 in Phase 06)
 - Export: zh/en/JSON/Markdown via copy buttons
 
 ## Recent Fixes (post-audit)
@@ -47,6 +47,8 @@ progress:
 
 ## Next
 
-- Phase 05 planned (3 plans, 3 waves) — ready for execution via /gsd-execute-phase 05
+- Phase 06 planned (3 plans, 3 waves) — ready for execution via /gsd-execute-phase 06
+- Phase 05 gap closure (2 plans) pending
+- Phase 05 executed (3 plans complete) — consumerTerms, category tabs, platform-data.ts
 - Phase 04 complete — 180 options across 12 catalogs with namespace prefixes, expanded catalogs (15+ each), and full riskHint metadata
 - Tailwind v4 migration
