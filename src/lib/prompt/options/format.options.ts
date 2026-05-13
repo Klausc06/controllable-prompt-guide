@@ -13,7 +13,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["9:16 vertical", "short-form social", "10-second cut"],
       promptFragment: { zh: "9:16 竖屏，约 10 秒，适合短视频平台", en: "9:16 vertical, around 10 seconds, suitable for short-form social platforms" },
       appliesTo: ["seedance", "generic_video"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合抖音、小红书、视频号", en: "Best for Douyin, RedNote, WeChat Channels" }
     },
     {
       id: "format:vertical_15s",
@@ -23,7 +24,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["9:16 vertical", "15-second narrative", "social ad"],
       promptFragment: { zh: "9:16 竖屏，约 15 秒，适合三段式短视频叙事", en: "9:16 vertical, around 15 seconds, suitable for a three-beat short video narrative" },
       appliesTo: ["seedance", "generic_video"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合抖音、小红书、视频号", en: "Best for Douyin, RedNote, WeChat Channels" }
     },
     {
       id: "format:square_8s",
@@ -33,7 +35,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["1:1 square", "feed creative", "compact product shot"],
       promptFragment: { zh: "1:1 方形画幅，约 8 秒，主体居中，适合信息流展示", en: "1:1 square format, around 8 seconds, centered subject for feed placement" },
       appliesTo: ["seedance", "generic_video"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合信息流、商品卡片", en: "Good for feeds, product cards" }
     },
     {
       id: "format:horizontal_12s",
@@ -43,7 +46,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["16:9 horizontal", "wide composition", "brand film cut"],
       promptFragment: { zh: "16:9 横屏，约 12 秒，画面留出横向空间，适合官网或展示屏", en: "16:9 horizontal, around 12 seconds, with wide composition for websites or display screens" },
       appliesTo: ["seedance", "generic_video"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合B站、视频号、电脑显示屏", en: "Best for Bilibili, WeChat, desktop displays" }
     },
     {
       id: "format:square_15s",
@@ -53,7 +57,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["1:1 square", "15-second narrative", "social feed"],
       promptFragment: { zh: "1:1 方形画幅，约 15 秒", en: "1:1 square format, around 15 seconds" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合跨平台信息流", en: "Good for cross-platform feeds" }
     },
     {
       id: "format:horizontal_30s",
@@ -63,7 +68,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["16:9 horizontal", "30-second brand film", "widescreen"],
       promptFragment: { zh: "16:9 横屏，约 30 秒，适合官网品牌片和展会循环播放", en: "16:9 horizontal, around 30 seconds, suitable for website brand films and exhibition loops" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合B站、官网品牌片、电脑显示屏", en: "Best for Bilibili, website brand films, desktop" }
     },
     {
       id: "format:horizontal_60s",
@@ -73,7 +79,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["16:9 horizontal", "60-second narrative", "brand story"],
       promptFragment: { zh: "16:9 横屏，约 60 秒，用于完整品牌故事或教程", en: "16:9 horizontal, around 60 seconds, for complete brand stories or tutorials" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合B站、完整品牌故事", en: "Best for Bilibili, complete brand stories" }
     },
     {
       id: "format:vertical_3s",
@@ -83,7 +90,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["9:16 vertical", "3-second flash", "motion poster"],
       promptFragment: { zh: "9:16 竖屏，约 3 秒，用于快闪和动态海报", en: "9:16 vertical, around 3 seconds, for flash cuts and motion posters" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合快闪、动态海报", en: "Good for flash cuts, motion posters" }
     },
     {
       id: "format:vertical_5s",
@@ -93,7 +101,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["9:16 vertical", "5-second product shot", "quick showcase"],
       promptFragment: { zh: "9:16 竖屏，约 5 秒，用于产品快速展示", en: "9:16 vertical, around 5 seconds, for quick product showcases" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合抖音产品快展", en: "Good for Douyin quick product showcase" }
     },
     {
       id: "format:vertical_30s",
@@ -103,7 +112,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["9:16 vertical", "30-second content", "long-form social"],
       promptFragment: { zh: "9:16 竖屏，约 30 秒，适合教程、开箱和探店内容", en: "9:16 vertical, around 30 seconds, suitable for tutorials, unboxings, and shop tours" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合教程、开箱、探店", en: "Good for tutorials, unboxings, shop tours" }
     },
     {
       id: "format:vertical_60s",
@@ -113,7 +123,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["9:16 vertical", "60-second narrative", "full story"],
       promptFragment: { zh: "9:16 竖屏，约 60 秒，用于完整短视频叙事", en: "9:16 vertical, around 60 seconds, for complete short-form storytelling" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合完整短视频叙事", en: "Good for complete short-form storytelling" }
     },
     {
       id: "format:wide_219_15s",
@@ -123,7 +134,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["21:9 ultrawide", "cinemascope", "15-second cut"],
       promptFragment: { zh: "21:9 超宽电影画幅，约 15 秒，适合电影感开场", en: "21:9 ultrawide cinematic format, around 15 seconds, for cinematic opening sequences" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "超宽画幅在部分视频模型中可能出现画面裁切异常或构图偏移。生成后确认画面完整性。", en: "Ultrawide formats may cause unexpected cropping or composition shifts in some video models. Verify frame integrity after generation." }
+      riskHint: { zh: "超宽画幅在部分视频模型中可能出现画面裁切异常或构图偏移。生成后确认画面完整性。", en: "Ultrawide formats may cause unexpected cropping or composition shifts in some video models. Verify frame integrity after generation." },
+      usageHint: { zh: "常见电影格式，适合 iPad、电脑显示屏", en: "Cinematic format, best for iPad, desktop displays" }
     },
     {
       id: "format:portrait_34_8s",
@@ -133,7 +145,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["3:4 portrait", "social-optimized", "8-second feed"],
       promptFragment: { zh: "3:4 竖版画幅，约 8 秒，适合社交媒体信息流", en: "3:4 portrait format, around 8 seconds, optimized for social media feeds" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合小红书最佳格式", en: "Best format for RedNote" }
     },
     {
       id: "format:portrait_45_10s",
@@ -143,7 +156,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["4:5 portrait", "product detail", "10-second showcase"],
       promptFragment: { zh: "4:5 竖版画幅，约 10 秒，适合商品详情页视频", en: "4:5 portrait format, around 10 seconds, suitable for product detail page videos" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合商品详情页视频", en: "Good for product detail page videos" }
     },
     {
       id: "format:square_30s",
@@ -153,7 +167,8 @@ export const formatOptions: OptionSet = {
       professionalTerms: ["1:1 square", "30-second feed", "cross-platform"],
       promptFragment: { zh: "1:1 方形画幅，约 30 秒，适合跨平台信息流内容", en: "1:1 square format, around 30 seconds, for cross-platform feed content" },
       appliesTo: ["seedance", "generic_video", "veo3"],
-      riskHint: { zh: "", en: "" }
+      riskHint: { zh: "", en: "" },
+      usageHint: { zh: "适合跨平台多场景信息流", en: "Good for cross-platform multi-scene feeds" }
     }
   ],
   categories: [

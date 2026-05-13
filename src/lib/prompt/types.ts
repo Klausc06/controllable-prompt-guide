@@ -23,6 +23,8 @@ export interface OptionItem {
   suppresses?: string[];
   /** Consumer-facing vocabulary terms that map to this option. Used for quick-entry tag selection. */
   consumerTerms?: string[];
+  /** Inline usage hint displayed as a small badge on option cards. Used for format options to indicate platform/scenario suitability. */
+  usageHint?: LocalizedText;
 }
 
 export interface QuestionSchema {
