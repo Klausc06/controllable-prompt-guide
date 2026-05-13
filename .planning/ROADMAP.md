@@ -94,11 +94,17 @@ Plans:
 **Requirements**: TEST-10, TEST-11, TEST-12, TEST-14, TEST-15
 **Status**: Complete. Executed inline. 7 component tests, 16 validation tests, 21 registry tests.
 
-### Phase 8: Hardening & Forward Planning ✓
-**Goal**: Forward research; edge cases resolved; production validation; schema versioning
+### Phase 8: Hardening & Forward Planning
+**Goal**: Production readiness (schema versioning CI, edge cases, README, browser compat) + codebase cleanup (dead code, lint zero, type safety, naming) + forward research (Canva brief design document)
 **Depends on**: Phase 7
 **Requirements**: RES-03
-**Status**: Complete. Forward research in `08-RESEARCH.md`. Veo 3 identified as highest-priority next target.
+**Status**: Planned. 3 plans, 1 wave. Ready for execution.
+**Plans:** 3 plans
+
+Plans:
+- [ ] `08-01-PLAN.md` — Schema versioning CI validation + README update + browser compatibility verification
+- [ ] `08-02-PLAN.md` — Dead code removal + lint zero-warning + type safety audit + naming consistency + edge case fixes
+- [ ] `08-03-PLAN.md` — Canva brief forward research document (08-RESEARCH.md, v2-deferred, no code)
 
 ---
 
@@ -113,7 +119,7 @@ Plans:
 | 5. Consumer Translation | 5 (3 done, 2 gap closure pending) | Gap closure |
 | 6. Quality Intelligence | 0/3 planned | Planned |
 | 7. Integration Testing | 1/1 | ✓ Complete |
-| 8. Hardening & Forward Planning | 1/1 | ✓ Complete |
+| 8. Hardening & Forward Planning | 0/3 planned | Planned |
 
 ---
 
@@ -129,9 +135,9 @@ Phase 1 → Phase 2 → Phase 3 ─┐
                                  Phase 8
 ```
 
-All phases complete. 37/37 requirements addressed. 58 tests passing. Static export verified.
+Phase 8 planned (3 plans, 1 wave). 37/37 requirements addressed. 110 tests passing. Static export verified.
 
 ---
 
 *Roadmap created: 2026-05-10*
-*Last updated: 2026-05-13 — Phase 6 planned (3 plans, 3 waves)*
+*Last updated: 2026-05-13 — Phase 8 planned (3 plans, 1 wave)*
