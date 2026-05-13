@@ -1,10 +1,11 @@
 import { registerTarget } from "../registry";
 import type { TargetToolConfig, TargetToolId } from "../types";
+import { genericImageTarget } from "./generic-image.target";
 import { genericVideoTarget } from "./generic-video.target";
 import { seedanceTarget } from "./seedance.target";
 import { veo3Target } from "./veo3.target";
 
-export const targetTools = [seedanceTarget, genericVideoTarget, veo3Target] satisfies TargetToolConfig[];
+export const targetTools = [seedanceTarget, genericVideoTarget, veo3Target, genericImageTarget] satisfies TargetToolConfig[];
 
 for (const target of targetTools) {
   registerTarget(target);
