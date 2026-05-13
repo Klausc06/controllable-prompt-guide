@@ -142,7 +142,8 @@ export function getBriefText(brief: PromptBrief, questionId: string, locale: "zh
 export function renderMarkdown(rendered: RenderedPrompt): string {
   const lines: string[] = [];
 
-  lines.push("# Video Prompt Brief");
+  const headingLabel = rendered.brief.workTypeId === "image_prompt" ? "Image" : "Video";
+  lines.push(`# ${headingLabel} Prompt Brief`);
   lines.push(`**Target:** ${rendered.targetToolId}`);
   lines.push(`**Work Type:** ${rendered.brief.workTypeId}`);
   lines.push("");

@@ -15,3 +15,4 @@ import "./renderers/veo3.renderer";
 
 // 4. Work types — register with question validation (checks optionSetId refs)
 import "./work-types/video-prompt.worktype";
+import "./work-types/image-prompt.worktype";

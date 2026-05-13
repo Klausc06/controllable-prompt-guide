@@ -11,15 +11,6 @@ import { createInitialState, promptGuideReducer } from "@/lib/prompt/reducer";
 import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId } from "@/lib/prompt/types";
 import { cn } from "@/lib/utils";
 
-// Resolved lazily to avoid SSR module-evaluation ordering issues
-let _workType: ReturnType<typeof resolveWorkType> | undefined;
-function getWorkType() {
-  if (!_workType) {
-    _workType = resolveWorkType("video_prompt");
-  }
-  return _workType;
-}
-
 const defaults: PromptSelections = {
   use_case: ["use_case:gym_opening"],
   subject: ["subject:local_storefront"],
@@ -437,18 +428,19 @@ export function PromptGuide() {
   const [state, dispatch] = useReducer(
     promptGuideReducer,
     "seedance" as TargetToolId,
-    (id: TargetToolId) => createInitialState(id, defaults)
+    (id: TargetToolId) => createInitialState("video_prompt", id, defaults)
   );
   const { targetToolId, selections, advancedOpen, deselectedSafety } = state;
+  const workType = resolveWorkType(state.workTypeId);
 
-  const coreQuestions = getWorkType().questions.filter((question) => question.level === "core");
-  const advancedQuestions = getWorkType().questions.filter((question) => question.level === "advanced");
+  const coreQuestions = workType.questions.filter((question) => question.level === "core");
+  const advancedQuestions = workType.questions.filter((question) => question.level === "advanced");
   const completedCore = coreQuestions.filter((question) => isComplete(question, selections)).length;
 
   const rendered = useMemo(
     () =>
       renderPrompt({
-        workType: getWorkType(),
+        workType: workType,
         targetToolId,
         rawIntent: "",
         selections
@@ -460,7 +452,7 @@ export function PromptGuide() {
   const markdownBrief = useMemo(() => renderMarkdown(rendered), [rendered]);
 
   function updateSelection(questionId: string, value: SelectionValue) {
-    const question = getWorkType().questions.find((q) => q.id === questionId);
+    const question = workType.questions.find((q) => q.id === questionId);
     if (question?.mode === "free_text") {
       dispatch({ type: "OPTION_SELECTED", questionId, optionId: value as string });
       return;
@@ -495,7 +487,7 @@ export function PromptGuide() {
           <div>
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <Clapperboard className="h-4 w-4" />
-              {getWorkType().label.zh} · v{getWorkType().version}
+              {workType.label.zh} · v{workType.version}
             </div>
             <h1 className="mt-2 text-2xl font-semibold tracking-normal text-slate-950 md:text-3xl">可控提示词向导</h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
@@ -527,7 +519,7 @@ export function PromptGuide() {
               核心项 {completedCore}/{coreQuestions.length}
             </div>
             <nav className="mt-5 space-y-2" role="navigation">
-              {getWorkType().questions.map((question, index) => {
+              {workType.questions.map((question, index) => {
                 const done = isComplete(question, selections);
                 return (
                   <a
@@ -554,7 +546,7 @@ export function PromptGuide() {
             <section className="border-b border-slate-200 p-5">
               <div className="text-sm font-semibold text-slate-950">目标工具</div>
               <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                {getAllTargets().map((tool) => {
+                {getAllTargets().filter(t => t.supportedWorkTypes.includes(state.workTypeId)).map((tool) => {
                   const active = tool.id === targetToolId;
                   return (
                     <button
