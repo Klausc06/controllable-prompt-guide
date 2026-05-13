@@ -1,7 +1,7 @@
 "use client";
 
 import "@/lib/prompt/init";
-import { Check, ChevronDown, Clapperboard, Clipboard, Copy, ShieldCheck, SlidersHorizontal } from "lucide-react";
+import { Check, ChevronDown, Clapperboard, Clipboard, Copy, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
 import React, { useMemo, useReducer, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { renderPrompt } from "@/lib/prompt/adapters";
@@ -90,7 +90,8 @@ function CopyButton({ label, value }: { label: string; value: string }) {
 function OptionCard({
   option,
   active,
-  onToggle
+  onToggle,
+  suggested = false
 }: {
   option: {
     id: string;
@@ -102,6 +103,7 @@ function OptionCard({
   };
   active: boolean;
   onToggle: (id: string) => void;
+  suggested?: boolean;
 }) {
   return (
     <button
@@ -139,6 +141,14 @@ function OptionCard({
         <div className="mt-2">
           <span className="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700 border border-indigo-100">
             {option.usageHint.zh}
+          </span>
+        </div>
+      ) : null}
+      {suggested ? (
+        <div className="mt-2">
+          <span className="inline-flex items-center gap-1 rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700 border border-amber-200">
+            <Star className="h-3 w-3" />
+            推荐
           </span>
         </div>
       ) : null}
@@ -202,7 +212,8 @@ function CategoryTabs({
   categories,
   applicableOptions,
   selectedOptions,
-  onToggle
+  onToggle,
+  suggestedIds
 }: {
   categories: { id: string; label: { zh: string; en: string }; optionIds: string[] }[];
   applicableOptions: {
@@ -215,6 +226,7 @@ function CategoryTabs({
   }[];
   selectedOptions: string[];
   onToggle: (optionId: string) => void;
+  suggestedIds: Set<string>;
 }) {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   // null = "全部" (All) mode
@@ -274,7 +286,7 @@ function CategoryTabs({
               <div className="grid gap-3 sm:grid-cols-2">
                 {catOptions.map((option) => {
                   const active = selectedOptions.includes(option.id);
-                  return <OptionCard key={option.id} option={option} active={active} onToggle={onToggle} />;
+                  return <OptionCard key={option.id} option={option} active={active} onToggle={onToggle} suggested={suggestedIds.has(option.id)} />;
                 })}
               </div>
             </div>
@@ -285,7 +297,7 @@ function CategoryTabs({
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {visibleOptions.map((option) => {
             const active = selectedOptions.includes(option.id);
-            return <OptionCard key={option.id} option={option} active={active} onToggle={onToggle} />;
+            return <OptionCard key={option.id} option={option} active={active} onToggle={onToggle} suggested={suggestedIds.has(option.id)} />;
           })}
         </div>
       )}
@@ -322,6 +334,25 @@ function QuestionBlock({
     const limited = question.maxSelections ? next.slice(0, question.maxSelections) : next;
     onChange(question.id, limited);
   }
+
+  // Compute suggested option IDs from selected use case(s)
+  const suggestedIds = useMemo(() => {
+    const ids = new Set<string>();
+    const useCaseSelections = selectionArray(selections["use_case"]);
+    const useCaseSet = getOptionSet("use_case");
+    if (!useCaseSet) return ids;
+    for (const useCaseId of useCaseSelections) {
+      const useCaseOption = useCaseSet.options.find((o) => o.id === useCaseId);
+      if (useCaseOption?.suggests) {
+        for (const suggestedOptionIds of Object.values(useCaseOption.suggests)) {
+          for (const id of suggestedOptionIds) {
+            ids.add(id);
+          }
+        }
+      }
+    }
+    return ids;
+  }, [selections]);
 
   return (
     <section className="border-b border-slate-200 py-6 last:border-b-0">
@@ -361,6 +392,7 @@ function QuestionBlock({
           applicableOptions={applicableOptions}
           selectedOptions={selected}
           onToggle={toggleOption}
+          suggestedIds={suggestedIds}
         />
       ) : null}
 
@@ -378,7 +410,7 @@ function QuestionBlock({
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           {applicableOptions.map((option) => {
             const active = selected.includes(option.id);
-            return <OptionCard key={option.id} option={option} active={active} onToggle={toggleOption} />;
+            return <OptionCard key={option.id} option={option} active={active} onToggle={toggleOption} suggested={suggestedIds.has(option.id)} />;
           })}
         </div>
       ) : optionSet && applicableOptions.length === 0 ? (
