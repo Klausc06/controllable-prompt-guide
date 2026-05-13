@@ -1,24 +1,24 @@
 ---
 gsd_state_version: 1.0
 milestone: v1.1
-milestone_name: image-prompts
-current_plan: 08-01 (ready for execution)
-status: Planned
-last_updated: "2026-05-14T03:24:00.000Z"
+milestone_name: Image Prompts
+current_plan: 1
+status: Executing Phase 11
+last_updated: "2026-05-13T20:01:52.388Z"
 progress:
-  total_phases: 10
-  completed_phases: 9
-  total_plans: 37
-  completed_plans: 34
-  percent: 92
+  total_phases: 5
+  completed_phases: 3
+  total_plans: 8
+  completed_plans: 8
+  percent: 100
 ---
 
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-14 — Phase 10 complete (image option catalogs)
-**Phase:** 8 (pending)
-**Current Plan:** 08-01 (ready for execution)
+**Last updated:** 2026-05-14 — Phase 11 complete (generic image renderer pipeline)
+**Phase:** 11 (complete)
+**Current Plan:** 2 (complete)
 **Tests:** 115/115 passing
 **CI:** tsc --noEmit: 0 errors, all tests passing
 
@@ -31,21 +31,28 @@ progress:
 - SafetyDefaults: auto-select + amber warning
 - Quality: 6 heuristic rules
 - Export: zh/en/JSON/Markdown via copy buttons
-- Work Types: video_prompt + image_prompt (stub) with WORK_TYPE_CHANGED action
+- Work Types: video_prompt + image_prompt (14 questions) with WORK_TYPE_CHANGED action
 - Image Options: 14 catalogs, 272 options across all dimensions
+- Image Renderer: generic_image adapter with comma-separated natural language output
 
 ## Recent Activity
 
+- Phase 11 complete — generic image renderer pipeline: 14-question image work type, generic_image target, comma-separated renderer, init.ts + adapters.ts wiring
 - Phase 10 complete — 14 image option catalogs with 272 options, barrel index, init.ts wired
 - Phase 09 complete — work type foundation (WORK_TYPE_CHANGED action, image_prompt stub, state-driven resolution)
 - Phase 07 complete — all 3 plans executed, VERIFICATION.md smoke test created
-- Phase 08 planned (3 plans, 1 wave) — deferred to focus on Phase 09-10 (image prompt milestone):
+- Phase 08 planned (3 plans, 1 wave) — deferred to focus on Phase 09-11 (image prompt milestone):
   - 08-01: Schema versioning CI + README + browser compat
   - 08-02: Dead code + lint zero + type safety + edge cases
   - 08-03: Canva brief forward research document
 
 ## Decisions Made
 
+- generic_image templateMap: pass-through `{zh: "{选项}", en: "{选项}"}` for all 14 dimensions — option promptFragment carries the descriptive text
+- Image renderer: comma-separated natural language output (Midjourney community standard), no model parameters
+- Chinese separator: full-width comma "，" / English: comma + space ", "
+- constraints maxSelections: 4 to prevent overloading negative prompt
+- 7 core (required) + 7 advanced (optional) image question split
 - suggestedWorkTypes: WorkTypeId[] on TargetToolConfig (not TargetAdapter) — targets declaratively state capabilities
 - WORK_TYPE_CHANGED action atomically clears selections, resets deselectedSafety, picks first compatible target
 - Image use_case options use `image_` namespace IDs in suggests field as forward-references
@@ -56,5 +63,5 @@ progress:
 ## Next
 
 - Execute Phase 08 plans (hardening: CI, lint, dead code, Canva research)
-- Expand image work type from stub to 10+ questions (future phase)
-- Add image target (midjourney or generic_image) (future phase)
+- UI integration for image work type selector and image prompt rendering (future phase)
+- Additional image targets (Midjourney, DALL-E, etc.) (future phase)
