@@ -67,6 +67,7 @@ function BriefPreview({ rendered }: { rendered: RenderedPrompt }) {
 
 function CopyButton({ label, value }: { label: string; value: string }) {
   const [copied, setCopied] = useState(false);
+  const [fallbackValue, setFallbackValue] = useState<string | null>(null);
 
   async function handleCopy() {
     try {
@@ -74,15 +75,25 @@ function CopyButton({ label, value }: { label: string; value: string }) {
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1200);
     } catch {
-      // Clipboard denied — silently ignore
+      setFallbackValue(value);
     }
   }
 
   return (
-    <Button type="button" onClick={handleCopy} className="h-9">
-      {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-      {copied ? "已复制" : label}
-    </Button>
+    <>
+      <Button type="button" onClick={handleCopy} className="h-9">
+        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+        {copied ? "已复制" : label}
+      </Button>
+      {fallbackValue && (
+        <textarea
+          readOnly
+          value={fallbackValue}
+          onClick={(e) => (e.target as HTMLTextAreaElement).select()}
+          className="mt-2 w-full h-20 text-xs font-mono rounded border border-amber-200 bg-amber-50 p-2"
+        />
+      )}
+    </>
   );
 }
 
