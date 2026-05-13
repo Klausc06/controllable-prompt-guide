@@ -4,6 +4,7 @@
 
 // 1. Option sets — register via options/index.ts module-level loop
 import "./options";
+import "./options/image";
 
 // 2. Targets — register via targets/index.ts module-level loop
 import "./targets";
