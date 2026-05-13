@@ -51,7 +51,8 @@ export function renderPrompt(params: {
   const heuristicWarnings = evaluatePromptQuality(
     params.selections,
     params.targetToolId,
-    params.rawIntent
+    params.rawIntent,
+    params.workType.id
   );
   if (heuristicWarnings.length > 0) {
     rendered = { ...rendered, warnings: [...rendered.warnings, ...heuristicWarnings] };
