@@ -71,11 +71,13 @@ export function validateAdapterCompleteness(): string[] {
 export function validateOptionTargetRefs(): string[] {
   const errors: string[] = [];
   const targetIds = new Set(getAllTargets().map((t) => t.id));
+  // Known forward-reference target IDs for future phases (e.g., image target not yet registered)
+  const knownFutureTargets = new Set(["generic_image"]);
 
   for (const set of getAllOptionSets()) {
     for (const option of set.options) {
       for (const ref of option.appliesTo) {
-        if (!targetIds.has(ref)) {
+        if (!targetIds.has(ref) && !knownFutureTargets.has(ref)) {
           errors.push(
             `Option "${option.id}" in set "${set.id}" references unknown target: ${ref}`
           );

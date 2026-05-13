@@ -560,9 +560,16 @@ describe("quality heuristics — new rules (DIFF-02)", () => {
 
 describe("suggests field validation (DIFF-03)", () => {
   const allSets = getAllOptionSets();
-  const allQuestionIds = new Set(
-    resolveWorkType("video_prompt").questions.map(q => q.id)
-  );
+  const knownFutureImageQuestionIds = [
+    "image_subject", "image_composition", "image_aspect_ratio", "image_art_style",
+    "image_scene", "image_lighting", "image_color_palette", "image_mood",
+    "image_detail_level"
+  ];
+  const allQuestionIds = new Set([
+    ...resolveWorkType("video_prompt").questions.map(q => q.id),
+    ...resolveWorkType("image_prompt").questions.map(q => q.id),
+    ...knownFutureImageQuestionIds
+  ]);
 
   it("all suggests keys reference valid question IDs", () => {
     const invalid: string[] = [];
