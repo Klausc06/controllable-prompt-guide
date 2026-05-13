@@ -66,7 +66,8 @@ const testTarget: TargetToolConfig = {
   adaptationNote: { zh: "测试适配说明", en: "Test adaptation note" },
   prefer: [],
   suppress: [],
-  safetyDefaults: []
+  safetyDefaults: [],
+  supportedWorkTypes: ["video_prompt"]
 };
 
 const testAdapter: TargetAdapter = {

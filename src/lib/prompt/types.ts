@@ -64,6 +64,8 @@ export interface TargetToolConfig {
   prefer: string[];
   suppress: string[];
   safetyDefaults: string[];
+  /** Work types this target tool supports. Targets declare their capabilities declaratively — not coupled to adapters. */
+  supportedWorkTypes: WorkTypeId[];
   /** Maps questionId → localized template string. "{选项}" is placeholder for option text. */
   templateMap?: Record<string, LocalizedText>;
 }

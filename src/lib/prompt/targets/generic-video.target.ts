@@ -15,6 +15,7 @@ export const genericVideoTarget: TargetToolConfig = {
   prefer: ["subject", "motion", "scene", "camera", "lighting", "style", "audio", "constraints"],
   suppress: [],
   safetyDefaults: ["constraints:no_ip_or_celebrity", "constraints:stable_identity"],
+  supportedWorkTypes: ["video_prompt"],
   templateMap: {
     use_case:       { zh: "目标：{选项}", en: "Goal: {选项}" },
     format:         { zh: "格式：{选项}", en: "Format: {选项}" },

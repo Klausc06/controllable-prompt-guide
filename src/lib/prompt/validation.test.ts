@@ -270,7 +270,8 @@ describe("prompt configuration validation", () => {
       adaptationNote: { zh: "test", en: "test" },
       prefer: ["subject"],
       suppress: [],
-      safetyDefaults: ["nonexistent_option", "another_fake"]
+      safetyDefaults: ["nonexistent_option", "another_fake"],
+      supportedWorkTypes: ["video_prompt"]
     };
     const errors = validateSafetyDefaultsIntegrity([bad], optionSets);
     expect(errors.length).toBeGreaterThanOrEqual(1);
@@ -428,7 +429,7 @@ describe("brief utilities", () => {
   });
 
   it("validateTargetConfig rejects empty prefer array", () => {
-    const bad = { id: "bad", version: "0.1.0", label: { zh: "X", en: "X" }, description: { zh: "", en: "" }, adaptationNote: { zh: "x", en: "x" }, prefer: [], suppress: [], safetyDefaults: [] };
+    const bad = { id: "bad", version: "0.1.0", label: { zh: "X", en: "X" }, description: { zh: "", en: "" }, adaptationNote: { zh: "x", en: "x" }, prefer: [], suppress: [], safetyDefaults: [], supportedWorkTypes: ["video_prompt"] };
     expect(validateTargetConfig(bad).length).toBeGreaterThan(0);
   });
 
