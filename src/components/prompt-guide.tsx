@@ -9,7 +9,6 @@ import { renderMarkdown } from "@/lib/prompt/brief";
 import { getAllTargets, getOptionSet, getOptionsByConsumerTerm, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
 import { createInitialState, promptGuideReducer } from "@/lib/prompt/reducer";
 import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId } from "@/lib/prompt/types";
-import { platformConfigs } from "@/lib/prompt/platforms/platform-data";
 import { cn } from "@/lib/utils";
 
 // Resolved lazily to avoid SSR module-evaluation ordering issues
@@ -99,6 +98,7 @@ function OptionCard({
     plain: { zh: string; en: string };
     professionalTerms: string[];
     riskHint?: { zh: string; en: string };
+    usageHint?: { zh: string; en: string };
   };
   active: boolean;
   onToggle: (id: string) => void;
@@ -135,6 +135,13 @@ function OptionCard({
           </span>
         ))}
       </div>
+      {option.usageHint ? (
+        <div className="mt-2">
+          <span className="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700 border border-indigo-100">
+            {option.usageHint.zh}
+          </span>
+        </div>
+      ) : null}
       {option.riskHint ? <p className="mt-3 text-xs leading-5 text-amber-700">{option.riskHint.zh}</p> : null}
     </button>
   );
@@ -286,67 +293,6 @@ function CategoryTabs({
   );
 }
 
-// ── Platform Format Quick-Entry Tags ───────────────────────────────────
-function PlatformTagGroup({
-  applicableOptions,
-  selectedOptions,
-  onToggle,
-  targetToolId: _targetToolId
-}: {
-  applicableOptions: { id: string; appliesTo: string[] }[];
-  selectedOptions: string[];
-  onToggle: (optionId: string) => void;
-  targetToolId: string;
-}) {
-  return (
-    <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="平台格式快捷入口">
-      {platformConfigs.map((platform) => {
-        // Filter recommended formats to only those applicable to current target
-        const applicableFormats = platform.recommendedFormats.filter((formatId) =>
-          applicableOptions.some((opt) => opt.id === formatId)
-        );
-        // Active if ANY of the platform's applicable formats are selected
-        const active = applicableFormats.some((formatId) => selectedOptions.includes(formatId));
-
-        function handleToggle() {
-          if (active) {
-            // Deselect: deselect all of this platform's formats
-            for (const formatId of applicableFormats) {
-              if (selectedOptions.includes(formatId)) {
-                onToggle(formatId);
-              }
-            }
-          } else {
-            // Select: select all applicable formats that aren't already selected
-            for (const formatId of applicableFormats) {
-              if (!selectedOptions.includes(formatId)) {
-                onToggle(formatId);
-              }
-            }
-          }
-        }
-
-        return (
-          <button
-            key={platform.id}
-            type="button"
-            onClick={handleToggle}
-            aria-pressed={active}
-            className={cn(
-              "inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-normal transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900",
-              active
-                ? "bg-indigo-700 text-white shadow-lg ring-1 ring-indigo-700/20"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-            )}
-          >
-            {platform.label.zh}
-          </button>
-        );
-      })}
-    </div>
-  );
-}
-
 function QuestionBlock({
   question,
   selections,
@@ -418,15 +364,6 @@ function QuestionBlock({
         />
       ) : null}
 
-      {/* Platform format quick-entry tags (DIFF-05) */}
-      {question.optionSetId === "format" && applicableOptions.length > 0 ? (
-        <PlatformTagGroup
-          applicableOptions={applicableOptions}
-          selectedOptions={selected}
-          onToggle={toggleOption}
-          targetToolId={targetToolId}
-        />
-      ) : null}
 
       {question.mode === "free_text" ? (
         <textarea

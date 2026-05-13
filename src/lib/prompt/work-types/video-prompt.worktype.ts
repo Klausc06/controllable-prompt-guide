@@ -155,8 +155,8 @@ export const videoPromptWorkType: WorkTypeConfig = {
       version: "0.1.0",
       title: { zh: "比例和时长", en: "Aspect ratio and duration" },
       helper: {
-        zh: "选择常见平台规格，点击上方平台标签可以快捷匹配推荐格式。",
-        en: "Choose common platform formats, or click platform tags above for quick recommendations."
+        zh: "选择常见平台规格。每个格式下方标注了适合的使用场景。",
+        en: "Choose common platform formats. Each option shows its recommended use scenario below."
       },
       mode: "multi",
       level: "advanced",

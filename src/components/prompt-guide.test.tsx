@@ -193,55 +193,14 @@ describe("PromptGuide", () => {
     });
   });
 
-  describe("platform format tags (DIFF-05)", () => {
-    it("renders platform tags in the Format question section", () => {
-      render(<PromptGuide />);
-      // Expand advanced options so Format section renders
-      fireEvent.click(screen.getByText("高级选项"));
-      // Platform tags: 抖音, 小红书, B站, 视频号
-      expect(screen.getByText("抖音")).toBeInTheDocument();
-      expect(screen.getByText("小红书")).toBeInTheDocument();
-      expect(screen.getByText("B站")).toBeInTheDocument();
-    });
-
-    it("clicking a platform tag selects its recommended format options", () => {
-      render(<PromptGuide />);
-      // Expand advanced options so Format section renders
-      fireEvent.click(screen.getByText("高级选项"));
-      const douyinTag = screen.getByText("抖音");
-      // Default has format:vertical_10s selected → douyin tag is already active
-      // First click deselects all douyin formats (toggle off)
-      fireEvent.click(douyinTag);
-      expect(douyinTag).toHaveAttribute("aria-pressed", "false");
-      // Second click selects all douyin formats (toggle on)
-      fireEvent.click(douyinTag);
-      expect(douyinTag).toHaveAttribute("aria-pressed", "true");
-      // At least one of the recommended format cards should be selected
-      const format10sButton = screen
-        .getAllByText("9:16 竖屏 10 秒")
-        .find((el) => el.closest("button"))
-        ?.closest("button");
-      expect(format10sButton).toBeTruthy();
-      expect(format10sButton!.className).toContain("ring-4");
-    });
-
-    it("platform tags are additive—clicking multiple platforms merges selections", () => {
-      render(<PromptGuide />);
-      // Expand advanced options so Format section renders
-      fireEvent.click(screen.getByText("高级选项"));
-      // Select Douyin
-      fireEvent.click(screen.getByText("抖音"));
-      // Then select RedNote (additive)
-      fireEvent.click(screen.getByText("小红书"));
-      // Both tags should be active
-      expect(screen.getByText("抖音")).toHaveAttribute("aria-pressed", "true");
-      expect(screen.getByText("小红书")).toHaveAttribute("aria-pressed", "true");
-      // Douyin's format:vertical_10s should still be selected — find button ancestor
-      const format10sButton = screen
-        .getAllByText("9:16 竖屏 10 秒")
-        .find((el) => el.closest("button"))
-        ?.closest("button");
-      expect(format10sButton!.className).toContain("ring-4");
-    });
+  it("renders usage hints on format option cards (DIFF-05)", () => {
+    render(<PromptGuide />);
+    // Expand advanced options so Format section renders
+    fireEvent.click(screen.getByText("高级选项"));
+    // Format option cards should display usage hint badges
+    // "适合抖音、小红书、视频号" appears both as plain text and usageHint — verify multiple instances
+    const douyinHints = screen.getAllByText("适合抖音、小红书、视频号");
+    expect(douyinHints.length).toBeGreaterThan(1);
+    expect(screen.getByText("适合小红书最佳格式")).toBeInTheDocument();
   });
 });
