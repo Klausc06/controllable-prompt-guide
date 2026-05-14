@@ -2,12 +2,12 @@
 
 import "@/lib/prompt/init";
 import { AlertTriangle, Check, ChevronDown, Clapperboard, Clipboard, Copy, Image, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
-import React, { useMemo, useReducer, useRef, useState } from "react";
+import React, { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { renderPrompt } from "@/lib/prompt/adapters";
 import { renderMarkdown } from "@/lib/prompt/brief";
-import { getAllTargets, getOptionSet, getOptionsByConsumerTerm, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
-import { createInitialState, promptGuideReducer } from "@/lib/prompt/reducer";
+import { getAllOptionSets, getAllTargets, getOptionSet, getOptionsByConsumerTerm, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
+import { createInitialState, promptGuideReducer, type PromptGuideState } from "@/lib/prompt/reducer";
 import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId, WorkTypeId } from "@/lib/prompt/types";
 import { cn } from "@/lib/utils";
 
@@ -470,53 +470,142 @@ function QuestionBlock({
   );
 }
 
-function resolveInitialWorkType(): WorkTypeId {
-  // SSR safety guard
-  if (typeof window === "undefined") return "video_prompt";
+// ── URL/LocalStorage Persistence Helpers ────────────────────────────────
 
-  // Priority 1: URL search params (?wt=image_prompt or ?wt=video_prompt)
+function rebuildSelectionsFromOptionIds(
+  optionIds: string[],
+  workTypeId: WorkTypeId
+): PromptSelections {
+  const workType = resolveWorkType(workTypeId);
+  const selections: PromptSelections = {};
+
+  // Build optionSetId → questionId map from work type
+  const setToQuestion = new Map<string, string>();
+  for (const q of workType.questions) {
+    if (q.optionSetId) {
+      setToQuestion.set(q.optionSetId, q.id);
+    }
+  }
+
+  // Build optionId → optionSetId map by checking all option sets
+  const optionToSet = new Map<string, string>();
+  const allSets = getAllOptionSets();
+  for (const set of allSets) {
+    for (const opt of set.options) {
+      optionToSet.set(opt.id, set.id);
+    }
+  }
+
+  // Group option IDs by question
+  for (const optionId of optionIds) {
+    const setId = optionToSet.get(optionId);
+    if (!setId) continue; // invalid option ID, skip
+    const questionId = setToQuestion.get(setId);
+    if (!questionId) continue; // option set not used by this work type, skip
+
+    if (!selections[questionId]) {
+      selections[questionId] = [];
+    }
+    (selections[questionId] as string[]).push(optionId);
+  }
+
+  return selections;
+}
+
+function readFromURL(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; selections: PromptSelections; advancedOpen: boolean } | null {
   try {
+    if (typeof window === "undefined") return null;
     const params = new URLSearchParams(window.location.search);
     const wt = params.get("wt");
-    if (wt) {
-      resolveWorkType(wt); // throws on unknown
-      return wt;
+    const t = params.get("t");
+    const sel = params.get("sel");
+    const adv = params.get("adv");
+
+    // Must have at least a work type to restore from URL
+    if (!wt) return null;
+
+    // Validate work type
+    try { resolveWorkType(wt); } catch { return null; }
+    const workTypeId = wt as WorkTypeId;
+
+    // Validate target — must support the work type
+    let targetToolId: TargetToolId;
+    if (t) {
+      const target = getAllTargets().find(tg => tg.id === t && tg.supportedWorkTypes.includes(workTypeId));
+      if (target) {
+        targetToolId = t as TargetToolId;
+      } else {
+        // Invalid target for this work type, use first compatible
+        const first = getAllTargets().find(tg => tg.supportedWorkTypes.includes(workTypeId));
+        if (!first) return null;
+        targetToolId = first.id;
+      }
+    } else {
+      const first = getAllTargets().find(tg => tg.supportedWorkTypes.includes(workTypeId));
+      if (!first) return null;
+      targetToolId = first.id;
     }
+
+    // Rebuild selections
+    let selections: PromptSelections = {};
+    if (sel) {
+      const optionIds = sel.split(",").filter(Boolean);
+      selections = rebuildSelectionsFromOptionIds(optionIds, workTypeId);
+    }
+
+    const advancedOpen = adv === "1";
+
+    return { workTypeId, targetToolId, selections, advancedOpen };
   } catch {
-    // Invalid URL param — silently fall back to next priority
+    return null;
+  }
+}
+
+/** Stub — full implementation in Task 2 */
+function readFromLocalStorage(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; selections: PromptSelections; advancedOpen: boolean } | null {
+  return null;
+}
+
+function resolveInitialState(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; selections: PromptSelections; advancedOpen: boolean } {
+  // Priority 1: URL params
+  const fromURL = readFromURL();
+  if (fromURL) {
+    // Apply defaults if selections are empty
+    if (Object.keys(fromURL.selections).length === 0) {
+      fromURL.selections = fromURL.workTypeId === "image_prompt" ? { ...imageDefaults } : { ...defaults };
+    }
+    return fromURL;
   }
 
   // Priority 2: localStorage
-  try {
-    const raw = localStorage.getItem("prompt-guide-state");
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (parsed.version === 1 && typeof parsed.workTypeId === "string") {
-        resolveWorkType(parsed.workTypeId); // throws on unknown
-        return parsed.workTypeId;
-      }
+  const fromStorage = readFromLocalStorage();
+  if (fromStorage) {
+    if (Object.keys(fromStorage.selections).length === 0) {
+      fromStorage.selections = fromStorage.workTypeId === "image_prompt" ? { ...imageDefaults } : { ...defaults };
     }
-  } catch {
-    // Invalid localStorage data — silently fall back
+    return fromStorage;
   }
 
-  // Priority 3: hardcoded default
-  return "video_prompt";
+  // Priority 3: hardcoded defaults — always start in video mode
+  const firstVideoTarget = getAllTargets().find(t => t.supportedWorkTypes.includes("video_prompt"));
+  return {
+    workTypeId: "video_prompt",
+    targetToolId: firstVideoTarget?.id ?? "seedance",
+    selections: { ...defaults },
+    advancedOpen: false
+  };
 }
 
 export function PromptGuide() {
   const [state, dispatch] = useReducer(
     promptGuideReducer,
-    "seedance" as TargetToolId,
-    (id: TargetToolId) => {
-      const resolvedWorkTypeId = resolveInitialWorkType();
-      const selectedDefaults =
-        resolvedWorkTypeId === "image_prompt" ? imageDefaults : defaults;
-      const firstCompatible = getAllTargets().find(
-        (t) => t.supportedWorkTypes.includes(resolvedWorkTypeId)
-      );
-      const firstTargetId: TargetToolId = firstCompatible?.id ?? ("seedance" as TargetToolId);
-      return createInitialState(resolvedWorkTypeId, firstTargetId, selectedDefaults);
+    null as unknown as PromptGuideState,
+    (): PromptGuideState => {
+      const initial = resolveInitialState();
+      return {
+        ...createInitialState(initial.workTypeId, initial.targetToolId, initial.selections),
+        advancedOpen: initial.advancedOpen
+      };
     }
   );
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -542,6 +631,38 @@ export function PromptGuide() {
 
   const jsonBrief = useMemo(() => JSON.stringify(rendered.brief, null, 2), [rendered.brief]);
   const markdownBrief = useMemo(() => renderMarkdown(rendered), [rendered]);
+
+  // URL encoding: replaceState on every state change (D-15, D-16)
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    // Work type
+    params.set("wt", state.workTypeId);
+
+    // Target tool
+    params.set("t", state.targetToolId);
+
+    // Selections — compact comma-separated option IDs
+    const selParts: string[] = [];
+    for (const [, value] of Object.entries(state.selections)) {
+      const ids = Array.isArray(value) ? value : [value];
+      for (const id of ids) {
+        selParts.push(id);
+      }
+    }
+    if (selParts.length > 0) {
+      params.set("sel", selParts.join(","));
+    }
+
+    // Advanced open (only when true — keep URLs clean)
+    if (state.advancedOpen) {
+      params.set("adv", "1");
+    }
+
+    const qs = params.toString();
+    const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
+    window.history.replaceState(null, "", url);
+  }, [state.workTypeId, state.targetToolId, state.selections, state.advancedOpen]);
 
   function updateSelection(questionId: string, value: SelectionValue) {
     const question = workType.questions.find((q) => q.id === questionId);
