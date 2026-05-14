@@ -1,7 +1,7 @@
 "use client";
 
 import "@/lib/prompt/init";
-import { Check, ChevronDown, Clapperboard, Clipboard, Copy, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
+import { AlertTriangle, Check, ChevronDown, Clapperboard, Clipboard, Copy, Image, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
 import React, { useMemo, useReducer, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { renderPrompt } from "@/lib/prompt/adapters";
@@ -488,6 +488,9 @@ export function PromptGuide() {
       return createInitialState(resolvedWorkTypeId, firstTargetId, selectedDefaults);
     }
   );
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const pendingWorkTypeRef = useRef<WorkTypeId | null>(null);
+  const [zeroTargetError, setZeroTargetError] = useState(false);
   const { targetToolId, selections, advancedOpen, deselectedSafety } = state;
   const workType = resolveWorkType(state.workTypeId);
 
@@ -557,6 +560,73 @@ export function PromptGuide() {
             <span className="text-sm text-slate-700">本地模板渲染，不调用生成模型</span>
           </div>
         </header>
+
+        {/* Work Type Switcher */}
+        <div className="flex items-center justify-center gap-2" role="radiogroup" aria-label="作品类型">
+          <button
+            type="button"
+            aria-pressed={state.workTypeId === "video_prompt"}
+            onClick={() => {
+              if (state.workTypeId === "video_prompt") return;
+              if (Object.keys(state.selections).length > 0) {
+                pendingWorkTypeRef.current = "video_prompt";
+                setShowConfirmDialog(true);
+              } else {
+                dispatch({ type: "WORK_TYPE_CHANGED", from: state.workTypeId, to: "video_prompt" });
+              }
+            }}
+            className={cn(
+              "inline-flex items-center gap-2 rounded-md px-4 py-2 text-xs font-normal transition-colors duration-150",
+              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900",
+              state.workTypeId === "video_prompt"
+                ? "bg-slate-950 text-white shadow-md ring-1 ring-slate-950/10"
+                : "bg-white/60 backdrop-blur-md text-slate-600 hover:bg-white/80"
+            )}
+          >
+            <Clapperboard className="h-4 w-4" />
+            <span>视频</span>
+          </button>
+          <button
+            type="button"
+            aria-pressed={state.workTypeId === "image_prompt"}
+            onClick={() => {
+              if (state.workTypeId === "image_prompt") return;
+              if (Object.keys(state.selections).length > 0) {
+                pendingWorkTypeRef.current = "image_prompt";
+                setShowConfirmDialog(true);
+              } else {
+                dispatch({ type: "WORK_TYPE_CHANGED", from: state.workTypeId, to: "image_prompt" });
+              }
+            }}
+            className={cn(
+              "inline-flex items-center gap-2 rounded-md px-4 py-2 text-xs font-normal transition-colors duration-150",
+              "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900",
+              state.workTypeId === "image_prompt"
+                ? "bg-slate-950 text-white shadow-md ring-1 ring-slate-950/10"
+                : "bg-white/60 backdrop-blur-md text-slate-600 hover:bg-white/80"
+            )}
+          >
+            <Image className="h-4 w-4" />
+            <span>图片</span>
+          </button>
+        </div>
+
+        {/* Zero-target error banner */}
+        {zeroTargetError && (
+          <div className="mx-auto mt-3 max-w-md rounded-md border border-amber-200 bg-amber-50 p-3 text-center text-sm text-amber-800">
+            当前作品类型没有可用的目标工具。
+            <button
+              type="button"
+              onClick={() => {
+                dispatch({ type: "WORK_TYPE_CHANGED", from: state.workTypeId, to: "video_prompt" });
+                setZeroTargetError(false);
+              }}
+              className="ml-2 underline hover:text-amber-900"
+            >
+              切换回视频模式
+            </button>
+          </div>
+        )}
 
         <div className="grid gap-4 lg:grid-cols-[230px_minmax(0,1fr)_430px]">
           <aside className="self-start rounded-md border border-slate-200 bg-white p-4 lg:sticky lg:top-4">
@@ -708,6 +778,70 @@ export function PromptGuide() {
           </aside>
         </div>
       </div>
+
+      {/* Confirmation Dialog */}
+      {showConfirmDialog && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/30"
+          onKeyDown={(e) => {
+            if (e.key === "Escape") {
+              setShowConfirmDialog(false);
+              pendingWorkTypeRef.current = null;
+            }
+            if (e.key === "Enter" && pendingWorkTypeRef.current) {
+              dispatch({ type: "WORK_TYPE_CHANGED", from: state.workTypeId, to: pendingWorkTypeRef.current });
+              setShowConfirmDialog(false);
+              pendingWorkTypeRef.current = null;
+            }
+          }}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) {
+              setShowConfirmDialog(false);
+              pendingWorkTypeRef.current = null;
+            }
+          }}
+        >
+          <div className="mx-4 w-full max-w-sm rounded-xl bg-white p-6 shadow-2xl">
+            <div className="flex flex-col items-center gap-4 text-center">
+              <AlertTriangle className="h-5 w-5 text-amber-600" />
+              <div>
+                <h3 className="text-base font-semibold text-slate-950">切换作品类型</h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  切换作品类型将清除当前所有选择。确认切换？
+                </p>
+                <p className="mt-1 text-xs text-slate-400">
+                  Switching work type will clear all current selections. Continue?
+                </p>
+              </div>
+            </div>
+            <div className="mt-6 flex items-center justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => {
+                  setShowConfirmDialog(false);
+                  pendingWorkTypeRef.current = null;
+                }}
+                className="h-8 rounded-md border border-slate-200 bg-white px-4 text-sm font-normal text-slate-700 transition hover:bg-slate-50"
+              >
+                保留选择
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  if (pendingWorkTypeRef.current) {
+                    dispatch({ type: "WORK_TYPE_CHANGED", from: state.workTypeId, to: pendingWorkTypeRef.current });
+                  }
+                  setShowConfirmDialog(false);
+                  pendingWorkTypeRef.current = null;
+                }}
+                className="h-8 rounded-md bg-slate-950 px-4 text-sm font-normal text-white transition hover:bg-slate-800"
+              >
+                确认切换
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
