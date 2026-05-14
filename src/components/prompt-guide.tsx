@@ -6,9 +6,9 @@ import React, { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { renderPrompt } from "@/lib/prompt/adapters";
 import { renderMarkdown } from "@/lib/prompt/brief";
-import { getAllOptionSets, getAllTargets, getOptionSet, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
+import { getAllOptionSets, getAllTargets, getOptionSet, getOptionsForTarget, resolveTarget, resolveWorkType } from "@/lib/prompt/registry";
 import { createInitialState, promptGuideReducer, type PromptGuideState } from "@/lib/prompt/reducer";
-import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId, WorkTypeId } from "@/lib/prompt/types";
+import type { NegativePromptTier, PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId, WorkTypeId } from "@/lib/prompt/types";
 import { cn } from "@/lib/utils";
 
 const defaults: PromptSelections = {
@@ -562,7 +562,7 @@ function readFromURL(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; se
   }
 }
 
-function readFromLocalStorage(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; selections: PromptSelections; advancedOpen: boolean } | null {
+function readFromLocalStorage(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; selections: PromptSelections; advancedOpen: boolean; negPromptTier: NegativePromptTier } | null {
   try {
     if (typeof window === "undefined") return null;
 
@@ -619,14 +619,20 @@ function readFromLocalStorage(): { workTypeId: WorkTypeId; targetToolId: TargetT
     // Validate advancedOpen
     const advancedOpen = stored.advancedOpen === true;
 
-    return { workTypeId, targetToolId, selections, advancedOpen };
+    // Validate negPromptTier (T-14-05: must be one of the three valid tiers)
+    const validTiers: NegativePromptTier[] = ["light", "medium", "heavy"];
+    const negPromptTier: NegativePromptTier = validTiers.includes(stored.negPromptTier)
+      ? stored.negPromptTier
+      : "medium";
+
+    return { workTypeId, targetToolId, selections, advancedOpen, negPromptTier };
   } catch {
     // Any parse/validation error — silently discard
     return null;
   }
 }
 
-function resolveInitialState(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; selections: PromptSelections; advancedOpen: boolean } {
+function resolveInitialState(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; selections: PromptSelections; advancedOpen: boolean; negPromptTier: NegativePromptTier } {
   // Priority 1: URL params
   const fromURL = readFromURL();
   if (fromURL) {
@@ -634,7 +640,8 @@ function resolveInitialState(): { workTypeId: WorkTypeId; targetToolId: TargetTo
     if (Object.keys(fromURL.selections).length === 0) {
       fromURL.selections = fromURL.workTypeId === "image_prompt" ? { ...imageDefaults } : { ...defaults };
     }
-    return fromURL;
+    // URL doesn't store negPromptTier — default to medium
+    return { ...fromURL, negPromptTier: "medium" };
   }
 
   // Priority 2: localStorage
@@ -652,7 +659,8 @@ function resolveInitialState(): { workTypeId: WorkTypeId; targetToolId: TargetTo
     workTypeId: "video_prompt",
     targetToolId: firstVideoTarget?.id ?? "seedance",
     selections: { ...defaults },
-    advancedOpen: false
+    advancedOpen: false,
+    negPromptTier: "medium"
   };
 }
 
@@ -664,15 +672,17 @@ export function PromptGuide() {
       const initial = resolveInitialState();
       return {
         ...createInitialState(initial.workTypeId, initial.targetToolId, initial.selections),
-        advancedOpen: initial.advancedOpen
+        advancedOpen: initial.advancedOpen,
+        negPromptTier: initial.negPromptTier
       };
     }
   );
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
   const pendingWorkTypeRef = useRef<WorkTypeId | null>(null);
   const [zeroTargetError, setZeroTargetError] = useState(false);
-  const { targetToolId, selections, advancedOpen, deselectedSafety } = state;
+  const { targetToolId, selections, advancedOpen, deselectedSafety, negPromptTier } = state;
   const workType = resolveWorkType(state.workTypeId);
+  const target = resolveTarget(targetToolId);
 
   const coreQuestions = workType.questions.filter((question) => question.level === "core");
   const advancedQuestions = workType.questions.filter((question) => question.level === "advanced");
@@ -684,9 +694,10 @@ export function PromptGuide() {
         workType: workType,
         targetToolId,
         rawIntent: "",
-        selections
+        selections,
+        negPromptTier
       }),
-    [selections, targetToolId, workType]
+    [selections, targetToolId, negPromptTier, workType]
   );
 
   const jsonBrief = useMemo(() => JSON.stringify(rendered.brief, null, 2), [rendered.brief]);
@@ -739,6 +750,7 @@ export function PromptGuide() {
           targetToolId: state.targetToolId,
           selections: state.selections,
           advancedOpen: state.advancedOpen,
+          negPromptTier: state.negPromptTier,
           version: 1
         };
         localStorage.setItem("prompt-guide-state", JSON.stringify(data));
@@ -753,7 +765,7 @@ export function PromptGuide() {
         clearTimeout(saveTimerRef.current);
       }
     };
-  }, [state.workTypeId, state.targetToolId, state.selections, state.advancedOpen]);
+  }, [state.workTypeId, state.targetToolId, state.selections, state.advancedOpen, state.negPromptTier]);
 
   function updateSelection(questionId: string, value: SelectionValue) {
     const question = workType.questions.find((q) => q.id === questionId);
@@ -978,6 +990,40 @@ export function PromptGuide() {
                         <QuestionBlock question={question} selections={selections} onChange={updateSelection} targetToolId={targetToolId} />
                       </div>
                     ))}
+
+                    {/* Negative Prompt Tier Selector — only for targets with negativePrompt config */}
+                    {target.negativePrompt && (
+                      <div className="border-b border-slate-200 py-6 last:border-b-0">
+                        <div className="mb-2 text-sm font-medium text-slate-700">
+                          负面提示词强度 / Negative Prompt Tier
+                        </div>
+                        <div className="flex gap-2" role="radiogroup" aria-label="负面提示词强度">
+                          {(["light", "medium", "heavy"] as NegativePromptTier[]).map((tier) => (
+                            <button
+                              key={tier}
+                              type="button"
+                              aria-pressed={negPromptTier === tier}
+                              onClick={() => dispatch({ type: "SET_NEG_PROMPT_TIER", tier })}
+                              className={cn(
+                                "rounded-md px-3 py-1.5 text-xs font-medium transition-colors",
+                                negPromptTier === tier
+                                  ? "bg-slate-800 text-white shadow-sm"
+                                  : "bg-white text-slate-600 hover:bg-slate-100 border border-slate-200"
+                              )}
+                            >
+                              {tier === "light" ? "轻 / Light" : tier === "medium" ? "中 / Medium" : "重 / Heavy"}
+                            </button>
+                          ))}
+                        </div>
+                        <p className="mt-2 text-xs text-slate-400">
+                          {negPromptTier === "light"
+                            ? "最少限制，适合创意自由发挥"
+                            : negPromptTier === "medium"
+                            ? "平衡，适合大多数场景（默认）"
+                            : "最多限制，适合品牌安全场景"}
+                        </p>
+                      </div>
+                    )}
                   </div>
                 ) : null}
               </section>

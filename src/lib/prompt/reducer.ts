@@ -1,6 +1,6 @@
 import { getAllTargets, resolveTarget, resolveWorkType } from "./registry";
 import { getTargetsForOption } from "./registry";
-import type { PromptSelections, TargetToolId, WorkTypeId } from "./types";
+import type { NegativePromptTier, PromptSelections, TargetToolId, WorkTypeId } from "./types";
 
 export interface PromptGuideState {
   workTypeId: WorkTypeId;
@@ -8,6 +8,7 @@ export interface PromptGuideState {
   selections: PromptSelections;
   advancedOpen: boolean;
   deselectedSafety: Set<string>;
+  negPromptTier: NegativePromptTier;
 }
 
 export type PromptGuideAction =
@@ -15,7 +16,8 @@ export type PromptGuideAction =
   | { type: "WORK_TYPE_CHANGED"; from: WorkTypeId; to: WorkTypeId }
   | { type: "OPTION_SELECTED"; questionId: string; optionId: string }
   | { type: "OPTION_DESELECTED"; questionId: string; optionId: string }
-  | { type: "TOGGLE_ADVANCED" };
+  | { type: "TOGGLE_ADVANCED" }
+  | { type: "SET_NEG_PROMPT_TIER"; tier: NegativePromptTier };
 
 export function createInitialState(
   workTypeId: WorkTypeId,
@@ -27,7 +29,8 @@ export function createInitialState(
     targetToolId,
     selections: defaultSelections,
     advancedOpen: false,
-    deselectedSafety: new Set<string>()
+    deselectedSafety: new Set<string>(),
+    negPromptTier: "medium"
   };
 }
 
@@ -194,12 +197,16 @@ export function promptGuideReducer(
         targetToolId: firstCompatible.id,
         selections: {},
         advancedOpen: false,
-        deselectedSafety: new Set<string>()
+        deselectedSafety: new Set<string>(),
+        negPromptTier: "medium"
       };
     }
 
     case "TOGGLE_ADVANCED":
       return { ...state, advancedOpen: !state.advancedOpen };
+
+    case "SET_NEG_PROMPT_TIER":
+      return { ...state, negPromptTier: action.tier };
 
     default:
       return state;
