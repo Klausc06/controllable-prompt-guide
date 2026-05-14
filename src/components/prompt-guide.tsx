@@ -561,9 +561,68 @@ function readFromURL(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; se
   }
 }
 
-/** Stub — full implementation in Task 2 */
 function readFromLocalStorage(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; selections: PromptSelections; advancedOpen: boolean } | null {
-  return null;
+  try {
+    if (typeof window === "undefined") return null;
+
+    const raw = localStorage.getItem("prompt-guide-state");
+    if (!raw) return null;
+
+    const stored = JSON.parse(raw);
+
+    // Version check (D-20)
+    if (stored.version !== 1) return null;
+
+    // Validate workTypeId
+    if (typeof stored.workTypeId !== "string") return null;
+    try {
+      resolveWorkType(stored.workTypeId);
+    } catch {
+      return null; // unknown work type
+    }
+    const workTypeId = stored.workTypeId as WorkTypeId;
+
+    // Validate targetToolId — must be a registered target that supports the work type
+    if (typeof stored.targetToolId !== "string") return null;
+    const target = getAllTargets().find(
+      (t) => t.id === stored.targetToolId && t.supportedWorkTypes.includes(workTypeId)
+    );
+    if (!target) return null;
+    const targetToolId = stored.targetToolId as TargetToolId;
+
+    // Validate selections — must be a plain object
+    if (!stored.selections || typeof stored.selections !== "object" || Array.isArray(stored.selections)) {
+      return null;
+    }
+
+    // Validate each selection value
+    const selections: PromptSelections = {};
+    const workType = resolveWorkType(workTypeId);
+    const validQuestionIds = new Set(workType.questions.map(q => q.id));
+
+    for (const [questionId, value] of Object.entries(stored.selections)) {
+      // Only accept known question IDs
+      if (!validQuestionIds.has(questionId)) continue;
+
+      if (Array.isArray(value)) {
+        const filtered = value.filter((v): v is string => typeof v === "string");
+        if (filtered.length > 0) {
+          selections[questionId] = filtered;
+        }
+      } else if (typeof value === "string" && value.length > 0) {
+        selections[questionId] = value;
+      }
+      // Invalid types (numbers, objects, etc.) silently dropped
+    }
+
+    // Validate advancedOpen
+    const advancedOpen = stored.advancedOpen === true;
+
+    return { workTypeId, targetToolId, selections, advancedOpen };
+  } catch {
+    // Any parse/validation error — silently discard
+    return null;
+  }
 }
 
 function resolveInitialState(): { workTypeId: WorkTypeId; targetToolId: TargetToolId; selections: PromptSelections; advancedOpen: boolean } {
@@ -662,6 +721,37 @@ export function PromptGuide() {
     const qs = params.toString();
     const url = qs ? `${window.location.pathname}?${qs}` : window.location.pathname;
     window.history.replaceState(null, "", url);
+  }, [state.workTypeId, state.targetToolId, state.selections, state.advancedOpen]);
+
+  // localStorage auto-save with 300ms debounce (D-19, D-21)
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+
+  useEffect(() => {
+    if (saveTimerRef.current) {
+      clearTimeout(saveTimerRef.current);
+    }
+
+    saveTimerRef.current = setTimeout(() => {
+      try {
+        const data = {
+          workTypeId: state.workTypeId,
+          targetToolId: state.targetToolId,
+          selections: state.selections,
+          advancedOpen: state.advancedOpen,
+          version: 1
+        };
+        localStorage.setItem("prompt-guide-state", JSON.stringify(data));
+      } catch {
+        // localStorage full or unavailable — silently ignore
+      }
+    }, 300);
+
+    // Cleanup on unmount: clear pending save
+    return () => {
+      if (saveTimerRef.current) {
+        clearTimeout(saveTimerRef.current);
+      }
+    };
   }, [state.workTypeId, state.targetToolId, state.selections, state.advancedOpen]);
 
   function updateSelection(questionId: string, value: SelectionValue) {
