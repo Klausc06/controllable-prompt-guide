@@ -51,6 +51,11 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **RES-02**: 研究通用视频模型 prompt 最佳实践结构
 - [ ] **RES-03**: 预留 Sora / Runway / Veo / Kling / Canva brief 研究
 
+### Blog Content (BLOG)
+
+- [x] **BLOG-01**: v1.1 image prompt feature announcement blog post (~400 zh chars) — covers image prompt support, model compatibility, 14 dimensions / 272 options / 80 consumer tags, local-only privacy, call to action
+- [x] **BLOG-02**: v1.1 image prompt practical walkthrough guide (~800 zh chars) — step-by-step tutorial with concrete example (产品摄影 + 白色陶瓷杯 + 上午阳光 + 极简风 + 莫兰迪色), URL sharing and localStorage tips
+
 ### Differentiators (DIFF)
 
 - [ ] **DIFF-01**: Consumer-to-professional translation — 14 个中国消费者美学词（高级感、ins风、大片感等）映射到专业选项
@@ -144,9 +149,11 @@ Every v1 requirement mapped to exactly one phase. Updated during roadmap creatio
 | DIFF-03 | Phase 6: Quality Intelligence | Pending |
 | DIFF-04 | Phase 5: Consumer Translation | Planned |
 | DIFF-05 | Phase 5: Consumer Translation | Planned |
+| BLOG-01 | Phase 13: UI Integration & Polish | Complete |
+| BLOG-02 | Phase 13: UI Integration & Polish | Complete |
 
 **Coverage:**
-- v1 requirements: 37 total
+- v1 requirements: 39 total
 - Mapped to phases: 37
 - Unmapped: 0
 

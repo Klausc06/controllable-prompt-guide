@@ -3,21 +3,21 @@ gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Image Prompts
 current_plan: 3
-status: Executing Phase 12
-last_updated: "2026-05-14T04:47:00.000Z"
+status: Executing Phase 13
+last_updated: "2026-05-14T03:05:24Z"
 progress:
   total_phases: 5
-  completed_phases: 3
+  completed_phases: 4
   total_plans: 14
-  completed_plans: 11
-  percent: 79
+  completed_plans: 12
+  percent: 86
 ---
 
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-14 — Phase 12 Plan 02 complete (image suggests enrichment + CI validation)
-**Phase:** 12
+**Last updated:** 2026-05-14 — Phase 13 Plan 03 complete (v1.1 image prompt blog posts)
+**Phase:** 13
 **Current Plan:** 3
 **Tests:** 130/130 passing (main repo)
 **CI:** tsc --noEmit: 0 errors, all tests passing
@@ -37,6 +37,8 @@ progress:
 
 ## Recent Activity
 
+- Phase 13 Plan 03 complete — created blog/v1.1-image-prompts.md with two Chinese blog posts: BLOG-01 feature announcement (~310 zh chars) and BLOG-02 practical walkthrough guide (~490 zh chars) with concrete example and tips
+- Phase 12 Plan 03 complete — image option riskHints + negative prompt injection
 - Phase 12 Plan 02 complete — fixed suggests keys from image_* aliases to actual question IDs, enriched all 18 image use case options with 4-8 visual dimension suggestions each, added CI validation that every suggested option ID references a real registered option
 - Phase 12 Plan 01 complete — work-type-aware heuristics: evaluatePromptQuality() now accepts workTypeId parameter; 7 image-specific conflict/completeness rules (amber warnings); adapters.ts wired to pass workType.id; 13 new tests; backward compatible (undefined = video rules only)
 - Phase 11 complete — generic image renderer pipeline: 14-question image work type, generic_image target, comma-separated renderer, init.ts + adapters.ts wiring
@@ -68,10 +70,13 @@ progress:
 - [Phase 12-02]: 9 plan-referenced option IDs didn't exist in catalogs — all mapped to closest valid entries (Rule 1 auto-fix)
 - [Phase 12-02]: Removed knownFutureImageQuestionIds workaround — suggests key validation now uses real image_prompt question IDs
 - [Phase 12-02]: CI validation cross-references suggests values against getAllOptionSets() flat Set of all registered option IDs
+- [Phase 13-03]: Blog tone: BLOG-01 excited-but-professional, BLOG-02 practical walkthrough targeting Chinese content creators who don't know prompt engineering
+- [Phase 13-03]: Blog structure: single Markdown file with frontmatter, two sections separated by horizontal rule per UI-SPEC D-24
+- [Phase 13-03]: No external links or screenshots in blog — tool is local-only, no deployed URL; screenshots out of scope
 
 ## Next
 
-- Execute Phase 12 Plan 03 (image option riskHints + negative prompt injection)
+- Execute Phase 13 Plan 01 (work type switcher UI + image defaults wiring)
+- Execute Phase 13 Plan 02 (URL sharing + localStorage persistence + zero-states + copy polish)
 - Phase 08 plans (hardening: CI, lint, dead code, Canva research) — deferred
-- UI integration for image work type selector and image prompt rendering (future phase)
 - Additional image targets (Midjourney, DALL-E, etc.) (future phase)

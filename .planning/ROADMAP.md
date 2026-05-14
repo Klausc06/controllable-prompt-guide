@@ -48,7 +48,7 @@ Plans:
 Plans:
 - [ ] 13-01-PLAN.md — Work type switcher; confirmation dialog; dynamic header; consumer tag cap; image defaults
 - [ ] 13-02-PLAN.md — URL encoding with replaceState; localStorage persistence with debounce
-- [ ] 13-03-PLAN.md — Two blog posts (feature announcement + practical guide)
+- [x] 13-03-PLAN.md — Two blog posts (feature announcement + practical guide)
 
 ## Progress
 
@@ -58,4 +58,4 @@ Plans:
 | 10. Option Data | 3/3 | ✓ |
 | 11. Renderer | 2/2 | ✓ |
 | 12. Quality | 3/3 | ✓ |
-| 13. UI & Polish | 0/3 | ○ |
+| 13. UI & Polish | 1/3 | ○ |
