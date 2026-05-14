@@ -58,6 +58,7 @@ export const imageColorPaletteOptions: OptionSet = {
       professionalTerms: ["monochromatic", "single color family", "tonal variation", "unified"],
       promptFragment: { zh: "单色调配色，同一色系不同深浅的和谐变化", en: "monochromatic palette with harmonious tonal variations within a single color family" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["高级感", "极简风"],
       riskHint: { zh: "", en: "" }
     },
     {

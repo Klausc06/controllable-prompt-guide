@@ -107,6 +107,7 @@ export const imageMoodOptions: OptionSet = {
       professionalTerms: ["mysterious", "enigmatic", "suspenseful", "intrigue", "noir"],
       promptFragment: { zh: "神秘悬疑的氛围，引人好奇和猜测，暗藏玄机", en: "mysterious and suspenseful atmosphere, enigmatic and full of intrigue" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["氛围感"],
       riskHint: { zh: "", en: "" }
     },
     {
@@ -128,6 +129,7 @@ export const imageMoodOptions: OptionSet = {
       professionalTerms: ["lonely", "solitary", "empty", "quiet", "isolated"],
       promptFragment: { zh: "孤独寂寥的氛围，空旷安静的空间，强调个体的存在感", en: "lonely solitary atmosphere with empty quiet space emphasizing isolation" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["氛围感"],
       riskHint: { zh: "", en: "" }
     },
     {
@@ -138,6 +140,7 @@ export const imageMoodOptions: OptionSet = {
       professionalTerms: ["hopeful", "bright", "optimistic", "uplifting", "radiant"],
       promptFragment: { zh: "充满希望和光明的氛围，积极向上的能量", en: "hopeful and bright atmosphere, optimistic and radiant with uplifting energy" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["治愈"],
       riskHint: { zh: "", en: "" }
     },
     {
@@ -170,6 +173,7 @@ export const imageMoodOptions: OptionSet = {
       professionalTerms: ["eerie", "creepy", "unsettling", "horror", "disturbing"],
       promptFragment: { zh: "恐怖惊悚的氛围，诡异不安，令人毛骨悚然", en: "eerie horror atmosphere, creepy and unsettling with disturbing undertones" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["暗黑风"],
       riskHint: { zh: "", en: "" }
     },
     {
@@ -213,6 +217,7 @@ export const imageMoodOptions: OptionSet = {
       professionalTerms: ["solemn", "dignified", "reverent", "formal", "ceremonial"],
       promptFragment: { zh: "庄严肃穆的氛围，正式而令人尊敬，仪式感强烈", en: "solemn dignified atmosphere, formal and reverent with strong ceremonial presence" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["高级感", "仪式感"],
       riskHint: { zh: "", en: "" }
     },
     {
@@ -223,6 +228,7 @@ export const imageMoodOptions: OptionSet = {
       professionalTerms: ["dynamic", "tense", "high-energy", "urgent", "thrilling"],
       promptFragment: { zh: "动感紧张的氛围，能量高涨，令人激动", en: "dynamic tense atmosphere with high energy and thrilling urgency" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["多巴胺"],
       riskHint: { zh: "", en: "" }
     }
   ]

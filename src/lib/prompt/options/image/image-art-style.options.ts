@@ -185,6 +185,7 @@ export const imageArtStyleOptions: OptionSet = {
       professionalTerms: ["woodcut print", "linocut", "etching", "relief print", "bold lines"],
       promptFragment: { zh: "版画风格，粗犷的刻痕线条，强烈的黑白对比", en: "woodcut print style with bold carved lines and strong monochrome contrast" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["版画风", "手工感"],
       riskHint: { zh: "", en: "" }
     },
     {
@@ -261,6 +262,7 @@ export const imageArtStyleOptions: OptionSet = {
       professionalTerms: ["embroidery art", "thread art", "stitched", "textile", "needlework"],
       promptFragment: { zh: "刺绣风格，线迹和针脚纹理可见，类似纺织品质感", en: "embroidery style with visible thread stitches and needle marks, textile-like texture" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["刺绣风", "国风"],
       riskHint: { zh: "", en: "" }
     },
     {
@@ -271,6 +273,7 @@ export const imageArtStyleOptions: OptionSet = {
       professionalTerms: ["mosaic", "tessellation", "tile art", "fragmented", "small pieces"],
       promptFragment: { zh: "马赛克风格，由碎片化的小块拼合而成", en: "mosaic style composed of small fragmented tile pieces" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["马赛克风"],
       riskHint: { zh: "", en: "" }
     },
     // ═══ 3B: Aesthetic / Movement (20 options) ═══
@@ -392,6 +395,7 @@ export const imageArtStyleOptions: OptionSet = {
       professionalTerms: ["surrealism", "dreamlike", "Dali-esque", "reality-bending", "impossible"],
       promptFragment: { zh: "超现实主义风格，梦境般的场景，现实元素被扭曲和重组", en: "surrealist style with dreamlike scenes where reality is distorted and recombined" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["超现实", "梦幻"],
       riskHint: { zh: "", en: "" }
     },
     {
@@ -535,6 +539,7 @@ export const imageArtStyleOptions: OptionSet = {
       professionalTerms: ["portrait photography", "headshot", "professional portrait", "subject-focused"],
       promptFragment: { zh: "专业人像摄影风格，主体突出，背景柔和虚化", en: "professional portrait photography with prominent subject and softly blurred background" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["人像摄影", "写真"],
       riskHint: { zh: "", en: "" }
     },
     {
@@ -678,6 +683,7 @@ export const imageArtStyleOptions: OptionSet = {
       professionalTerms: ["clay render", "matte white", "ambient occlusion", "uncolored", "prototype"],
       promptFragment: { zh: "白模渲染风格，纯白色的3D模型，专注于形体结构", en: "clay white render style with pure white 3D models focused on form and structure" },
       appliesTo: ["generic_image"],
+      consumerTerms: ["素模", "白模"],
       riskHint: { zh: "", en: "" }
     },
     {
