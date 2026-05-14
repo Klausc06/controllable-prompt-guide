@@ -68,6 +68,9 @@ export interface TargetToolConfig {
   supportedWorkTypes: WorkTypeId[];
   /** Maps questionId → localized template string. "{选项}" is placeholder for option text. */
   templateMap?: Record<string, LocalizedText>;
+  /** Three-tier negative prompt protection. Only for image targets.
+   *  Renderer appends the selected tier's negative prompt text. */
+  negativePrompt?: NegativePromptConfig;
 }
 
 export type SelectionValue = string | string[];
@@ -103,6 +106,17 @@ export interface RenderedPrompt {
 export interface TargetAdapter {
   target: TargetToolConfig;
   render(brief: PromptBrief): RenderedPrompt;
+}
+
+/** Three-tier negative prompt protection configuration.
+ *  Per D-08/D-09: user-selectable quality protection injected by renderer. */
+export type NegativePromptTier = "light" | "medium" | "heavy";
+
+export interface NegativePromptConfig {
+  /** Default tier when user hasn't explicitly selected one. Per D-08: medium. */
+  default: NegativePromptTier;
+  /** Negative prompt text for each tier. Comma-separated natural language keywords. */
+  texts: Record<NegativePromptTier, LocalizedText>;
 }
 
 export interface OptionSet {

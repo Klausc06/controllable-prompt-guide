@@ -36,5 +36,22 @@ export const genericImageTarget: TargetToolConfig = {
     post_processing: { zh: "{选项}", en: "{选项}" },
     constraints:     { zh: "{选项}", en: "{选项}" },
     time_season:     { zh: "{选项}", en: "{选项}" }
+  },
+  negativePrompt: {
+    default: "medium",
+    texts: {
+      light: {
+        zh: "避免：不良解剖结构、低画质、模糊",
+        en: "avoid: bad anatomy, low quality, blurry"
+      },
+      medium: {
+        zh: "避免：不良解剖结构、低画质、模糊、水印、文字/签名、扭曲面部、多余肢体",
+        en: "avoid: bad anatomy, low quality, blurry, watermarks, text/signatures, distorted faces, extra limbs"
+      },
+      heavy: {
+        zh: "避免：不良解剖结构、低画质、模糊、水印、文字/签名、扭曲面部、多余肢体、画面拥挤混乱、混沌背景、畸形、比例失调",
+        en: "avoid: bad anatomy, low quality, blurry, watermarks, text/signatures, distorted faces, extra limbs, cluttered composition, chaotic background, disfigured, bad proportions"
+      }
+    }
   }
 };

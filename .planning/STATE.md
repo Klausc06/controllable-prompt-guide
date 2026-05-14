@@ -16,10 +16,10 @@ progress:
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-14 — Phase 12 Plan 01 complete (image quality heuristics)
+**Last updated:** 2026-05-14 — Phase 12 Plan 02 complete (image suggests enrichment + CI validation)
 **Phase:** 12
-**Current Plan:** 2
-**Tests:** 130/130 passing
+**Current Plan:** 3
+**Tests:** 130/130 passing (main repo)
 **CI:** tsc --noEmit: 0 errors, all tests passing
 
 ## Architecture
@@ -37,6 +37,7 @@ progress:
 
 ## Recent Activity
 
+- Phase 12 Plan 02 complete — fixed suggests keys from image_* aliases to actual question IDs, enriched all 18 image use case options with 4-8 visual dimension suggestions each, added CI validation that every suggested option ID references a real registered option
 - Phase 12 Plan 01 complete — work-type-aware heuristics: evaluatePromptQuality() now accepts workTypeId parameter; 7 image-specific conflict/completeness rules (amber warnings); adapters.ts wired to pass workType.id; 13 new tests; backward compatible (undefined = video rules only)
 - Phase 11 complete — generic image renderer pipeline: 14-question image work type, generic_image target, comma-separated renderer, init.ts + adapters.ts wiring
 - Phase 10 complete — 14 image option catalogs with 272 options, barrel index, init.ts wired
@@ -56,18 +57,21 @@ progress:
 - 7 core (required) + 7 advanced (optional) image question split
 - suggestedWorkTypes: WorkTypeId[] on TargetToolConfig (not TargetAdapter) — targets declaratively state capabilities
 - WORK_TYPE_CHANGED action atomically clears selections, resets deselectedSafety, picks first compatible target
-- Image use_case options use `image_` namespace IDs in suggests field as forward-references
+- Image use_case options: suggests keys now use actual question IDs (subject, composition, etc.), values use `image_*` prefixed option IDs
 - appliesTo: ["generic_image"] on all image options as forward-reference for future image target
 - validation.ts accepts "generic_image" as known future target ID
 - Image constraints created FROM SCRATCH — zero video constraint terms leaked (PITFALLS.md Pitfall 7)
 - [Phase 12-image-quality]: Backward compat: undefined workTypeId = video rules only (not all-rules mode)
 - [Phase 12-image-quality]: Image rules fire ONLY when workTypeId is explicitly image_prompt (not undefined)
 - [Phase 12-image-quality]: Conflict detection uses option ID string-matching, not data imports (avoids circular deps)
+- [Phase 12-02]: suggests keys match work type question IDs (not optionSetIds), values are `optionSetId:optionId` format — same convention as video suggests
+- [Phase 12-02]: 9 plan-referenced option IDs didn't exist in catalogs — all mapped to closest valid entries (Rule 1 auto-fix)
+- [Phase 12-02]: Removed knownFutureImageQuestionIds workaround — suggests key validation now uses real image_prompt question IDs
+- [Phase 12-02]: CI validation cross-references suggests values against getAllOptionSets() flat Set of all registered option IDs
 
 ## Next
 
-- Execute Phase 12 Plan 02 (image suggests enrichments + smart defaults)
-- Execute Phase 12 Plan 03 (negative prompt injection)
-- Execute Phase 08 plans (hardening: CI, lint, dead code, Canva research) — deferred
+- Execute Phase 12 Plan 03 (image option riskHints + negative prompt injection)
+- Phase 08 plans (hardening: CI, lint, dead code, Canva research) — deferred
 - UI integration for image work type selector and image prompt rendering (future phase)
 - Additional image targets (Midjourney, DALL-E, etc.) (future phase)
