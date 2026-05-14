@@ -4,22 +4,22 @@ milestone: v1.1
 milestone_name: Image Prompts
 current_plan: 5
 status: Executing Phase 14
-last_updated: "2026-05-14T05:08:35.588Z"
+last_updated: "2026-05-14T05:14:55.181Z"
 progress:
   total_phases: 6
   completed_phases: 5
   total_plans: 19
-  completed_plans: 15
-  percent: 79
+  completed_plans: 18
+  percent: 95
 ---
 
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-14 — Phase 14 Plan 04 complete (D-05 aria-pressed, D-08 dead import, D-11 aria-live)
+**Last updated:** 2026-05-14 — Phase 14 Plan 02 complete (D-03 image renderPrompt tests, D-04 WORK_TYPE_CHANGED cross-work-type tests)
 **Phase:** 14
 **Current Plan:** 5
-**Tests:** 130 total (125 pass, 5 pre-existing failures from 13-01 renderer assertions — not caused by 14-04)
+**Tests:** 157 total (152 pass, 5 pre-existing failures in prompt-guide.test.tsx — not caused by 14-02)
 **CI:** tsc --noEmit: 0 errors
 
 ## Architecture
@@ -37,6 +37,7 @@ progress:
 
 ## Recent Activity
 
+- **Phase 14 Plan 02 complete** — D-03: 6 renderPrompt integration tests for image_prompt (zh/en output, comma separators, negative prompt injection, 14-dimension brief). D-04: 8 WORK_TYPE_CHANGED cross-work-type transition tests (video-image both directions). Zero implementation changes — all 14 new tests pass against existing code. 2 commits, 228 lines added.
 - **Phase 14 Plan 04 complete** — D-05: added `aria-pressed={active}` to OptionCard toggle buttons (screen readers announce selection state). D-08: removed unused `getOptionsByConsumerTerm` import. D-11: added `aria-live="polite"` region that announces work type mode switches ("已切换到图片提示词模式" / "已切换到视频提示词模式"). 2 commits, 5 insertions, 1 deletion in prompt-guide.tsx.
 - **Phase 13 Plan 02 complete** — URL encoding with replaceState, 300ms debounced localStorage persistence, full priority-chain state recovery (URL > localStorage > defaults). Compact URL params: `?wt=`, `?t=`, `?sel=`, `?adv=1`. LocalStorage format with version validation. `deselectedSafety` not persisted (transient UI state).
 - Phase 13 Plan 03 complete — created blog/v1.1-image-prompts.md with two Chinese blog posts: BLOG-01 feature announcement (~310 zh chars) and BLOG-02 practical walkthrough guide (~490 zh chars) with concrete example and tips
@@ -83,6 +84,13 @@ progress:
 - [Phase 13-ui-polish]: deselectedSafety is NOT persisted — transient UI state (safety defaults can be re-deselected on each session)
 - [Phase 13-ui-polish]: Empty selections from URL/localStorage trigger imageDefaults or video defaults based on workTypeId — ensures image mode always has sensible defaults
 - [Phase 14-review-fixes]: Used aria-pressed (not aria-checked) for OptionCard toggle buttons per ARIA spec
+- [Phase 14]: D-01: vitest exclude .claude/** prevents 36 false failures from worktree snapshot copies in test discovery
+- [Phase 14]: D-02: adapters.ts now imports all 4 renderers (seedance, generic-video, veo3, generic-image) matching init.ts order — no dependency on init.ts for adapter resolution
+- [Phase 14]: D-06: Removed dead getImageOptionSet/getImageOptionById from options/image/index.ts — registry is canonical lookup, local duplicates mislead contributors
+- [Phase 14]: D-07: Fixed heuristics.test.ts validImageSelections option ID from no_celebrity_likeness to no_ip_celebrity to match actual catalog
+- [Phase 14-review-fixes]: Image renderPrompt tests use valid registered option IDs from the 14 image catalogs — all IDs verified against actual registry content before test writing
+- [Phase 14-review-fixes]: Cross-work-type reducer tests expect seedance as first video target based on registration order in targets/index.ts
+- [Phase 14-review-fixes]: No implementation changes needed for D-03/D-04 — both test suites pass against existing code, confirming image pipeline and WORK_TYPE_CHANGED reducer were already correct
 
 ## Next
 
