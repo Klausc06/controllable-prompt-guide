@@ -6,7 +6,7 @@ import React, { useEffect, useMemo, useReducer, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { renderPrompt } from "@/lib/prompt/adapters";
 import { renderMarkdown } from "@/lib/prompt/brief";
-import { getAllOptionSets, getAllTargets, getOptionSet, getOptionsByConsumerTerm, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
+import { getAllOptionSets, getAllTargets, getOptionSet, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
 import { createInitialState, promptGuideReducer, type PromptGuideState } from "@/lib/prompt/reducer";
 import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId, WorkTypeId } from "@/lib/prompt/types";
 import { cn } from "@/lib/utils";
@@ -804,6 +804,9 @@ export function PromptGuide() {
             <p className="mt-1 text-xs text-slate-400">
               当前模式：{state.workTypeId === "image_prompt" ? "图片提示词" : "视频提示词"}
             </p>
+            <div aria-live="polite" className="sr-only">
+              {state.workTypeId === "image_prompt" ? "已切换到图片提示词模式" : "已切换到视频提示词模式"}
+            </div>
           </div>
           <div className="flex items-center gap-2 rounded-md border border-slate-200 bg-white p-2">
             <ShieldCheck className="h-4 w-4 text-emerald-700" />
