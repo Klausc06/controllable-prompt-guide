@@ -3,6 +3,7 @@ import { evaluatePromptQuality } from "./heuristics";
 import { resolveAdapter, resolveTarget } from "./registry";
 import type {
   LocalizedText,
+  NegativePromptTier,
   PromptSelections,
   RenderedPrompt,
   TargetToolId,
@@ -20,6 +21,7 @@ export function renderPrompt(params: {
   targetToolId: TargetToolId;
   rawIntent: string;
   selections: PromptSelections;
+  negPromptTier?: NegativePromptTier;
 }): RenderedPrompt {
   const target = resolveTarget(params.targetToolId);
   const adapter = resolveAdapter(params.targetToolId);
@@ -30,7 +32,7 @@ export function renderPrompt(params: {
     selections: params.selections
   });
 
-  let rendered = adapter.render(brief);
+  let rendered = adapter.render(brief, params.negPromptTier);
 
   const constraintsItem = brief.items.find(
     (item) => item.questionId === "constraints"

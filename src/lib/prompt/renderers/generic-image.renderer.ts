@@ -1,9 +1,9 @@
 import { registerAdapter } from "../registry";
 import { genericImageTarget } from "../targets/generic-image.target";
 import { assemblePrompt, getBriefText, warningFromBrief } from "../brief";
-import type { PromptBrief, RenderedPrompt, TargetAdapter } from "../types";
+import type { NegativePromptTier, PromptBrief, RenderedPrompt, TargetAdapter } from "../types";
 
-function render(brief: PromptBrief): RenderedPrompt {
+function render(brief: PromptBrief, negPromptTier?: NegativePromptTier): RenderedPrompt {
   const tpl = genericImageTarget.templateMap!;
   const parts = assemblePrompt(brief, tpl, "zh");
   const partsEn = assemblePrompt(brief, tpl, "en");
@@ -29,7 +29,7 @@ function render(brief: PromptBrief): RenderedPrompt {
   // Inject negative prompt from target config (default tier: medium)
   const negConfig = genericImageTarget.negativePrompt;
   if (negConfig) {
-    const tier = negConfig.default;
+    const tier = negPromptTier || negConfig.default;
     const negZh = negConfig.texts[tier].zh;
     const negEn = negConfig.texts[tier].en;
     if (negZh) zhPhrases.push(negZh);

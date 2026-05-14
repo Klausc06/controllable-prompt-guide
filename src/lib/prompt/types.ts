@@ -105,7 +105,7 @@ export interface RenderedPrompt {
 
 export interface TargetAdapter {
   target: TargetToolConfig;
-  render(brief: PromptBrief): RenderedPrompt;
+  render(brief: PromptBrief, negPromptTier?: NegativePromptTier): RenderedPrompt;
 }
 
 /** Three-tier negative prompt protection configuration.
