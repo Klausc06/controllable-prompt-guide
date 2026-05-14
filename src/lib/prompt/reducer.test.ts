@@ -200,6 +200,114 @@ describe("promptGuideReducer", () => {
     });
   });
 
+  describe("WORK_TYPE_CHANGED — cross work type transitions", () => {
+    it("video_prompt → image_prompt: clears all selections", () => {
+      const state = makeState();
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "image_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.selections).toEqual({});
+    });
+
+    it("video_prompt → image_prompt: resets deselectedSafety", () => {
+      const state = makeState({
+        deselectedSafety: new Set(["constraints:readable_text"])
+      });
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "image_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.deselectedSafety.size).toBe(0);
+    });
+
+    it("video_prompt → image_prompt: picks generic_image as target", () => {
+      const state = makeState({ targetToolId: "seedance" });
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "image_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.targetToolId).toBe("generic_image");
+    });
+
+    it("video_prompt → image_prompt: resets advancedOpen to false", () => {
+      const state = makeState({ advancedOpen: true });
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "image_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.advancedOpen).toBe(false);
+    });
+
+    it("video_prompt → image_prompt: updates workTypeId", () => {
+      const state = makeState();
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "video_prompt",
+        to: "image_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.workTypeId).toBe("image_prompt");
+    });
+
+    it("image_prompt → video_prompt: clears selections and picks first video target", () => {
+      const state = makeState({
+        workTypeId: "image_prompt",
+        targetToolId: "generic_image",
+        selections: {
+          use_case: "image_use_case:social_media_post",
+          subject: "image_subject:hero_product",
+          constraints: ["image_constraints:no_bad_anatomy"]
+        }
+      });
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "image_prompt",
+        to: "video_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.selections).toEqual({});
+      expect(next.targetToolId).toBe("seedance");
+    });
+
+    it("image_prompt → video_prompt: resets advancedOpen", () => {
+      const state = makeState({
+        workTypeId: "image_prompt",
+        targetToolId: "generic_image",
+        advancedOpen: true
+      });
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "image_prompt",
+        to: "video_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.advancedOpen).toBe(false);
+    });
+
+    it("image_prompt → video_prompt: workTypeId updated correctly", () => {
+      const state = makeState({
+        workTypeId: "image_prompt",
+        targetToolId: "generic_image"
+      });
+      const action: PromptGuideAction = {
+        type: "WORK_TYPE_CHANGED",
+        from: "image_prompt",
+        to: "video_prompt"
+      };
+      const next = promptGuideReducer(state, action);
+      expect(next.workTypeId).toBe("video_prompt");
+    });
+  });
+
   describe("TOGGLE_ADVANCED", () => {
     it("toggles advancedOpen", () => {
       const state = makeState();
