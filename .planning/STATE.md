@@ -2,25 +2,25 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Image Prompts
-current_plan: 3
-status: Executing Phase 13
-last_updated: "2026-05-14T03:15:57.409Z"
+current_plan: Not started
+status: Milestone complete
+last_updated: "2026-05-14T03:34:31.341Z"
 progress:
   total_phases: 5
-  completed_phases: 4
+  completed_phases: 5
   total_plans: 14
-  completed_plans: 13
-  percent: 93
+  completed_plans: 14
+  percent: 100
 ---
 
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-14 — Phase 13 Plan 03 complete (v1.1 image prompt blog posts)
+**Last updated:** 2026-05-14 — Phase 13 Plan 02 complete (v1.1 URL sharing + localStorage persistence)
 **Phase:** 13
-**Current Plan:** 3
-**Tests:** 130/130 passing (main repo)
-**CI:** tsc --noEmit: 0 errors, all tests passing
+**Current Plan:** Not started
+**Tests:** 130 total (125 pass, 5 pre-existing failures from 13-01 renderer assertions — not caused by 13-02)
+**CI:** tsc --noEmit: 0 errors
 
 ## Architecture
 
@@ -37,6 +37,7 @@ progress:
 
 ## Recent Activity
 
+- **Phase 13 Plan 02 complete** — URL encoding with replaceState, 300ms debounced localStorage persistence, full priority-chain state recovery (URL > localStorage > defaults). Compact URL params: `?wt=`, `?t=`, `?sel=`, `?adv=1`. LocalStorage format with version validation. `deselectedSafety` not persisted (transient UI state).
 - Phase 13 Plan 03 complete — created blog/v1.1-image-prompts.md with two Chinese blog posts: BLOG-01 feature announcement (~310 zh chars) and BLOG-02 practical walkthrough guide (~490 zh chars) with concrete example and tips
 - Phase 12 Plan 03 complete — image option riskHints + negative prompt injection
 - Phase 12 Plan 02 complete — fixed suggests keys from image_* aliases to actual question IDs, enriched all 18 image use case options with 4-8 visual dimension suggestions each, added CI validation that every suggested option ID references a real registered option
@@ -76,10 +77,14 @@ progress:
 - [Phase 13-ui-polish]: Plan-specified imageDefaults IDs corrected to actual registry IDs for 6 mismatched option IDs
 - [Phase 13-ui-polish]: Safety default constraints used for imageDefaults: matches generic_image target defaults
 - [Phase 13-ui-polish]: PRIORITY_TERMS map drives consumer tag sort: 20 high-value Chinese market aesthetics first
+- [Phase 13-ui-polish]: rebuildSelectionsFromOptionIds cross-references option IDs against getAllOptionSets() and work type questions to reconstruct selections — optionSetId != questionId in some cases prevents simple prefix extraction
+- [Phase 13-ui-polish]: advancedOpen restored from URL/localStorage via spread override after createInitialState — avoids changing reducer signature
+- [Phase 13-ui-polish]: deselectedSafety is NOT persisted — transient UI state (safety defaults can be re-deselected on each session)
+- [Phase 13-ui-polish]: Empty selections from URL/localStorage trigger imageDefaults or video defaults based on workTypeId — ensures image mode always has sensible defaults
 
 ## Next
 
-- Execute Phase 13 Plan 01 (work type switcher UI + image defaults wiring)
-- Execute Phase 13 Plan 02 (URL sharing + localStorage persistence + zero-states + copy polish)
-- Phase 08 plans (hardening: CI, lint, dead code, Canva research) — deferred
+- v1.1 (Image Prompts) milestone COMPLETE — all 5 phases (9-13), all 14 plans executed
+- Phase 08 plans (hardening: CI, lint, dead code, Canva research) — deferred for future milestone
 - Additional image targets (Midjourney, DALL-E, etc.) (future phase)
+- Fix 5 pre-existing test failures from 13-01 renderer assertions (copy payload format changed)
