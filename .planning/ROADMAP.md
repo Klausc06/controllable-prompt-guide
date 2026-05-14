@@ -43,10 +43,10 @@ Plans:
 ### Phase 13: UI Integration & Polish
 **Goal**: Work type switcher; URL; localStorage; feature parity
 **Requirements**: WORK-03, WORK-04, UI-01..04, BLOG-01, BLOG-02
-**Plans:** 3 plans
+**Plans:** 2/3 plans executed
 
 Plans:
-- [ ] 13-01-PLAN.md — Work type switcher; confirmation dialog; dynamic header; consumer tag cap; image defaults
+- [x] 13-01-PLAN.md — Work type switcher; confirmation dialog; dynamic header; consumer tag cap; image defaults
 - [ ] 13-02-PLAN.md — URL encoding with replaceState; localStorage persistence with debounce
 - [x] 13-03-PLAN.md — Two blog posts (feature announcement + practical guide)
 

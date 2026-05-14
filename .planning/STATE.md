@@ -4,13 +4,13 @@ milestone: v1.1
 milestone_name: Image Prompts
 current_plan: 3
 status: Executing Phase 13
-last_updated: "2026-05-14T03:05:24Z"
+last_updated: "2026-05-14T03:15:57.409Z"
 progress:
   total_phases: 5
   completed_phases: 4
   total_plans: 14
-  completed_plans: 12
-  percent: 86
+  completed_plans: 13
+  percent: 93
 ---
 
 # State: Controllable Prompt Guide
@@ -73,6 +73,9 @@ progress:
 - [Phase 13-03]: Blog tone: BLOG-01 excited-but-professional, BLOG-02 practical walkthrough targeting Chinese content creators who don't know prompt engineering
 - [Phase 13-03]: Blog structure: single Markdown file with frontmatter, two sections separated by horizontal rule per UI-SPEC D-24
 - [Phase 13-03]: No external links or screenshots in blog — tool is local-only, no deployed URL; screenshots out of scope
+- [Phase 13-ui-polish]: Plan-specified imageDefaults IDs corrected to actual registry IDs for 6 mismatched option IDs
+- [Phase 13-ui-polish]: Safety default constraints used for imageDefaults: matches generic_image target defaults
+- [Phase 13-ui-polish]: PRIORITY_TERMS map drives consumer tag sort: 20 high-value Chinese market aesthetics first
 
 ## Next
 
