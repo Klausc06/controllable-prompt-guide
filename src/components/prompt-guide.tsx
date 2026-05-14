@@ -2,13 +2,13 @@
 
 import "@/lib/prompt/init";
 import { Check, ChevronDown, Clapperboard, Clipboard, Copy, ShieldCheck, SlidersHorizontal, Star } from "lucide-react";
-import React, { useMemo, useReducer, useState } from "react";
+import React, { useMemo, useReducer, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { renderPrompt } from "@/lib/prompt/adapters";
 import { renderMarkdown } from "@/lib/prompt/brief";
 import { getAllTargets, getOptionSet, getOptionsByConsumerTerm, getOptionsForTarget, resolveWorkType } from "@/lib/prompt/registry";
 import { createInitialState, promptGuideReducer } from "@/lib/prompt/reducer";
-import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId } from "@/lib/prompt/types";
+import type { PromptSelections, QuestionSchema, RenderedPrompt, SelectionValue, TargetToolId, WorkTypeId } from "@/lib/prompt/types";
 import { cn } from "@/lib/utils";
 
 const defaults: PromptSelections = {
@@ -24,6 +24,21 @@ const defaults: PromptSelections = {
   audio: ["audio:upbeat_music"],
   format: ["format:vertical_10s"],
   text_handling: ["text_handling:short_title_only"]
+};
+
+const imageDefaults: PromptSelections = {
+  use_case: ["image_use_case:social_media_post"],
+  subject: ["image_subject:hero_product"],
+  scene: ["image_scene:studio_env"],
+  composition: ["image_composition:centered"],
+  lighting: ["image_lighting:soft_dreamy"],
+  art_style: ["image_art_style:photorealistic"],
+  constraints: [
+    "image_constraints:no_ip_celebrity",
+    "image_constraints:no_nsfw",
+    "image_constraints:no_bad_anatomy",
+    "image_constraints:no_low_quality"
+  ]
 };
 
 function selectionArray(value: SelectionValue | undefined): string[] {
@@ -424,11 +439,54 @@ function QuestionBlock({
   );
 }
 
+function resolveInitialWorkType(): WorkTypeId {
+  // SSR safety guard
+  if (typeof window === "undefined") return "video_prompt";
+
+  // Priority 1: URL search params (?wt=image_prompt or ?wt=video_prompt)
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const wt = params.get("wt");
+    if (wt) {
+      resolveWorkType(wt); // throws on unknown
+      return wt;
+    }
+  } catch {
+    // Invalid URL param — silently fall back to next priority
+  }
+
+  // Priority 2: localStorage
+  try {
+    const raw = localStorage.getItem("prompt-guide-state");
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed.version === 1 && typeof parsed.workTypeId === "string") {
+        resolveWorkType(parsed.workTypeId); // throws on unknown
+        return parsed.workTypeId;
+      }
+    }
+  } catch {
+    // Invalid localStorage data — silently fall back
+  }
+
+  // Priority 3: hardcoded default
+  return "video_prompt";
+}
+
 export function PromptGuide() {
   const [state, dispatch] = useReducer(
     promptGuideReducer,
     "seedance" as TargetToolId,
-    (id: TargetToolId) => createInitialState("video_prompt", id, defaults)
+    (id: TargetToolId) => {
+      const resolvedWorkTypeId = resolveInitialWorkType();
+      const selectedDefaults =
+        resolvedWorkTypeId === "image_prompt" ? imageDefaults : defaults;
+      const firstCompatible = getAllTargets().find(
+        (t) => t.supportedWorkTypes.includes(resolvedWorkTypeId)
+      );
+      const firstTargetId: TargetToolId = firstCompatible?.id ?? ("seedance" as TargetToolId);
+      return createInitialState(resolvedWorkTypeId, firstTargetId, selectedDefaults);
+    }
   );
   const { targetToolId, selections, advancedOpen, deselectedSafety } = state;
   const workType = resolveWorkType(state.workTypeId);
