@@ -175,6 +175,15 @@ function OptionCard({
 }
 
 // ── Consumer Aesthetics Quick-Entry Tags ───────────────────────────────
+const MAX_VISIBLE_TAGS = 20;
+
+const PRIORITY_TERMS = new Map([
+  ["高级感", 1], ["ins风", 2], ["大片感", 3], ["胶片感", 4], ["极简风", 5],
+  ["国风", 6], ["新中式", 7], ["二次元", 8], ["赛博朋克", 9], ["科技感", 10],
+  ["复古风", 11], ["手绘感", 12], ["水彩风", 13], ["水墨风", 14], ["油画风", 15],
+  ["厚涂", 16], ["扁平风", 17], ["像素风", 18], ["街头风", 19], ["可爱风", 20]
+]);
+
 function ConsumerTagGroup({
   applicableOptions,
   selectedOptions,
@@ -184,6 +193,8 @@ function ConsumerTagGroup({
   selectedOptions: string[];
   onToggle: (optionId: string) => void;
 }) {
+  const [expanded, setExpanded] = useState(false);
+
   const consumerTermMap = useMemo(() => {
     const map = new Map<string, string>();
     for (const option of applicableOptions) {
@@ -198,28 +209,48 @@ function ConsumerTagGroup({
 
   const terms = [...consumerTermMap.keys()];
 
+  const sortedTerms = terms.sort((a, b) => {
+    const pa = PRIORITY_TERMS.get(a) ?? 999;
+    const pb = PRIORITY_TERMS.get(b) ?? 999;
+    return pa - pb;
+  });
+  const visibleTerms = sortedTerms.slice(0, MAX_VISIBLE_TAGS);
+  const hiddenTerms = expanded ? sortedTerms.slice(MAX_VISIBLE_TAGS) : [];
+
+  function renderTag(term: string) {
+    const optionId = consumerTermMap.get(term);
+    const active = optionId ? selectedOptions.includes(optionId) : false;
+    return (
+      <button
+        key={term}
+        type="button"
+        onClick={() => optionId && onToggle(optionId)}
+        aria-pressed={active}
+        className={cn(
+          "inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-normal transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900",
+          active
+            ? "bg-teal-700 text-white shadow-lg ring-1 ring-teal-700/20"
+            : "bg-slate-100 text-slate-700 hover:bg-slate-200"
+        )}
+      >
+        {term}
+      </button>
+    );
+  }
+
   return (
     <div className="mt-3 flex flex-wrap gap-2" role="group" aria-label="消费者风格快捷入口">
-      {terms.map((term) => {
-        const optionId = consumerTermMap.get(term);
-        const active = optionId ? selectedOptions.includes(optionId) : false;
-        return (
-          <button
-            key={term}
-            type="button"
-            onClick={() => optionId && onToggle(optionId)}
-            aria-pressed={active}
-            className={cn(
-              "inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-normal transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900",
-              active
-                ? "bg-teal-700 text-white shadow-lg ring-1 ring-teal-700/20"
-                : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-            )}
-          >
-            {term}
-          </button>
-        );
-      })}
+      {visibleTerms.map(renderTag)}
+      {sortedTerms.length > MAX_VISIBLE_TAGS && (
+        <button
+          type="button"
+          onClick={() => setExpanded(!expanded)}
+          className="inline-flex items-center gap-1 rounded-full px-3 py-2 text-xs font-normal bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+        >
+          {expanded ? "收起" : `+ ${sortedTerms.length - MAX_VISIBLE_TAGS} 更多`}
+        </button>
+      )}
+      {hiddenTerms.map(renderTag)}
     </div>
   );
 }
@@ -394,7 +425,7 @@ function QuestionBlock({
       </div>
 
       {/* Consumer aesthetics quick-entry tags (DIFF-01) */}
-      {question.optionSetId === "style" && applicableOptions.length > 0 ? (
+      {applicableOptions.some(opt => opt.consumerTerms?.length) ? (
         <ConsumerTagGroup
           applicableOptions={applicableOptions}
           selectedOptions={selected}
@@ -547,12 +578,19 @@ export function PromptGuide() {
         <header className="flex flex-col gap-4 border-b border-slate-200 pb-5 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
-              <Clapperboard className="h-4 w-4" />
+              {state.workTypeId === "image_prompt" ? (
+                <Image className="h-4 w-4" />
+              ) : (
+                <Clapperboard className="h-4 w-4" />
+              )}
               {workType.label.zh} · v{workType.version}
             </div>
             <h1 className="mt-2 text-2xl font-semibold tracking-normal text-slate-950 md:text-3xl">可控提示词向导</h1>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">
               用选择题补齐专业维度，输出可复制的结构化 brief、中文提示词和英文提示词。
+            </p>
+            <p className="mt-1 text-xs text-slate-400">
+              当前模式：{state.workTypeId === "image_prompt" ? "图片提示词" : "视频提示词"}
             </p>
           </div>
           <div className="flex items-center gap-2 rounded-md border border-slate-200 bg-white p-2">
