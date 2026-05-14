@@ -33,16 +33,22 @@ Plans:
 ### Phase 12: Image Quality & Smart Defaults
 **Goal**: Extend heuristics+suggests; negative prompt; 6+ image rules
 **Requirements**: QUAL-01..04
-**Plans:** 2/3 plans executed
+**Plans:** 3/3 plans complete
 
 Plans:
 - [x] 12-01-PLAN.md — Make evaluatePromptQuality() work-type-aware; add 7 image heuristic rules (6 conflict + 1 completeness)
 - [x] 12-02-PLAN.md — Fix suggests keys + enrich suggests on 18 image use cases + CI validation
-- [ ] 12-03-PLAN.md — Three-tier negative prompt injection for generic_image target
+- [x] 12-03-PLAN.md — Three-tier negative prompt injection for generic_image target
 
 ### Phase 13: UI Integration & Polish
 **Goal**: Work type switcher; URL; localStorage; feature parity
 **Requirements**: WORK-03, WORK-04, UI-01..04, BLOG-01, BLOG-02
+**Plans:** 3 plans
+
+Plans:
+- [ ] 13-01-PLAN.md — Work type switcher; confirmation dialog; dynamic header; consumer tag cap; image defaults
+- [ ] 13-02-PLAN.md — URL encoding with replaceState; localStorage persistence with debounce
+- [ ] 13-03-PLAN.md — Two blog posts (feature announcement + practical guide)
 
 ## Progress
 
@@ -51,5 +57,5 @@ Plans:
 | 9. Foundation | 3/3 | ✓ |
 | 10. Option Data | 3/3 | ✓ |
 | 11. Renderer | 2/2 | ✓ |
-| 12. Quality | 0/3 | ○ |
-| 13. UI & Polish | 0 | ○ |
+| 12. Quality | 3/3 | ✓ |
+| 13. UI & Polish | 0/3 | ○ |
