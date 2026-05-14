@@ -560,6 +560,126 @@ describe("quality heuristics — new rules (DIFF-02)", () => {
   });
 });
 
+describe("image prompt rendering", () => {
+  const imageWorkType = resolveWorkType("image_prompt");
+
+  const imageSelections: PromptSelections = {
+    use_case: "image_use_case:social_media_post",
+    subject: "image_subject:hero_product",
+    scene: "image_scene:studio_env",
+    composition: "image_composition:centered",
+    lighting: "image_lighting:soft_dreamy",
+    art_style: "image_art_style:photorealistic",
+    constraints: [
+      "image_constraints:no_ip_celebrity",
+      "image_constraints:no_nsfw",
+      "image_constraints:no_bad_anatomy",
+      "image_constraints:no_low_quality"
+    ]
+  };
+
+  it("renders non-empty zh/en prompt for image_prompt work type", () => {
+    const result = renderPrompt({
+      workType: imageWorkType,
+      targetToolId: "generic_image",
+      rawIntent: "",
+      selections: imageSelections
+    });
+
+    expect(result.zhPrompt.length).toBeGreaterThan(0);
+    expect(result.enPrompt.length).toBeGreaterThan(0);
+    expect(result.targetToolId).toBe("generic_image");
+  });
+
+  it("zh prompt uses Chinese comma separator between dimensions", () => {
+    const result = renderPrompt({
+      workType: imageWorkType,
+      targetToolId: "generic_image",
+      rawIntent: "",
+      selections: imageSelections
+    });
+
+    expect(result.zhPrompt).toContain("，");
+    expect(result.zhPrompt.length).toBeGreaterThan(0);
+  });
+
+  it("en prompt uses English comma separator between dimensions", () => {
+    const result = renderPrompt({
+      workType: imageWorkType,
+      targetToolId: "generic_image",
+      rawIntent: "",
+      selections: imageSelections
+    });
+
+    expect(result.enPrompt).toContain(", ");
+    expect(result.enPrompt.length).toBeGreaterThan(0);
+  });
+
+  it("injects negative prompt text from target config (medium default)", () => {
+    const result = renderPrompt({
+      workType: imageWorkType,
+      targetToolId: "generic_image",
+      rawIntent: "",
+      selections: imageSelections
+    });
+
+    expect(result.zhPrompt).toContain("低画质");
+    expect(result.enPrompt).toContain("low quality");
+  });
+
+  it("brief contains all 14 image dimensions for full selections", () => {
+    const fullSelections: PromptSelections = {
+      use_case: "image_use_case:social_media_post",
+      subject: "image_subject:hero_product",
+      scene: "image_scene:studio_env",
+      composition: "image_composition:centered",
+      lighting: "image_lighting:soft_dreamy",
+      art_style: "image_art_style:photorealistic",
+      color_palette: "image_color_palette:warm",
+      mood: "image_mood:serene",
+      perspective: "image_perspective:eye_level",
+      aspect_ratio: "image_aspect_ratio:square_1_1",
+      detail_level: "image_detail_level:hyper_detailed",
+      post_processing: "image_post_processing:bokeh",
+      constraints: [
+        "image_constraints:no_ip_celebrity",
+        "image_constraints:no_nsfw",
+        "image_constraints:no_bad_anatomy",
+        "image_constraints:no_low_quality"
+      ],
+      time_season: "image_time_season:dawn_morning"
+    };
+
+    const result = renderPrompt({
+      workType: imageWorkType,
+      targetToolId: "generic_image",
+      rawIntent: "",
+      selections: fullSelections
+    });
+
+    const allQuestionIds = imageWorkType.questions.map(q => q.id);
+    const briefQuestionIds = result.brief.items.map(item => item.questionId);
+
+    for (const qId of allQuestionIds) {
+      expect(briefQuestionIds).toContain(qId);
+    }
+  });
+
+  it("brief has correct workTypeId and targetToolId", () => {
+    const result = renderPrompt({
+      workType: imageWorkType,
+      targetToolId: "generic_image",
+      rawIntent: "",
+      selections: imageSelections
+    });
+
+    expect(result.brief.workTypeId).toBe("image_prompt");
+    expect(result.brief.targetToolId).toBe("generic_image");
+    expect(result.brief.version).toBeDefined();
+    expect(result.brief.items.length).toBeGreaterThan(0);
+  });
+});
+
 describe("suggests field validation (DIFF-03)", () => {
   const allSets = getAllOptionSets();
   const allQuestionIds = new Set([
