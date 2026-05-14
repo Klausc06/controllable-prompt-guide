@@ -4,6 +4,32 @@ export const imageSceneOptions: OptionSet = {
   id: "image_scene",
   version: "0.1.0",
   label: { zh: "背景/场景", en: "Background / Scene" },
+  categories: [
+    {
+      id: "cat:image_scene:clean_backgrounds",
+      label: { zh: "简洁背景", en: "Clean Backgrounds" },
+      optionIds: [
+        "image_scene:solid_color", "image_scene:white_bg", "image_scene:black_bg",
+        "image_scene:gradient_bg", "image_scene:transparent_bg"
+      ]
+    },
+    {
+      id: "cat:image_scene:environmental",
+      label: { zh: "场景背景", en: "Environmental" },
+      optionIds: [
+        "image_scene:natural_landscape", "image_scene:urban_street", "image_scene:indoor_setting",
+        "image_scene:studio_env", "image_scene:garden_floral", "image_scene:sky_cloud",
+        "image_scene:starry_cosmos"
+      ]
+    },
+    {
+      id: "cat:image_scene:artistic",
+      label: { zh: "艺术/纹理", en: "Artistic / Textured" },
+      optionIds: [
+        "image_scene:abstract_bg", "image_scene:blurred_bokeh", "image_scene:textured_bg"
+      ]
+    }
+  ],
   options: [
     {
       id: "image_scene:solid_color",

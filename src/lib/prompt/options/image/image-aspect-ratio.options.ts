@@ -4,6 +4,27 @@ export const imageAspectRatioOptions: OptionSet = {
   id: "image_aspect_ratio",
   version: "0.1.0",
   label: { zh: "画面比例", en: "Aspect ratio" },
+  categories: [
+    {
+      id: "cat:image_aspect_ratio:portrait",
+      label: { zh: "竖幅", en: "Portrait" },
+      optionIds: [
+        "image_aspect_ratio:square_1_1", "image_aspect_ratio:portrait_9_16",
+        "image_aspect_ratio:portrait_2_3", "image_aspect_ratio:portrait_4_5",
+        "image_aspect_ratio:portrait_3_4"
+      ]
+    },
+    {
+      id: "cat:image_aspect_ratio:landscape",
+      label: { zh: "横幅", en: "Landscape" },
+      optionIds: [
+        "image_aspect_ratio:landscape_16_9", "image_aspect_ratio:cinematic_scope",
+        "image_aspect_ratio:classic_3_2", "image_aspect_ratio:landscape_4_3",
+        "image_aspect_ratio:ultra_wide_2_1", "image_aspect_ratio:landscape_5_4",
+        "image_aspect_ratio:panorama_3_1"
+      ]
+    }
+  ],
   options: [
     {
       id: "image_aspect_ratio:square_1_1",
