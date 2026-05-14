@@ -11,7 +11,7 @@ const validImageSelections: PromptSelections = {
   lighting: "image_lighting:golden_hour",
   art_style: "image_art_style:photorealistic",
   color_palette: "image_color_palette:warm",
-  constraints: ["image_constraints:no_celebrity_likeness"],
+  constraints: ["image_constraints:no_ip_celebrity"],
 };
 
 describe("evaluatePromptQuality — workTypeId parameter", () => {

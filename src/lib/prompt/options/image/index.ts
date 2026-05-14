@@ -1,5 +1,5 @@
 import { registerOptionSet } from "../../registry";
-import type { OptionItem, OptionSet } from "../../types";
+import type { OptionSet } from "../../types";
 import { imageUseCaseOptions } from "./image-use-case.options";
 import { imageSubjectOptions } from "./image-subject.options";
 import { imageSceneOptions } from "./image-scene.options";
@@ -34,22 +34,4 @@ const imageOptionSets = [
 
 for (const set of imageOptionSets) {
   registerOptionSet(set);
-}
-
-const imageOptionSetById = Object.fromEntries(
-  imageOptionSets.map((set) => [set.id, set])
-);
-
-export function getImageOptionSet(optionSetId: string): OptionSet {
-  const optionSet = imageOptionSetById[optionSetId];
-  if (!optionSet) {
-    throw new Error(`Unknown image option set: ${optionSetId}`);
-  }
-  return optionSet;
-}
-
-export function getImageOptionById(optionId: string): OptionItem | undefined {
-  return imageOptionSets
-    .flatMap((set) => set.options)
-    .find((option) => option.id === optionId);
 }

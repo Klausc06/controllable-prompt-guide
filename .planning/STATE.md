@@ -2,24 +2,24 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Image Prompts
-current_plan: Not started
-status: Milestone complete
-last_updated: "2026-05-14T03:34:31.341Z"
+current_plan: 5
+status: Executing Phase 14
+last_updated: "2026-05-14T05:08:35.588Z"
 progress:
-  total_phases: 5
+  total_phases: 6
   completed_phases: 5
-  total_plans: 14
-  completed_plans: 14
-  percent: 100
+  total_plans: 19
+  completed_plans: 15
+  percent: 79
 ---
 
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-14 — Phase 13 Plan 02 complete (v1.1 URL sharing + localStorage persistence)
-**Phase:** 13
-**Current Plan:** Not started
-**Tests:** 130 total (125 pass, 5 pre-existing failures from 13-01 renderer assertions — not caused by 13-02)
+**Last updated:** 2026-05-14 — Phase 14 Plan 04 complete (D-05 aria-pressed, D-08 dead import, D-11 aria-live)
+**Phase:** 14
+**Current Plan:** 5
+**Tests:** 130 total (125 pass, 5 pre-existing failures from 13-01 renderer assertions — not caused by 14-04)
 **CI:** tsc --noEmit: 0 errors
 
 ## Architecture
@@ -37,6 +37,7 @@ progress:
 
 ## Recent Activity
 
+- **Phase 14 Plan 04 complete** — D-05: added `aria-pressed={active}` to OptionCard toggle buttons (screen readers announce selection state). D-08: removed unused `getOptionsByConsumerTerm` import. D-11: added `aria-live="polite"` region that announces work type mode switches ("已切换到图片提示词模式" / "已切换到视频提示词模式"). 2 commits, 5 insertions, 1 deletion in prompt-guide.tsx.
 - **Phase 13 Plan 02 complete** — URL encoding with replaceState, 300ms debounced localStorage persistence, full priority-chain state recovery (URL > localStorage > defaults). Compact URL params: `?wt=`, `?t=`, `?sel=`, `?adv=1`. LocalStorage format with version validation. `deselectedSafety` not persisted (transient UI state).
 - Phase 13 Plan 03 complete — created blog/v1.1-image-prompts.md with two Chinese blog posts: BLOG-01 feature announcement (~310 zh chars) and BLOG-02 practical walkthrough guide (~490 zh chars) with concrete example and tips
 - Phase 12 Plan 03 complete — image option riskHints + negative prompt injection
@@ -81,6 +82,7 @@ progress:
 - [Phase 13-ui-polish]: advancedOpen restored from URL/localStorage via spread override after createInitialState — avoids changing reducer signature
 - [Phase 13-ui-polish]: deselectedSafety is NOT persisted — transient UI state (safety defaults can be re-deselected on each session)
 - [Phase 13-ui-polish]: Empty selections from URL/localStorage trigger imageDefaults or video defaults based on workTypeId — ensures image mode always has sensible defaults
+- [Phase 14-review-fixes]: Used aria-pressed (not aria-checked) for OptionCard toggle buttons per ARIA spec
 
 ## Next
 
