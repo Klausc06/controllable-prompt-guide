@@ -23,6 +23,7 @@ function makeState(overrides?: Partial<PromptGuideState>): PromptGuideState {
     selections: { ...defaults },
     advancedOpen: false,
     deselectedSafety: new Set<string>(),
+    negPromptTier: "medium",
     ...overrides
   };
 }
@@ -319,6 +320,33 @@ describe("promptGuideReducer", () => {
           action
         ).advancedOpen
       ).toBe(false);
+    });
+  });
+
+  describe("SET_NEG_PROMPT_TIER", () => {
+    it("changes negPromptTier from medium to light", () => {
+      const state = makeState();
+      expect(state.negPromptTier).toBe("medium");
+      const next = promptGuideReducer(state, { type: "SET_NEG_PROMPT_TIER", tier: "light" });
+      expect(next.negPromptTier).toBe("light");
+    });
+
+    it("changes negPromptTier to heavy", () => {
+      const state = makeState();
+      const next = promptGuideReducer(state, { type: "SET_NEG_PROMPT_TIER", tier: "heavy" });
+      expect(next.negPromptTier).toBe("heavy");
+    });
+
+    it("WORK_TYPE_CHANGED resets negPromptTier to medium", () => {
+      const state = makeState({ negPromptTier: "light" });
+      const action: PromptGuideAction = { type: "WORK_TYPE_CHANGED", from: "video_prompt", to: "video_prompt" };
+      const next = promptGuideReducer(state, action);
+      expect(next.negPromptTier).toBe("medium");
+    });
+
+    it("createInitialState initializes negPromptTier to medium", () => {
+      const state = createInitialState("video_prompt", "seedance", { ...defaults });
+      expect(state.negPromptTier).toBe("medium");
     });
   });
 });

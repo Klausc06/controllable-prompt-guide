@@ -627,6 +627,36 @@ describe("image prompt rendering", () => {
     expect(result.enPrompt).toContain("low quality");
   });
 
+  it("light negPromptTier uses light-tier text but NOT medium+ terms", () => {
+    const result = renderPrompt({
+      workType: imageWorkType,
+      targetToolId: "generic_image",
+      rawIntent: "",
+      selections: imageSelections,
+      negPromptTier: "light"
+    });
+
+    // Light tier contains basic quality terms in negative prompt
+    expect(result.zhPrompt).toContain("低画质");
+    expect(result.zhPrompt).toContain("模糊");
+    // Light tier should NOT contain medium-tier term "水印"
+    expect(result.zhPrompt).not.toContain("水印");
+  });
+
+  it("heavy negPromptTier includes heavy-only negative text", () => {
+    const result = renderPrompt({
+      workType: imageWorkType,
+      targetToolId: "generic_image",
+      rawIntent: "",
+      selections: imageSelections,
+      negPromptTier: "heavy"
+    });
+
+    // Heavy tier includes heavy-only terms
+    expect(result.zhPrompt).toContain("混沌背景");
+    expect(result.zhPrompt).toContain("比例失调");
+  });
+
   it("brief contains all 14 image dimensions for full selections", () => {
     const fullSelections: PromptSelections = {
       use_case: "image_use_case:social_media_post",
