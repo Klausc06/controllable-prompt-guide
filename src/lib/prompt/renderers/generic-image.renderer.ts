@@ -26,6 +26,16 @@ function render(brief: PromptBrief): RenderedPrompt {
   const zhIntent = brief.rawIntent || getBriefText(brief, "use_case", "zh");
   const enIntent = brief.rawIntent || getBriefText(brief, "use_case", "en");
 
+  // Inject negative prompt from target config (default tier: medium)
+  const negConfig = genericImageTarget.negativePrompt;
+  if (negConfig) {
+    const tier = negConfig.default;
+    const negZh = negConfig.texts[tier].zh;
+    const negEn = negConfig.texts[tier].en;
+    if (negZh) zhPhrases.push(negZh);
+    if (negEn) enPhrases.push(negEn);
+  }
+
   // Build final prompts: intent (if available) followed by comma-separated dimension phrases
   const zhPrompt = (zhIntent ? zhIntent + "，" : "") + zhPhrases.join("，");
   const enPrompt = (enIntent ? enIntent + ", " : "") + enPhrases.join(", ");
