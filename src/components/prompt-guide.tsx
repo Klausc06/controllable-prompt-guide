@@ -127,6 +127,7 @@ function OptionCard({
       key={option.id}
       type="button"
       onClick={() => onToggle(option.id)}
+      aria-pressed={active}
       className={cn(
         "min-h-36 rounded-md border bg-white p-4 text-left transition hover:border-slate-400 hover:shadow-soft",
         active ? "border-slate-950 ring-4 ring-slate-100" : "border-slate-200"
