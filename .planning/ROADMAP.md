@@ -53,14 +53,14 @@ Plans:
 ### Phase 14: Review Fixes
 **Goal**: Fix 12 high-priority issues from v1.1 cross-review audit (critical bugs, test gaps, a11y, data quality, negative prompt tier)
 **Requirements**: RVW-01..12
-**Plans:** 4/5 plans executed
+**Plans:** 5/5 plans complete
 
 Plans:
 - [x] 14-01-PLAN.md — Critical fixes: vitest exclude, veo3 import, dead barrels, wrong test ID (D-01, D-02, D-06, D-07)
 - [x] 14-02-PLAN.md — Test coverage: renderPrompt image test, WORK_TYPE_CHANGED transitions (D-03, D-04)
 - [x] 14-03-PLAN.md — Data quality: consumerTerms + categories (D-09, D-10)
 - [x] 14-04-PLAN.md — Component ARIA: aria-pressed, aria-live, unused import (D-05, D-08, D-11)
-- [ ] 14-05-PLAN.md — Negative prompt tier: user-selectable light/medium/heavy (D-12)
+- [x] 14-05-PLAN.md — Negative prompt tier: user-selectable light/medium/heavy (D-12)
 
 ## Progress
 

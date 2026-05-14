@@ -2,24 +2,24 @@
 gsd_state_version: 1.0
 milestone: v1.1
 milestone_name: Image Prompts
-current_plan: 5
-status: Executing Phase 14
-last_updated: "2026-05-14T05:15:40.274Z"
+current_plan: 5 (all plans complete)
+status: Complete
+last_updated: "2026-05-14T05:34:07.516Z"
 progress:
   total_phases: 6
-  completed_phases: 5
+  completed_phases: 6
   total_plans: 19
-  completed_plans: 18
-  percent: 95
+  completed_plans: 19
+  percent: 100
 ---
 
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-14 — Phase 14 Plan 03 complete (D-09 consumerTerms on 13 options, D-10 categories on scene and aspect_ratio)
+**Last updated:** 2026-05-14 — Phase 14 Plan 05 complete (D-12 negative prompt tier user-selectable)
 **Phase:** 14
-**Current Plan:** 19
-**Tests:** 147 total (142 pass, 5 pre-existing failures in prompt-guide.test.tsx — not caused by 14-03)
+**Current Plan:** 5 (all plans complete)
+**Tests:** 153 total (148 pass, 5 pre-existing failures in prompt-guide.test.tsx — not caused by phase 14)
 **CI:** tsc --noEmit: 0 errors
 
 ## Architecture
@@ -37,6 +37,8 @@ progress:
 
 ## Recent Activity
 
+- **Phase 14 Plan 05 complete** — D-12: Negative prompt tier now user-selectable (light/medium/heavy). Pipeline threaded through types, renderer, adapters, reducer, and UI. Three-button radio group in advanced section with bilingual labels, localStorage persistence with validated restore. 3 commits, 7 files modified, 6 new tests. All 148 passing tests, tsc clean.
+- **Phase 14 Plan 04 complete** — D-05: added `aria-pressed={active}` to OptionCard toggle buttons. D-08: removed unused `getOptionsByConsumerTerm` import. D-11: added `aria-live="polite"` region for work type mode switch announcements. 2 commits, 5 insertions, 1 deletion.
 - **Phase 14 Plan 03 complete** — D-09: All 13 missing consumerTerms verified as pre-applied in plan 14-01 commit ebe82b4 (6 art-style + 1 color-palette + 6 mood). D-10: Added categories to image_scene (3 categories covering 15 options) and image_aspect_ratio (2 categories covering 12 options). 1 commit (df8e79a), 2 files modified.
 - **Phase 14 Plan 02 complete** — D-03: 6 renderPrompt integration tests for image_prompt (zh/en output, comma separators, negative prompt injection, 14-dimension brief). D-04: 8 WORK_TYPE_CHANGED cross-work-type transition tests (video-image both directions). Zero implementation changes — all 14 new tests pass against existing code. 2 commits, 228 lines added.
 - **Phase 14 Plan 04 complete** — D-05: added `aria-pressed={active}` to OptionCard toggle buttons (screen readers announce selection state). D-08: removed unused `getOptionsByConsumerTerm` import. D-11: added `aria-live="polite"` region that announces work type mode switches ("已切换到图片提示词模式" / "已切换到视频提示词模式"). 2 commits, 5 insertions, 1 deletion in prompt-guide.tsx.
@@ -94,10 +96,15 @@ progress:
 - [Phase 14-review-fixes]: Image renderPrompt tests use valid registered option IDs from the 14 image catalogs — all IDs verified against actual registry content before test writing
 - [Phase 14-review-fixes]: Cross-work-type reducer tests expect seedance as first video target based on registration order in targets/index.ts
 - [Phase 14-review-fixes]: No implementation changes needed for D-03/D-04 — both test suites pass against existing code, confirming image pipeline and WORK_TYPE_CHANGED reducer were already correct
+- [Phase 14-review-fixes]: D-12 negPromptTier default "medium" preserves backward compatibility — existing callers without tier parameter get same output
+- [Phase 14-review-fixes]: Tier selector only appears for targets with negativePrompt config — future-proof (not hardcoded to image_prompt)
+- [Phase 14-review-fixes]: URL does not persist negPromptTier — tier is not critical for sharing; localStorage persistence with validated restore (T-14-05 mitigation)
+- [Phase 14-review-fixes]: WORK_TYPE_CHANGED resets negPromptTier to "medium" — avoids confusion if video negative prompts are added later with different tiers
 
 ## Next
 
-- v1.1 (Image Prompts) milestone COMPLETE — all 5 phases (9-13), all 14 plans executed
+- v1.1 (Image Prompts) milestone COMPLETE — all 6 phases (9-14), all 19 plans executed
 - Phase 08 plans (hardening: CI, lint, dead code, Canva research) — deferred for future milestone
 - Additional image targets (Midjourney, DALL-E, etc.) (future phase)
+- Fix 5 pre-existing test failures from prompt-guide.test.tsx (aria-pressed assertions)
 - Fix 5 pre-existing test failures from 13-01 renderer assertions (copy payload format changed)
