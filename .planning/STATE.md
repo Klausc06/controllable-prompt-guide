@@ -16,10 +16,10 @@ progress:
 # State: Controllable Prompt Guide
 
 **Project:** 可控提示词向导
-**Last updated:** 2026-05-14 — Phase 14 Plan 02 complete (D-03 image renderPrompt tests, D-04 WORK_TYPE_CHANGED cross-work-type tests)
+**Last updated:** 2026-05-14 — Phase 14 Plan 03 complete (D-09 consumerTerms on 13 options, D-10 categories on scene and aspect_ratio)
 **Phase:** 14
-**Current Plan:** 5
-**Tests:** 157 total (152 pass, 5 pre-existing failures in prompt-guide.test.tsx — not caused by 14-02)
+**Current Plan:** 19
+**Tests:** 147 total (142 pass, 5 pre-existing failures in prompt-guide.test.tsx — not caused by 14-03)
 **CI:** tsc --noEmit: 0 errors
 
 ## Architecture
@@ -37,6 +37,7 @@ progress:
 
 ## Recent Activity
 
+- **Phase 14 Plan 03 complete** — D-09: All 13 missing consumerTerms verified as pre-applied in plan 14-01 commit ebe82b4 (6 art-style + 1 color-palette + 6 mood). D-10: Added categories to image_scene (3 categories covering 15 options) and image_aspect_ratio (2 categories covering 12 options). 1 commit (df8e79a), 2 files modified.
 - **Phase 14 Plan 02 complete** — D-03: 6 renderPrompt integration tests for image_prompt (zh/en output, comma separators, negative prompt injection, 14-dimension brief). D-04: 8 WORK_TYPE_CHANGED cross-work-type transition tests (video-image both directions). Zero implementation changes — all 14 new tests pass against existing code. 2 commits, 228 lines added.
 - **Phase 14 Plan 04 complete** — D-05: added `aria-pressed={active}` to OptionCard toggle buttons (screen readers announce selection state). D-08: removed unused `getOptionsByConsumerTerm` import. D-11: added `aria-live="polite"` region that announces work type mode switches ("已切换到图片提示词模式" / "已切换到视频提示词模式"). 2 commits, 5 insertions, 1 deletion in prompt-guide.tsx.
 - **Phase 13 Plan 02 complete** — URL encoding with replaceState, 300ms debounced localStorage persistence, full priority-chain state recovery (URL > localStorage > defaults). Compact URL params: `?wt=`, `?t=`, `?sel=`, `?adv=1`. LocalStorage format with version validation. `deselectedSafety` not persisted (transient UI state).
@@ -83,6 +84,8 @@ progress:
 - [Phase 13-ui-polish]: advancedOpen restored from URL/localStorage via spread override after createInitialState — avoids changing reducer signature
 - [Phase 13-ui-polish]: deselectedSafety is NOT persisted — transient UI state (safety defaults can be re-deselected on each session)
 - [Phase 13-ui-polish]: Empty selections from URL/localStorage trigger imageDefaults or video defaults based on workTypeId — ensures image mode always has sensible defaults
+- [Phase 14-review-fixes]: D-09 consumerTerms on 13 options pre-applied by plan 14-01 — verified complete (60/60 art-style, 18/18 color-palette, 18/18 mood)
+- [Phase 14-review-fixes]: D-10 categories added to image_scene (3 categories, 15 options) and image_aspect_ratio (2 categories, 12 options) — placed between label and options per image-art-style convention
 - [Phase 14-review-fixes]: Used aria-pressed (not aria-checked) for OptionCard toggle buttons per ARIA spec
 - [Phase 14]: D-01: vitest exclude .claude/** prevents 36 false failures from worktree snapshot copies in test discovery
 - [Phase 14]: D-02: adapters.ts now imports all 4 renderers (seedance, generic-video, veo3, generic-image) matching init.ts order — no dependency on init.ts for adapter resolution
