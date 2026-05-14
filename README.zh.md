@@ -38,7 +38,7 @@ English | [中文](./README.zh.md)
 ## 本地运行
 
 ```bash
-git clone https://github.com/Klausc06/controllable-prompt-guide.git
+git clone https://github.com/prompt-tools/controllable-prompt-guide.git
 cd controllable-prompt-guide
 npm install
 npm run dev        # http://localhost:3000

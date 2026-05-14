@@ -38,7 +38,7 @@ Every option includes: plain-language labels + professional terms + bilingual pr
 ## Quick Start
 
 ```bash
-git clone https://github.com/Klausc06/controllable-prompt-guide.git
+git clone https://github.com/prompt-tools/controllable-prompt-guide.git
 cd controllable-prompt-guide
 npm install
 npm run dev        # http://localhost:3000
